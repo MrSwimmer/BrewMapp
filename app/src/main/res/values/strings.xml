@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">BrewMapp</string>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    //drawer items
+    <string name="nav_item_feed">Лента новостей</string>
+    <string name="nav_item_friends">Друзья</string>
+    <string name="nav_item_message">Сообщения</string>
+    <string name="nav_item_search">Поиск</string>
+    <string name="nav_item_map">Карта</string>
+    <string name="nav_item_settings">Настройки</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+</resources>
