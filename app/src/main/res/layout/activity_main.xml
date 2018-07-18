@@ -29,9 +29,14 @@
     <!-- Обратите внимание, что `android:layout_gravity` нужно установить в 'start' -->
     <android.support.design.widget.NavigationView
         android:id="@+id/navView"
+        android:theme="@style/NavigationDrawerStyle"
+        app:itemIconTint="@color/selector_drawer_icon_item"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@drawable/gradient"
         app:headerLayout="@layout/nav_header"
+        app:itemBackground="@color/transparent"
+        app:itemTextColor="@color/selector_drawer_text_item"
         app:menu="@menu/drawer_view" />
 </android.support.v4.widget.DrawerLayout>

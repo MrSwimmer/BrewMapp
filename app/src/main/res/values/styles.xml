@@ -9,10 +9,15 @@
     </style>
 
     <style name="BrewMapp" parent="Theme.AppCompat.Light.NoActionBar">
-
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
-    <style name="BrewMapp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="BrewMapp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="NavigationDrawerStyle">
+        <item name="android:textSize">18sp</item><!-- text size in menu-->
+        <!--<item name="android:listPreferredItemHeightSmall">60dp</item>-->
+    </style>
 </resources>
