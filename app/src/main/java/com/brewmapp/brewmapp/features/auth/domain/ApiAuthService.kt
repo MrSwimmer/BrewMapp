@@ -2,6 +2,7 @@ package com.brewmapp.brewmapp.features.auth.domain
 
 import com.brewmapp.brewmapp.features.auth.data.AuthApi
 import com.brewmapp.brewmapp.features.auth.data.model.req.UserLogIn
+import com.brewmapp.brewmapp.features.auth.data.model.res.RootObject
 import com.brewmapp.brewmapp.features.auth.data.model.res.User
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -31,7 +32,7 @@ class ApiAuthService(private val api: AuthApi) {
     }
 
     interface AuthCallback {
-        fun onSuccess(user: User)
+        fun onSuccess(user: RootObject)
         fun onError(e: Throwable)
     }
 }

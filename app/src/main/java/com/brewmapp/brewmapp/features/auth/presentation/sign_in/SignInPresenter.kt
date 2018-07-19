@@ -4,6 +4,7 @@ import android.util.Log
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.domain.interactor.SettingsService
 import com.brewmapp.brewmapp.features.auth.data.model.req.UserLogIn
+import com.brewmapp.brewmapp.features.auth.data.model.res.RootObject
 import com.brewmapp.brewmapp.features.auth.data.model.res.User
 import com.brewmapp.brewmapp.features.auth.domain.ApiAuthService
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
@@ -18,9 +19,9 @@ class SignInPresenter : MvpBasePresenter<SignInContract.View>(), SignInContract.
     override fun signIn(email: String, password: String) {
         val userLogIn = UserLogIn(email, password)
         apiService.signIn(userLogIn, object : ApiAuthService.AuthCallback {
-            override fun onSuccess(user: User) {
-                Log.i("code", "success sign in ${user.models[0].token}")
-                settingsService.setToken(user.models[0].token)
+            override fun onSuccess(user: RootObject) {
+                Log.i("code", "success sign in ${user.user.token}")
+                settingsService.setToken(user.user.token)
                 view.gotoMain()
             }
 

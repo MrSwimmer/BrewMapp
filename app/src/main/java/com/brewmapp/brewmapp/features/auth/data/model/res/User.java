@@ -445,19 +445,15 @@ public class User {
     public void setGetThumb(String getThumb) {
         this.getThumb = getThumb;
     }
-}
+    private String message;
 
-class RootObject
-
-{
-    private User user;
-
-    public User getUser() {
-        return this.user;
+    public String getMessage() {
+        return message;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
+
 
