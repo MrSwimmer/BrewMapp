@@ -4,7 +4,10 @@ import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 
 interface SignInContract {
-    interface View : MvpView
+    interface View : MvpView {
+        fun gotoMain()
+    }
+
     interface Presenter: MvpPresenter<View> {
         fun signIn(toString: String, toString1: String)
     }

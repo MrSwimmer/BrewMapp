@@ -60,4 +60,6 @@ dependencies {
 
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'io.reactivex:rxjava:1.2.1'
+
+    implementation "android.arch.paging:runtime:1.0.0"
 }

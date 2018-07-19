@@ -18,4 +18,12 @@ class UserReg() {
         this.gender = gender
         this.phone = phone
     }
+
+    constructor(email: String, first: String, last: String, dateString: String, password: String) : this() {
+        login = email
+        firstname = first
+        lastname = last
+        birthday = dateString
+        this.password = password
+    }
 }

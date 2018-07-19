@@ -41,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Имя"
+                android:text="Севастьян"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
         </android.support.design.widget.TextInputLayout>
@@ -60,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Фамилия"
+                android:text="Жуков"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
         </android.support.design.widget.TextInputLayout>
@@ -79,6 +81,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:text="mrswimmerlab@gmail.com"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
         </android.support.design.widget.TextInputLayout>
@@ -98,6 +102,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Пароль"
+                android:inputType="textPassword"
+                android:text="qwerty1234"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
         </android.support.design.widget.TextInputLayout>
@@ -112,8 +118,8 @@
             app:customFont="@string/font_main" />
 
         <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.ButtonPlus
-            android:id="@+id/chooseEnter3"
-            android:layout_width="200dp"
+            android:id="@+id/chooseDate"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@color/selector_button_green_frame"
@@ -123,11 +129,11 @@
 
 
     <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.ButtonPlus
-        android:id="@+id/chooseRegistration2"
+        android:id="@+id/registration"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@color/selector_button_red"
-        android:text="Зарегестрироваться"
+        android:text="Зарегистрироваться"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

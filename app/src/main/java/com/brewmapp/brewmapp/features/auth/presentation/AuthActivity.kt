@@ -20,4 +20,10 @@ class AuthActivity : AppCompatActivity() {
         if (!router.hasRootController())
             router.setRoot(RouterTransaction.with(ChooseController()))
     }
+
+    override fun onBackPressed() {
+        if (!router.handleBack()) {
+            super.onBackPressed()
+        }
+    }
 }

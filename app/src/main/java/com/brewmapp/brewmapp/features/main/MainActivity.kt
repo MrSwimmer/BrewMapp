@@ -17,9 +17,7 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.domain.CustomTypefaceSpan
-import com.brewmapp.brewmapp.features.main.profile.FeedController
-import com.brewmapp.brewmapp.features.main.profile.ChooseController
-
+import com.brewmapp.brewmapp.features.main.profile.SearchController
 
 
 @Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
@@ -48,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         drawerToggle.syncState()
         router = Conductor.attachRouter(this, mainContainer, savedInstanceState)
         if (!router.hasRootController())
-            router.setRoot(RouterTransaction.with(FeedController()))
+            router.setRoot(RouterTransaction.with(SearchController()))
         val menu = navView.menu
         for (i in 0 until menu.size()) {
             val mi = menu.getItem(i)
@@ -68,9 +66,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun selectDrawerItem(itemId: Int) {
         when (itemId) {
-            R.id.nav_feed -> router.replaceTopController(RouterTransaction.with(FeedController()))
-            R.id.nav_message -> router.replaceTopController(RouterTransaction.with(ChooseController()))
-            else -> router.replaceTopController(RouterTransaction.with(FeedController()))
+            R.id.nav_feed -> router.replaceTopController(RouterTransaction.with(SearchController()))
+            R.id.nav_message -> router.replaceTopController(RouterTransaction.with(SearchController()))
+            else -> router.replaceTopController(RouterTransaction.with(SearchController()))
         }
     }
 
