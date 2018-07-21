@@ -24,4 +24,6 @@
     <color name="endGradient">#43455e</color>
 
     <color name="white">#FFFFFF</color>
+
+    <color name="item_green">#D4E800</color>
 </resources>

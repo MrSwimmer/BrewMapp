@@ -10,6 +10,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.util.Log
 import android.view.MenuItem
+import android.widget.ProgressBar
 import com.bluelinelabs.conductor.Conductor
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -17,11 +18,12 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.domain.CustomTypefaceSpan
+import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 
 
 @Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var router: Router
     private lateinit var drawerToggle: ActionBarDrawerToggle

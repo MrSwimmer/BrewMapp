@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
+import com.brewmapp.brewmapp.core.presentation.base.BaseController
 import com.brewmapp.brewmapp.features.main.MainActivity
 import com.hannesdorfmann.mosby3.mvp.conductor.MvpController
 import kotlinx.android.synthetic.main.controller_sign_up.view.*
 
 
-class SignUpController : MvpController<SignUpContract.View, SignUpContract.Presenter>(), SignUpContract.View{
+class SignUpController : BaseController<SignUpContract.View, SignUpContract.Presenter>(), SignUpContract.View{
     override fun gotoMain() {
         val intent = Intent(activity, MainActivity::class.java)
         startActivity(intent)
@@ -39,11 +40,11 @@ class SignUpController : MvpController<SignUpContract.View, SignUpContract.Prese
 
     fun onRegClick() {
         if (isFeelingFields()) {
+            showProgress()
             presenter.signUp(view!!.email.text.toString(), view!!.password.text.toString(), view!!.first.text.toString(), view!!.last.text.toString(), dateString)
         } else {
             Snackbar.make(view!!, "Заполните все поля", Snackbar.LENGTH_SHORT).show()
         }
-        //gotoMain()
     }
 
     fun isFeelingFields(): Boolean {

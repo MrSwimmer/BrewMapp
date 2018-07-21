@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.brewmapp.brewmapp.R
+import com.brewmapp.brewmapp.core.presentation.base.BaseController
 import com.brewmapp.brewmapp.features.main.MainActivity
 import com.hannesdorfmann.mosby3.mvp.conductor.MvpController
 import kotlinx.android.synthetic.main.controller_sign_in.view.*
 
-class SignInController : MvpController<SignInContract.View, SignInContract.Presenter>(), SignInContract.View {
-
+class SignInController : BaseController<SignInContract.View, SignInContract.Presenter>(), SignInContract.View {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_sign_in, container, false)
@@ -26,15 +26,15 @@ class SignInController : MvpController<SignInContract.View, SignInContract.Prese
 
     fun onEnterClick() {
         if (isFeelingFields()) {
+            showProgress()
             presenter.signIn(view!!.email.text.toString(), view!!.password.text.toString())
-            //gotoMain()
         } else {
-            Snackbar.make(view!!, "Заполните все поля", Snackbar.LENGTH_SHORT).show()
+            showSnack("Заполните все поля")
         }
 
     }
 
-    fun isFeelingFields() : Boolean {
+    fun isFeelingFields(): Boolean {
         return view!!.email.text.toString() != "" && view!!.password.text.toString() != ""
     }
 
@@ -43,6 +43,4 @@ class SignInController : MvpController<SignInContract.View, SignInContract.Prese
         startActivity(intent)
         activity!!.finish()
     }
-
-
 }

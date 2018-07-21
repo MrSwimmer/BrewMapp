@@ -5,5 +5,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpView
 
 interface SearchContract {
     interface View : MvpView
-    interface Presenter: MvpPresenter<View>
+    interface Presenter: MvpPresenter<View> {
+        fun setRecyclerData()
+    }
 }

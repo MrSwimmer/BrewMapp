@@ -5,5 +5,4 @@ import android.view.View
 import kotlinx.android.synthetic.main.item_search.*
 
 class SearchViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-
 }

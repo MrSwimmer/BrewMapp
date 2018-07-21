@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.auth.data.model.res;
 
-public class RootObject
+public class UserData
 
 {
     private User user;
