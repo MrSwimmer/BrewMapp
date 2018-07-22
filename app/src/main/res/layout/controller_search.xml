@@ -27,8 +27,8 @@
             android:background="@drawable/tabs_background"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView2"
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/beer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -36,27 +36,30 @@
                 android:padding="10dp"
                 android:text="Пиво"
                 android:textAlignment="center"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                app:customFont="@string/font_main" />
 
-            <TextView
-                android:id="@+id/textView7"
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/brewery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="10dp"
                 android:text="Пивоварни"
                 android:textAlignment="center"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                app:customFont="@string/font_main" />
 
-            <TextView
-                android:id="@+id/textView6"
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/restaurants"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="10dp"
                 android:text="Заведения"
                 android:textAlignment="center"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                app:customFont="@string/font_main" />
         </LinearLayout>
 
     </LinearLayout>
@@ -65,9 +68,37 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorButtonGreen"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:srcCompat="@drawable/ic_search" />
+
+        <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="Поиск"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:customFont="@string/font_main" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
