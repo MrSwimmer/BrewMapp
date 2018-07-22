@@ -1,5 +1,6 @@
 package com.brewmapp.brewmapp.features.main
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
@@ -19,6 +20,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.domain.CustomTypefaceSpan
 import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
+import com.brewmapp.brewmapp.features.main.profile.AdSearchActivity
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 
 

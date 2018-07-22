@@ -1,15 +1,14 @@
 package com.brewmapp.brewmapp.features.main.profile
 
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.features.main.search.presentation.recycler.Search
 import com.brewmapp.brewmapp.features.main.search.presentation.recycler.SearchAdapter
 import com.hannesdorfmann.mosby3.mvp.conductor.MvpController
-import kotlinx.android.synthetic.main.controller_search.*
 import kotlinx.android.synthetic.main.controller_search.view.*
 
 class SearchController : MvpController<SearchContract.View, SearchContract.Presenter>(), SearchContract.View {
@@ -30,6 +29,6 @@ class SearchController : MvpController<SearchContract.View, SearchContract.Prese
     }
 
     override fun initAdapter(searches: ArrayList<Search>) {
-        view!!.recycler.adapter = SearchAdapter(searches, router)
+        view!!.recycler.adapter = SearchAdapter(searches, activity)
     }
 }

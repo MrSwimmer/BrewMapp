@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".features.main.MainActivity"/>
+        <activity android:name=".features.main.profile.AdSearchActivity"/>
     </application>
 
 </manifest>
