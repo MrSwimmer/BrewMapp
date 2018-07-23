@@ -1,18 +1,19 @@
 
-package com.brewmapp.brewmapp.features.main.adsearch.data.model.res;
+package com.brewmapp.brewmapp.features.main.adsearch.data.model.res.searchnum;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AdSearch {
+import java.util.List;
+
+public class AdSearchNum {
 
     @SerializedName("total")
     @Expose
     private String total;
     @SerializedName("models")
     @Expose
-    private List<Model> models = null;
+    private List<ModelNum> models = null;
 
     public String getTotal() {
         return total;
@@ -22,12 +23,11 @@ public class AdSearch {
         this.total = total;
     }
 
-    public List<Model> getModels() {
+    public List<ModelNum> getModels() {
         return models;
     }
 
-    public void setModels(List<Model> models) {
+    public void setModels(List<ModelNum> models) {
         this.models = models;
     }
-
 }

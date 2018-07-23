@@ -16,6 +16,7 @@ class SearchController : MvpController<SearchContract.View, SearchContract.Prese
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_search, container, false)
         view.recycler.layoutManager = LinearLayoutManager(activity)
+        view.searchButton.setOnClickListener {  }
         return view
     }
 
@@ -31,4 +32,5 @@ class SearchController : MvpController<SearchContract.View, SearchContract.Prese
     override fun initAdapter(searches: ArrayList<Search>) {
         view!!.recycler.adapter = SearchAdapter(searches, activity)
     }
+
 }

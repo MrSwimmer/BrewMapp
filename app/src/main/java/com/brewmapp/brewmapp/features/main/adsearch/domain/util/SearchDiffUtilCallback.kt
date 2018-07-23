@@ -1,7 +1,7 @@
 package com.brewmapp.brewmapp.features.main.adsearch.domain.util
 
 import android.support.v7.util.DiffUtil
-import com.brewmapp.brewmapp.features.main.adsearch.data.model.res.Model
+import com.brewmapp.brewmapp.features.main.adsearch.data.model.res.search.Model
 
 class SearchDiffUtilCallback : DiffUtil.ItemCallback<Model>() {
     override fun areItemsTheSame(oldItem: Model, newItem: Model): Boolean {

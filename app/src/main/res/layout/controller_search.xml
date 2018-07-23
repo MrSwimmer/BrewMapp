@@ -68,13 +68,13 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/searchButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/searchButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorButtonGreen"

@@ -1,7 +1,7 @@
 package com.brewmapp.brewmapp.features.main.adsearch.presentation
 
 import android.arch.paging.PagedList
-import com.brewmapp.brewmapp.features.main.adsearch.data.model.res.Model
+import com.brewmapp.brewmapp.features.main.adsearch.data.model.res.search.Model
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 

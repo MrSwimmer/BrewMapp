@@ -2,7 +2,7 @@ package com.brewmapp.brewmapp.features.main.adsearch.data.paging
 
 import android.arch.paging.PositionalDataSource
 import com.brewmapp.brewmapp.App
-import com.brewmapp.brewmapp.features.main.adsearch.data.model.res.Model
+import com.brewmapp.brewmapp.features.main.adsearch.data.model.res.search.Model
 import com.brewmapp.brewmapp.features.main.adsearch.domain.interactor.ApiAdSearchService
 import javax.inject.Inject
 

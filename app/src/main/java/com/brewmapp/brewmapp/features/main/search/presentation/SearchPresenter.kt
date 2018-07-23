@@ -13,8 +13,8 @@ class SearchPresenter : MvpBasePresenter<SearchContract.View>(), SearchContract.
         searches.add(Search("Тип пива", "Любой", R.drawable.ic_search_type, TypeSearch.TYPE.type))
         searches.add(Search("Бренд пива", "Любой", R.drawable.ic_search_brand, TypeSearch.BRAND.type))
         searches.add(Search("Крепость пива", "Любая", R.drawable.ic_search_strength, TypeSearch.STRENGTH.type))
-        searches.add(Search("Фильтрация пива", "Любая", R.drawable.ic_search_filter_beer))//
-        searches.add(Search("Тип брожения", "Любой", R.drawable.ic_search_type_ferm))//
+        //searches.add(Search("Фильтрация пива", "Любая", R.drawable.ic_search_filter_beer, TypeSearch.FILTER.type))//
+        //searches.add(Search("Тип брожения", "Любой", R.drawable.ic_search_type_ferm, TypeSearch.FERM.type))//
         searches.add(Search("IBU", "Любой", R.drawable.ic_search_ibu, TypeSearch.IBU.type))
         searches.add(Search("Вид емкости", "Любой", R.drawable.ic_search_capacity, TypeSearch.PACKING.type))
         searches.add(Search("Цвет", "Любой", R.drawable.ic_search_color, TypeSearch.COLOR.type))
@@ -23,7 +23,7 @@ class SearchPresenter : MvpBasePresenter<SearchContract.View>(), SearchContract.
         searches.add(Search("Послевкусие", "Любое", R.drawable.ic_search_aftertaste, TypeSearch.AFTERTASTE.type))
         searches.add(Search("Пивоварня", "Любая", R.drawable.ic_search_brewery, TypeSearch.BREWERY.type))
         searches.add(Search("Цена", "Любая", R.drawable.ic_search_price, TypeSearch.PRICERANGE.type))
-        searches.add(Search("Где искать", "Любой город", R.drawable.ic_search_city))//
+        searches.add(Search("Где искать", "Любой город", R.drawable.ic_search_city, TypeSearch.CITY.type))//
         view.initAdapter(searches)
     }
 

@@ -15,5 +15,7 @@ enum class TypeSearch(val type: String) {
     DENSITY("density"), //plotnost
     IBU("ibu"),
     BREWERY("brewery"),
-    NAME("name")
+    NAME("name"),
+    FILTER("filter"),
+    CITY("city")
 }

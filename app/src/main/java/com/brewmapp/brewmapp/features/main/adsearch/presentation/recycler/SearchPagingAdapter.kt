@@ -4,7 +4,7 @@ import android.arch.paging.PagedListAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
-import com.brewmapp.brewmapp.features.main.adsearch.data.model.res.Model
+import com.brewmapp.brewmapp.features.main.adsearch.data.model.res.search.Model
 import com.brewmapp.brewmapp.features.main.adsearch.domain.util.SearchDiffUtilCallback
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_check.view.*

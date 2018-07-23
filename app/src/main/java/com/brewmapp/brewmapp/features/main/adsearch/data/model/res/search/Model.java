@@ -1,5 +1,5 @@
 
-package com.brewmapp.brewmapp.features.main.adsearch.data.model.res;
+package com.brewmapp.brewmapp.features.main.adsearch.data.model.res.search;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -51,4 +51,9 @@ public class Model {
         this.getThumbOriginal = getThumbOriginal;
     }
 
+    public Model(String id, Name name, String getThumb) {
+        this.id = id;
+        this.name = name;
+        this.getThumb = getThumb;
+    }
 }
