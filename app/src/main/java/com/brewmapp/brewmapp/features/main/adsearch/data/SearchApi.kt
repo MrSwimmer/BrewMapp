@@ -11,10 +11,10 @@ import rx.Observable
 //
 
 interface SearchApi {
-    @FormUrlEncoded
-    @Headers(R.string.api_version.toString())
-    @POST("beer/{param}?limit_start={start}&limit_end={end}")
-    fun getSearch(@Path("param") param: String, @Path("start") start: Int, @Path("end") end: Int): Observable<AdSearch>
+
+    @Headers("api-version: 1.04")
+    @POST("beer/{param}")
+    fun getSearch(@Path("param") param: String, @Query("limit_start") start: Int, @Query("limit_end") end: Int): Observable<AdSearch>
 
     @FormUrlEncoded
     @Headers(R.string.api_version.toString())

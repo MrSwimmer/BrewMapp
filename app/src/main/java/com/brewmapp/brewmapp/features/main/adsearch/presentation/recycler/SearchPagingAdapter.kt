@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_check.view.*
 
 class SearchPagingAdapter(diffUtilCallback: SearchDiffUtilCallback) : PagedListAdapter<Model, ModelViewHolder>(diffUtilCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModelViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_check, parent, false)
         return ModelViewHolder(v)
     }
 

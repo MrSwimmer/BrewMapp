@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.PersistableBundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.brewmapp.brewmapp.R
@@ -21,9 +22,8 @@ import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 class AdSearchActivity : BaseActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_adsearch)
         Log.i("code", "create")
         recycler.layoutManager = LinearLayoutManager(this)
@@ -52,4 +52,6 @@ class AdSearchActivity : BaseActivity() {
             Handler(Looper.getMainLooper()).post(command)
         }
     }
+
+
 }
