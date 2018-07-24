@@ -22,6 +22,4 @@ abstract class BaseActivity : AppCompatActivity() {
     fun hideProgress() {
         progress.visibility = View.INVISIBLE
     }
-
-
 }

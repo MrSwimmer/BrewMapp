@@ -1,55 +1,54 @@
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawerLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!-- Этот LinearLayout отображает содержимое экрана -->
-    <LinearLayout
+    <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/main_layout"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <!-- ActionBar отображается сверху -->
-        <include
-            layout="@layout/toolbar"
+        <!-- Этот LinearLayout отображает содержимое экрана -->
+        <LinearLayout
+            android:id="@+id/main_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <!-- Основной контентный view, куда загружаются фрагменты -->
-        <FrameLayout
-            android:id="@+id/mainContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            <!-- ActionBar отображается сверху -->
+            <include
+                layout="@layout/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        </FrameLayout>
-    </LinearLayout>
+            <!-- Основной контентный view, куда загружаются фрагменты -->
+            <FrameLayout
+                android:id="@+id/mainContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <!-- navigation drawer, который появляется слева -->
-    <!-- Обратите внимание, что `android:layout_gravity` нужно установить в 'start' -->
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navView"
-        android:theme="@style/NavigationDrawerStyle"
-        app:itemIconTint="@color/selector_drawer_icon_item"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@drawable/gradient"
-        app:headerLayout="@layout/nav_header"
-        app:itemBackground="@color/transparent"
-        app:itemTextColor="@color/selector_drawer_text_item"
-        app:menu="@menu/drawer_view" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- navigation drawer, который появляется слева -->
+        <!-- Обратите внимание, что `android:layout_gravity` нужно установить в 'start' -->
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@drawable/gradient"
+            android:theme="@style/NavigationDrawerStyle"
+            app:headerLayout="@layout/nav_header"
+            app:itemBackground="@color/transparent"
+            app:itemIconTint="@color/selector_drawer_icon_item"
+            app:itemTextColor="@color/selector_drawer_text_item"
+            app:menu="@menu/drawer_view" />
 
 
-</android.support.v4.widget.DrawerLayout>
+    </android.support.v4.widget.DrawerLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"

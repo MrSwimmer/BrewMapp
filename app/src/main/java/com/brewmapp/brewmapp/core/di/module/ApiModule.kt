@@ -2,8 +2,8 @@ package com.brewmapp.brewmapp.core.di.module
 
 import com.brewmapp.brewmapp.features.auth.data.AuthApi
 import com.brewmapp.brewmapp.features.auth.domain.ApiAuthService
-import com.brewmapp.brewmapp.features.main.adsearch.data.SearchApi
-import com.brewmapp.brewmapp.features.main.adsearch.domain.interactor.ApiAdSearchService
+import com.brewmapp.brewmapp.features.main.search.param.data.SearchApi
+import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ApiAdSearchService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
