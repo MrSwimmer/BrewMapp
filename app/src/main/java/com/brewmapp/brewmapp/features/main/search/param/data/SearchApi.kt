@@ -1,7 +1,7 @@
 package com.brewmapp.brewmapp.features.main.search.param.data
 
 import com.brewmapp.brewmapp.R
-import com.brewmapp.brewmapp.features.main.search.param.data.model.res.beer.Beer
+import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Beer
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.AdSearch
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.searchnum.AdSearchNum
 import retrofit2.http.*
@@ -32,9 +32,6 @@ interface SearchApi {
     @POST("brewery?limit_start={start}&limit_end={end}")
     fun getBrewery(@Path("start") start: Int, @Path("end") end: Int): Observable<AdSearch>
 
-    @FormUrlEncoded
-    @Headers("api-version: 1.04")
-    @POST("beer/beer")
-    fun getResults(@Query("limit_start") start: Int, @Query("limit_end") end: Int, @FieldMap fields: Map<String, String>) : Observable<Beer>
+
 
 }

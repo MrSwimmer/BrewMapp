@@ -1,9 +1,7 @@
 package com.brewmapp.brewmapp.features.main
 
-import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Typeface
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.ActionBarDrawerToggle
@@ -11,7 +9,6 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.util.Log
 import android.view.MenuItem
-import android.widget.ProgressBar
 import com.bluelinelabs.conductor.Conductor
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -20,7 +17,6 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.domain.CustomTypefaceSpan
 import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
-import com.brewmapp.brewmapp.features.main.profile.AdSearchActivity
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 
 

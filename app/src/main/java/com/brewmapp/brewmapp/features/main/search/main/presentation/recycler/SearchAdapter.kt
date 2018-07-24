@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import com.brewmapp.brewmapp.R
-import com.brewmapp.brewmapp.features.main.profile.AdSearchActivity
+import com.brewmapp.brewmapp.features.main.profile.ParamActivity
 import kotlinx.android.synthetic.main.item_search.view.*
 
 class SearchAdapter(private val searches: MutableList<Search>, val activity: Activity?) : RecyclerView.Adapter<SearchViewHolder>() {
@@ -28,7 +28,7 @@ class SearchAdapter(private val searches: MutableList<Search>, val activity: Act
         holder.itemView.icon.setImageResource(search.image!!)
         holder.itemView.setOnClickListener({
             Log.i("code", "item click ${search.type}")
-            val intent = Intent(activity, AdSearchActivity::class.java)
+            val intent = Intent(activity, ParamActivity::class.java)
             intent.putExtra("type", search.type)
             activity!!.startActivity(intent)
         })
