@@ -55,10 +55,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/grey_round"
                 android:padding="10dp"
                 android:text="Заведения"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/empty_text"
                 app:customFont="@string/font_main" />
         </LinearLayout>
 

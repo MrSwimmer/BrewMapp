@@ -1,12 +1,28 @@
 package com.brewmapp.brewmapp.features.main.profile
 
+import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.TypeSearch
 import com.brewmapp.brewmapp.features.main.search.main.presentation.recycler.Search
+import com.brewmapp.brewmapp.features.main.search.result.domain.interactor.ApiResultService
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
+import javax.inject.Inject
 
 class SearchPresenter : MvpBasePresenter<SearchContract.View>(), SearchContract.Presenter {
-    override fun setRecyclerData() {
+    override fun setRestaurantsRecyclerData() {
+
+    }
+
+    override fun setBreweryRecyclerData() {
+        var searches = arrayListOf<Search>()
+        searches.add(Search("Поиск по названию", "Любое", R.drawable.ic_search_name, TypeSearch.TITLE))
+        searches.add(Search("Страна", "Не имеет значения", R.drawable.ic_search_country, TypeSearch.COUNTRY))
+        searches.add(Search("Бренд пива", "Любой", R.drawable.ic_search_brand, TypeSearch.BRAND))
+        searches.add(Search("Тип пива", "Любой", R.drawable.ic_search_type, TypeSearch.TYPE))
+        view.initAdapter(searches)
+    }
+
+    override fun setBeerRecyclerData() {
         var searches = arrayListOf<Search>()
         searches.add(Search("Поиск по названию", "Любое", R.drawable.ic_search_name, TypeSearch.TITLE))
         searches.add(Search("Страна - производитель", "Не имеет значения", R.drawable.ic_search_country, TypeSearch.COUNTRY))

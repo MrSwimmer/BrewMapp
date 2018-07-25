@@ -26,4 +26,7 @@
     <color name="white">#FFFFFF</color>
 
     <color name="item_green">#D4E800</color>
+
+    <color name="empty_grey">#8f898989</color>
+    <color name="empty_text">#c5ffffff</color>
 </resources>

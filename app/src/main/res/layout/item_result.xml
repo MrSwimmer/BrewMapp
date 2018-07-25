@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/frame_grey">
 
     <ImageView
         android:id="@+id/image"
@@ -17,32 +19,33 @@
 
     <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:layout_marginEnd="8dp"
+        android:text="..."
         android:textSize="18sp"
         app:customFont="@string/font_main"
+        app:layout_constraintEnd_toStartOf="@+id/mark"
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
         android:id="@+id/mark"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/green_round"
         android:gravity="center"
-        android:padding="5dp"
-        android:text="5.0"
+        android:text="..."
         android:textColor="@color/white"
         app:customFont="@string/font_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
         android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -50,7 +53,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="TextView"
+        android:maxLines="2"
+        android:text="..."
+        app:customFont="@string/font_main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

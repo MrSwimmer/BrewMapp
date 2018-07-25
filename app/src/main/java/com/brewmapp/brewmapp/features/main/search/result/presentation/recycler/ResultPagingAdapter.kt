@@ -2,6 +2,7 @@ package com.brewmapp.brewmapp.features.main.search.result.presentation.recycler
 
 import android.arch.paging.PagedListAdapter
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ModelViewHolder
@@ -23,6 +24,8 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback) : PagedListA
                 .load(model.getThumb)
                 .into(holder.itemView.image)
         holder.itemView.mark.text = model.avgBall
+        if(model.avgBall == "")
+            holder.itemView.mark.visibility = View.INVISIBLE
         holder.itemView.description.text = model.shortText.get1()
     }
 }
