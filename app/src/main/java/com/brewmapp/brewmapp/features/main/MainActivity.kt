@@ -17,6 +17,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.domain.CustomTypefaceSpan
 import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
+import com.brewmapp.brewmapp.features.main.profile.ProfileController
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 
 
@@ -66,8 +67,9 @@ class MainActivity : BaseActivity() {
 
     private fun selectDrawerItem(itemId: Int) {
         when (itemId) {
-            R.id.nav_feed -> router.replaceTopController(RouterTransaction.with(SearchController()))
-            R.id.nav_message -> router.replaceTopController(RouterTransaction.with(SearchController()))
+            R.id.nav_feed -> router.pushController(RouterTransaction.with(SearchController()))
+            R.id.nav_message -> router.pushController(RouterTransaction.with(SearchController()))
+            R.id.nav_search -> router.setRoot(RouterTransaction.with(ProfileController()))
             else -> router.replaceTopController(RouterTransaction.with(SearchController()))
         }
     }

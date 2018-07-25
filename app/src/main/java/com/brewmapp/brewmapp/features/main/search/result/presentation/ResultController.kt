@@ -1,17 +1,12 @@
 package com.brewmapp.brewmapp.features.main.search.result.presentation
 
 import android.arch.paging.PagedList
-import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
-import com.brewmapp.brewmapp.core.presentation.base.BaseMvpActivity
-import com.brewmapp.brewmapp.features.main.search.param.domain.util.ParamDiffUtilCallback
-import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ParamPagingAdapter
 import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
 import com.brewmapp.brewmapp.features.main.search.result.domain.util.ResultDiffUtilCallback
 import com.brewmapp.brewmapp.features.main.search.result.presentation.recycler.ResultPagingAdapter
@@ -36,7 +31,7 @@ class ResultController : BaseController<ResultContract.View, ResultContract.Pres
 
     override fun setAdapter(pagedList: PagedList<Model>) {
         //hideProgress()
-        val adapter = ResultPagingAdapter(ResultDiffUtilCallback())
+        val adapter = ResultPagingAdapter(ResultDiffUtilCallback(), router)
         adapter.submitList(pagedList)
         view!!.recycler.adapter = adapter
     }

@@ -19,7 +19,7 @@ class ResultPresenter : BasePresenter<ResultContract.View>(), ResultContract.Pre
             when (SearchController.mode) {
                 "beer" -> map["Beer[${it.key}]"] = it.value.joinToString(separator = ",")
                 "brewery" -> map["Brewery[${it.key}]"] = it.value.joinToString(separator = ",")
-                //"resta" -> map["Brewery[${it.key}]"] = it.value.joinToString(separator = ",")
+                //"resto" -> map["Brewery[${it.key}]"] = it.value.joinToString(separator = ",")
             }
             //map[it.key] = it.value.joinToString(separator = ",")
             Log.i("code", "map[] ${map[it.key]}")

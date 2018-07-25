@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
 
-class SettingsController : BaseController<SettingsContract.View, SettingsContract.Presenter>(), SettingsContract.View {
+class ProductController : BaseController<ProductContract.View, ProductContract.Presenter>(), ProductContract.View {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.controller_settings, container, false)
+        return inflater.inflate(R.layout.controller_product, container, false)
     }
 
-    override fun createPresenter(): SettingsContract.Presenter {
-        return SettingsPresenter()
+    override fun createPresenter(): ProductContract.Presenter {
+        return ProductPresenter()
     }
 }
