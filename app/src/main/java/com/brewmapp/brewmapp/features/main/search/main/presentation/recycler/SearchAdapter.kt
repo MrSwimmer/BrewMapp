@@ -27,9 +27,10 @@ class SearchAdapter(private val searches: MutableList<Search>, val activity: Act
         holder.itemView.title.text = search.title
         holder.itemView.icon.setImageResource(search.image!!)
         holder.itemView.setOnClickListener({
-            Log.i("code", "item click ${search.type}")
+            Log.i("code", "item click ${search.typeSearch}")
             val intent = Intent(activity, ParamActivity::class.java)
-            intent.putExtra("type", search.type)
+            intent.putExtra("type", search.typeSearch.type)
+            intent.putExtra("field", search.typeSearch.field)
             activity!!.startActivity(intent)
         })
     }
