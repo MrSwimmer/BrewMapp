@@ -22,7 +22,10 @@ interface AppComponent {
     fun inject(paramPresenter: ParamPresenter)
     fun inject(resultPositionalDataSource: ResultPositionalDataSource)
     fun inject(searchPresenter: SearchPresenter)
-    fun inject(settingsPresenter: SettingsPresenter)
+    fun inject(newsPresenter: NewsPresenter)
     fun inject(callbackFabric: CallbackFabric)
-
+    fun inject(settingsPresenter: SettingsPresenter)
+    fun inject(messagesPresenter: MessagesPresenter)
+    fun inject(mapPresenter: MapPresenter)
+    fun inject(friendsPresenter: FriendsPresenter)
 }

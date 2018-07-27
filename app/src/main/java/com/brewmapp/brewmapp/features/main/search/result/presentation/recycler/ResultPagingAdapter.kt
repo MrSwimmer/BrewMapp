@@ -27,6 +27,6 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, private val 
                 .into(holder.itemView.image)
         holder.itemView.mark.text = model.avgBall
         holder.itemView.description.text = Jsoup.parse(model.text.get1()).text() //model.text.get1()
-        holder.itemView.setOnClickListener({router.pushController(RouterTransaction.with(ProductController()))})
+        holder.itemView.setOnClickListener({router.pushController(RouterTransaction.with(ProductController(model.id)))})
     }
 }

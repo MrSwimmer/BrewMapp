@@ -18,8 +18,8 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.domain.CustomTypefaceSpan
 import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
-import com.brewmapp.brewmapp.features.main.profile.ProfileController
-import com.brewmapp.brewmapp.features.main.profile.SearchController
+import android.support.v4.app.NavUtils
+import com.brewmapp.brewmapp.features.main.profile.*
 
 
 @Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
@@ -68,10 +68,12 @@ class MainActivity : BaseActivity() {
 
     private fun selectDrawerItem(itemId: Int) {
         when (itemId) {
-            R.id.nav_feed -> router.setRoot(RouterTransaction.with(SearchController()))
-            R.id.nav_message -> router.setRoot(RouterTransaction.with(SearchController()))
-            R.id.nav_search -> router.setRoot(RouterTransaction.with(ProfileController()))
-            else -> router.replaceTopController(RouterTransaction.with(SearchController()))
+            R.id.nav_feed -> router.setRoot(RouterTransaction.with(NewsController()))
+            R.id.nav_friends -> router.setRoot(RouterTransaction.with(FriendsController()))
+            R.id.nav_message -> router.setRoot(RouterTransaction.with(MessagesController()))
+            R.id.nav_search -> router.setRoot(RouterTransaction.with(SearchController()))
+            R.id.nav_map -> router.setRoot(RouterTransaction.with(MapController()))
+            R.id.nav_settings -> router.setRoot(RouterTransaction.with(SettingsController()))
         }
     }
 

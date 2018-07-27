@@ -21,11 +21,9 @@ class ApiResultService(private val api: ResultApi) {
                 api.getBreweryResults(params.startPosition, params.startPosition + params.loadSize, map)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ callback.onResult(it.models) }, { Log.i("code", "rangeres brewery er ${it.message}")})
+                        .subscribe({ callback.onResult(it.models) }, { Log.i("code", "rangeres brewery er ${it.message}") })
             }
         }
-
-
     }
 
     fun loadInitial(params: PositionalDataSource.LoadInitialParams, callback: PositionalDataSource.LoadInitialCallback<Model>, map: HashMap<String, String>, mode: String) {
@@ -45,5 +43,4 @@ class ApiResultService(private val api: ResultApi) {
         }
 
     }
-
 }

@@ -47,5 +47,4 @@ class ParamController() : BaseController<ParamContract.View, ParamContract.Prese
         view!!.recycler.adapter = adapter
     }
 
-
 }

@@ -29,4 +29,6 @@
 
     <color name="empty_grey">#8f898989</color>
     <color name="empty_text">#c5ffffff</color>
+
+    <color name="trans_back">#7f898989</color>
 </resources>

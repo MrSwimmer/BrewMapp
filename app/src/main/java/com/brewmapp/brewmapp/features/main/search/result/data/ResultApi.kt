@@ -7,7 +7,7 @@ import rx.Observable
 interface ResultApi {
     @FormUrlEncoded
     @Headers("api-version: 1.04")
-    @POST("search/beer")
+    @POST("beer/beer")
     fun getBeerResults(@Query("limit_start") start: Int, @Query("limit_end") end: Int, @FieldMap fields: Map<String, String>) : Observable<Beer>
 
     @FormUrlEncoded
