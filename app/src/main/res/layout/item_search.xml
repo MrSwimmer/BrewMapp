@@ -39,22 +39,12 @@
             app:srcCompat="@drawable/ic_country" />
 
         <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
-            android:id="@+id/type"
+            android:id="@+id/howMuch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="TextView"
             app:customFont="@string/font_main" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_next" />
 
 </android.support.constraint.ConstraintLayout>

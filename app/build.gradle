@@ -37,7 +37,7 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    compile 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
     implementation 'com.bluelinelabs:conductor-support:2.1.4'
 
     //conductor
@@ -68,4 +68,10 @@ dependencies {
     //glide
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+
+    //eventbus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    //jsoup
+    implementation 'org.jsoup:jsoup:1.11.3'
 }

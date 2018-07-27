@@ -11,6 +11,7 @@ import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
 import com.brewmapp.brewmapp.features.main.search.result.domain.util.ResultDiffUtilCallback
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_result.view.*
+import org.jsoup.Jsoup
 
 class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, private val router: Router) : PagedListAdapter<Model, ResultViewHolder>(diffUtilCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
@@ -25,7 +26,7 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, private val 
                 .load("https://developer.brewmapp.com/${model.getThumb}")
                 .into(holder.itemView.image)
         holder.itemView.mark.text = model.avgBall
-        holder.itemView.description.text = model.text.get1()
+        holder.itemView.description.text = Jsoup.parse(model.text.get1()).text() //model.text.get1()
         holder.itemView.setOnClickListener({router.pushController(RouterTransaction.with(ProductController()))})
     }
 }

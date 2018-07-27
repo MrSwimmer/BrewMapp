@@ -2,6 +2,7 @@ package com.brewmapp.brewmapp.features.auth.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
@@ -12,9 +13,13 @@ import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
 import com.brewmapp.brewmapp.features.main.MainActivity
 import com.brewmapp.brewmapp.features.main.profile.ChooseController
 import kotlinx.android.synthetic.main.activity_auth.*
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class AuthActivity : BaseActivity() {
+    override fun getParentView(): View {
+        return parentLayout
+    }
 
     @Inject
     lateinit var settingsService: SettingsService

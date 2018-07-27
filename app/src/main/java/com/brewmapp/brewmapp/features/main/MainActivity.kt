@@ -9,6 +9,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import com.bluelinelabs.conductor.Conductor
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -67,8 +68,8 @@ class MainActivity : BaseActivity() {
 
     private fun selectDrawerItem(itemId: Int) {
         when (itemId) {
-            R.id.nav_feed -> router.pushController(RouterTransaction.with(SearchController()))
-            R.id.nav_message -> router.pushController(RouterTransaction.with(SearchController()))
+            R.id.nav_feed -> router.setRoot(RouterTransaction.with(SearchController()))
+            R.id.nav_message -> router.setRoot(RouterTransaction.with(SearchController()))
             R.id.nav_search -> router.setRoot(RouterTransaction.with(ProfileController()))
             else -> router.replaceTopController(RouterTransaction.with(SearchController()))
         }
@@ -95,5 +96,15 @@ class MainActivity : BaseActivity() {
         val title = SpannableString(mi.title)
         title.setSpan(CustomTypefaceSpan("", font), 0, title.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
         mi.title = title
+    }
+
+    override fun onBackPressed() {
+        if (!router.handleBack()) {
+            super.onBackPressed()
+        }
+    }
+
+    override fun getParentView(): View {
+        return parentLayout
     }
 }

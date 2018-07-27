@@ -3,7 +3,7 @@ package com.brewmapp.brewmapp.core.di.module
 import com.brewmapp.brewmapp.features.auth.data.AuthApi
 import com.brewmapp.brewmapp.features.auth.domain.ApiAuthService
 import com.brewmapp.brewmapp.features.main.search.param.data.SearchApi
-import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ApiAdSearchService
+import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ApiParamService
 import com.brewmapp.brewmapp.features.main.search.result.data.ResultApi
 import com.brewmapp.brewmapp.features.main.search.result.domain.interactor.ApiResultService
 import dagger.Module
@@ -34,9 +34,9 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun providesSearchService(retrofit: Retrofit): ApiAdSearchService {
+    fun providesSearchService(retrofit: Retrofit): ApiParamService {
         val searchApi = retrofit.create(SearchApi::class.java)
-        return ApiAdSearchService(searchApi)
+        return ApiParamService(searchApi)
     }
 
     @Provides

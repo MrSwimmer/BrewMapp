@@ -1,9 +1,11 @@
 package com.brewmapp.brewmapp.features.main.search.param.presentation.recycler
 
 import android.arch.paging.PagedListAdapter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
+import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
 import com.brewmapp.brewmapp.features.main.search.param.domain.util.ParamDiffUtilCallback
@@ -19,8 +21,10 @@ class ParamPagingAdapter(diffUtilCallback: ParamDiffUtilCallback, private val fi
     override fun onBindViewHolder(holder: ModelViewHolder, position: Int) {
         val model = getItem(position)
         var map: HashMap<String, ArrayList<String>> = hashMapOf()
+        Log.i("code", SearchController.mode)
         when (SearchController.mode) {
-            "beer" -> map = SearchController.beerFieldMap
+            Mode.BEER.name -> map = SearchController.beerFieldMap
+            Mode.BREWERY.name -> map = SearchController.breweryFieldMap
         }
         if(map[field] == null)
             map[field] = arrayListOf()
@@ -32,6 +36,8 @@ class ParamPagingAdapter(diffUtilCallback: ParamDiffUtilCallback, private val fi
                 map[field]!!.add(model.id)
             else
                 map[field]!!.remove(model.id)
+            Log.i("code", "beer ${SearchController.beerFieldMap}")
+            Log.i("code", "brewery ${SearchController.breweryFieldMap}")
         })
         holder.itemView.title.text = model.name.get1()
         Glide.with(holder.itemView)

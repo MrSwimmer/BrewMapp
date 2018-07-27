@@ -11,8 +11,6 @@ interface SearchContract {
     }
 
     interface Presenter: BaseContract.Presenter<View> {
-        fun setBeerRecyclerData()
-        fun setBreweryRecyclerData()
-        fun setRestaurantsRecyclerData()
+        fun setRecyclerData(mode: String)
     }
 }

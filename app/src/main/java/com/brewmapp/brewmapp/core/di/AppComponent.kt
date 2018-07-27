@@ -5,6 +5,7 @@ import com.brewmapp.brewmapp.core.di.module.SharedPreferencesModule
 import com.brewmapp.brewmapp.features.auth.presentation.AuthActivity
 import com.brewmapp.brewmapp.features.main.profile.*
 import com.brewmapp.brewmapp.features.main.search.param.data.paging.AdSearchPositionalDataSource
+import com.brewmapp.brewmapp.features.main.search.param.domain.CallbackFabric
 import com.brewmapp.brewmapp.features.main.search.param.presentation.ParamPresenter
 import com.brewmapp.brewmapp.features.main.search.result.data.paging.ResultPositionalDataSource
 import dagger.Component
@@ -22,5 +23,6 @@ interface AppComponent {
     fun inject(resultPositionalDataSource: ResultPositionalDataSource)
     fun inject(searchPresenter: SearchPresenter)
     fun inject(settingsPresenter: SettingsPresenter)
+    fun inject(callbackFabric: CallbackFabric)
 
 }

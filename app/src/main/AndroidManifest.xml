@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".features.main.MainActivity"/>
-        <activity android:name=".features.main.profile.ParamActivity"/>
+        <activity android:name=".features.main.profile.ParamController"/>
     </application>
 
 </manifest>

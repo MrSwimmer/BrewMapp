@@ -25,4 +25,10 @@
         <item name="colorControlNormal">@color/colorButtonGray</item>
         <item name="colorControlActivated">@color/colorAccent</item>
     </style>
+
+    <style name="ProgressColor">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorAccent</item>
+    </style>
 </resources>

@@ -27,10 +27,11 @@ class ResultController : BaseController<ResultContract.View, ResultContract.Pres
     override fun onAttach(view: View) {
         super.onAttach(view)
         presenter.setRecyclerData()
+        showProgress()
     }
 
     override fun setAdapter(pagedList: PagedList<Model>) {
-        //hideProgress()
+        hideProgress()
         val adapter = ResultPagingAdapter(ResultDiffUtilCallback(), router)
         adapter.submitList(pagedList)
         view!!.recycler.adapter = adapter
