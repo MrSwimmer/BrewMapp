@@ -4,31 +4,34 @@ import android.arch.paging.PagedList
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.brewmapp.brewmapp.features.main.search.param.data.paging.AdSearchPositionalDataSource
+import com.brewmapp.brewmapp.App
+import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
+import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ApiParamService
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+import javax.inject.Inject
 
 class ParamPresenter : MvpBasePresenter<ParamContract.View>(), ParamContract.Presenter {
-
-    override fun setPagingRecyclerData(type: String) {
-        Log.i("code", "pres set r data")
-
-        var positionalDataSource = AdSearchPositionalDataSource(type)
-        val config = PagedList.Config.Builder()
-                .setEnablePlaceholders(false)
-                .setPageSize(8)
-                .build()
-        val pagedList = PagedList.Builder(positionalDataSource, config)
-                .setNotifyExecutor(MainThreadExecutor())
-                .setFetchExecutor(Executors.newSingleThreadExecutor())
-                .build()
-        view.setAdapter(pagedList)
+    init {
+        App.component.inject(this)
     }
 
-    class MainThreadExecutor : Executor {
-        override fun execute(command: Runnable?) {
-            Handler(Looper.getMainLooper()).post(command)
-        }
+    @Inject
+    lateinit var apiService: ApiParamService
+
+    override fun setRecyclerData(type: String) {
+        apiService.getParams(type, object : ApiParamService.ParamCallback {
+            override fun onSuccess(models: MutableList<Model>) {
+                view.initAdapter(models)
+                view.hideProgress()
+            }
+
+            override fun onError(it: Throwable) {
+                view.showErrorMessage(it.message!!)
+                view.hideProgress()
+            }
+
+        })
     }
 }

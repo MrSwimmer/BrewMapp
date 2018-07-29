@@ -9,10 +9,10 @@ import com.hannesdorfmann.mosby3.mvp.MvpView
 
 interface ParamContract {
     interface View : BaseActivityContract.View {
-        fun setAdapter(pagedList: PagedList<Model>)
+        fun initAdapter(models: MutableList<Model>)
     }
 
     interface Presenter: BaseActivityContract.Presenter<View> {
-        fun setPagingRecyclerData(type: String)
+        fun setRecyclerData(type: String)
     }
 }

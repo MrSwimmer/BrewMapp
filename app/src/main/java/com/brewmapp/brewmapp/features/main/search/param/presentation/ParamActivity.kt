@@ -1,6 +1,5 @@
 package com.brewmapp.brewmapp.features.main.profile
 
-import android.arch.paging.PagedList
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -8,16 +7,15 @@ import android.view.View
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseMvpActivity
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
-import com.brewmapp.brewmapp.features.main.search.param.domain.util.ParamDiffUtilCallback
 import com.brewmapp.brewmapp.features.main.search.param.presentation.ParamContract
 import com.brewmapp.brewmapp.features.main.search.param.presentation.ParamPresenter
-import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ParamPagingAdapter
 import kotlinx.android.synthetic.main.activity_param.*
 import android.app.SearchManager
 import android.content.Context
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.view.Menu
+import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ParamAdapter
 
 
 class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presenter>(), ParamContract.View {
@@ -25,6 +23,8 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
     override fun getView(): View {
         return getView()
     }
+
+    lateinit var params: MutableList<Model>
 
     lateinit var type: String
     lateinit var field: String
@@ -37,7 +37,7 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         recycler.layoutManager = LinearLayoutManager(this)
         type = intent.getStringExtra("type")
         field = intent.getStringExtra("field")
-        presenter.setPagingRecyclerData(type)
+        presenter.setRecyclerData(type)
         showProgress()
     }
 
@@ -45,10 +45,9 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         return ParamPresenter()
     }
 
-    override fun setAdapter(pagedList: PagedList<Model>) {
-        val adapter = ParamPagingAdapter(ParamDiffUtilCallback(), field)
-        adapter.submitList(pagedList)
-        recycler.adapter = adapter
+    override fun initAdapter(models: MutableList<Model>) {
+        params = models
+        recycler.adapter = ParamAdapter(models, field)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -66,6 +65,9 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         if (searchView != null) {
             searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         }
+
+
+
         searchView!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Log.i("code", "search $query")
@@ -74,14 +76,21 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 Log.i("code", "search new $newText")
-
-                //presenter.setPagingRecyclerData(type)
-                showProgress()
+                searchInParams(newText)
                 return false
             }
 
         })
         return super.onCreateOptionsMenu(menu)
+    }
+
+    fun searchInParams(newText: String?) {
+        val newParams = mutableListOf<Model>()
+        params.forEach {
+            if (it.id.contains(newText!!, true))
+                newParams.add(it)
+        }
+        recycler.adapter = ParamAdapter(newParams, field)
     }
 
     override fun onSupportNavigateUp(): Boolean {
