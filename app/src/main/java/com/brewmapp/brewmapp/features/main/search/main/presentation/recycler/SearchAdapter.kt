@@ -1,17 +1,18 @@
 package com.brewmapp.brewmapp.features.main.search.main.presentation.recycler
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.ViewGroup
 import android.view.LayoutInflater
-import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
-import com.brewmapp.brewmapp.features.main.profile.ParamController
+import com.brewmapp.brewmapp.features.main.profile.ParamActivity
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import kotlinx.android.synthetic.main.item_search.view.*
 
-class SearchAdapter(private val searches: MutableList<Search>, val router: Router) : RecyclerView.Adapter<SearchViewHolder>() {
+class SearchAdapter(private val searches: MutableList<Search>, val activity: Activity?) : RecyclerView.Adapter<SearchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val v = LayoutInflater.from(parent.context)
@@ -42,7 +43,11 @@ class SearchAdapter(private val searches: MutableList<Search>, val router: Route
         }
         holder.itemView.setOnClickListener({
             Log.i("code", "item click ${search.typeSearch}")
-            router.pushController(RouterTransaction.with(ParamController(search.typeSearch.type, search.typeSearch.field)))
+            val intent = Intent(activity, ParamActivity::class.java)
+            intent.putExtra("field", search.typeSearch.field)
+            intent.putExtra("type", search.typeSearch.type)
+            activity!!.startActivity(intent)
+            //router.pushController(RouterTransaction.with(ParamActivity(search.typeSearch.type, search.typeSearch.field)))
         })
     }
 }

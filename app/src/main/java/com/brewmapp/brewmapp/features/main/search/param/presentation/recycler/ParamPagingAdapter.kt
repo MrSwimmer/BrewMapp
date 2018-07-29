@@ -22,6 +22,7 @@ class ParamPagingAdapter(diffUtilCallback: ParamDiffUtilCallback, private val fi
         val model = getItem(position)
         var map: HashMap<String, ArrayList<String>> = hashMapOf()
         Log.i("code", SearchController.mode)
+        Log.i("code", model.toString())
         when (SearchController.mode) {
             Mode.BEER.name -> map = SearchController.beerFieldMap
             Mode.BREWERY.name -> map = SearchController.breweryFieldMap
@@ -39,7 +40,8 @@ class ParamPagingAdapter(diffUtilCallback: ParamDiffUtilCallback, private val fi
             Log.i("code", "beer ${SearchController.beerFieldMap}")
             Log.i("code", "brewery ${SearchController.breweryFieldMap}")
         })
-        holder.itemView.title.text = model.name.get1()
+
+        holder.itemView.title.text = model.id
         Glide.with(holder.itemView)
                 .load(model.getThumb)
                 .into(holder.itemView.image)

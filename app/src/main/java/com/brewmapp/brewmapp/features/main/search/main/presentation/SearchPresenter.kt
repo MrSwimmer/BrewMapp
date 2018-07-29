@@ -53,5 +53,4 @@ class SearchPresenter : MvpBasePresenter<SearchContract.View>(), SearchContract.
     }
 
 
-
 }

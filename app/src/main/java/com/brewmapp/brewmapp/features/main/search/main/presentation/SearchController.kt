@@ -44,7 +44,7 @@ class SearchController : BaseController<SearchContract.View, SearchContract.Pres
         view.restaurants.setOnClickListener({
             /*mode = Mode.RESTO.name
             setTabs()
-            presenter.setRecyclerData(mode)*/
+            presenter.setPagingRecyclerData(mode)*/
             showSnack("В разработке")
         })
         return view
@@ -72,7 +72,7 @@ class SearchController : BaseController<SearchContract.View, SearchContract.Pres
     }
 
     override fun initAdapter(searches: ArrayList<Search>) {
-        view!!.recycler.adapter = SearchAdapter(searches, router)
+        view!!.recycler.adapter = SearchAdapter(searches, activity)
     }
 
 }

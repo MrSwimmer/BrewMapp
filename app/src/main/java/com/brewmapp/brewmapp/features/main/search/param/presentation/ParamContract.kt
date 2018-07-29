@@ -1,17 +1,18 @@
 package com.brewmapp.brewmapp.features.main.search.param.presentation
 
 import android.arch.paging.PagedList
+import com.brewmapp.brewmapp.core.presentation.base.BaseActivityContract
 import com.brewmapp.brewmapp.core.presentation.base.BaseContract
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.hannesdorfmann.mosby3.mvp.MvpView
 
 interface ParamContract {
-    interface View : BaseContract.View {
+    interface View : BaseActivityContract.View {
         fun setAdapter(pagedList: PagedList<Model>)
     }
 
-    interface Presenter: BaseContract.Presenter<View> {
-        fun setRecyclerData(type: String)
+    interface Presenter: BaseActivityContract.Presenter<View> {
+        fun setPagingRecyclerData(type: String)
     }
 }
