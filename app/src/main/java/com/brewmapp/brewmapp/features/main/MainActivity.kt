@@ -19,7 +19,11 @@ import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.domain.CustomTypefaceSpan
 import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
 import android.support.v4.app.NavUtils
+import com.brewmapp.brewmapp.App
+import com.brewmapp.brewmapp.core.domain.interactor.SettingsService
 import com.brewmapp.brewmapp.features.main.profile.*
+import kotlinx.android.synthetic.main.nav_header.view.*
+import javax.inject.Inject
 
 
 @Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
@@ -28,8 +32,12 @@ class MainActivity : BaseActivity() {
     private lateinit var router: Router
     private lateinit var drawerToggle: ActionBarDrawerToggle
 
+    @Inject
+    lateinit var settingsService: SettingsService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        App.component.inject(this)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         navView.setCheckedItem(0)
@@ -43,12 +51,13 @@ class MainActivity : BaseActivity() {
         Log.i("code", (supportActionBar == null).toString())
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val header = navView.getHeaderView(0)
+        header.username.text = settingsService.getUsername()
         drawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close)
         drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
         router = Conductor.attachRouter(this, mainContainer, savedInstanceState)
         if (!router.hasRootController())
-            router.setRoot(RouterTransaction.with(SearchController()))
+            router.setRoot(RouterTransaction.with(NewsController()))
         val menu = navView.menu
         for (i in 0 until menu.size()) {
             val mi = menu.getItem(i)

@@ -19,6 +19,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         progress = findViewById(R.id.progressBar)
+        hideProgress()
     }
 
     fun showProgress() {

@@ -21,6 +21,7 @@ class SignUpPresenter : BasePresenter<SignUpContract.View>(), SignUpContract.Pre
             override fun onSuccess(data: UserData) {
                 Log.i("code", "success sign up ${data.user.token}")
                 settingsService.setToken(data.user.token)
+                settingsService.setUsername(data.user.firstname as String)
                 view.hideProgress()
                 view.gotoMain()
             }

@@ -3,6 +3,7 @@ package com.brewmapp.brewmapp.core.di
 import com.brewmapp.brewmapp.core.di.module.ApiModule
 import com.brewmapp.brewmapp.core.di.module.SharedPreferencesModule
 import com.brewmapp.brewmapp.features.auth.presentation.AuthActivity
+import com.brewmapp.brewmapp.features.main.MainActivity
 import com.brewmapp.brewmapp.features.main.profile.*
 import com.brewmapp.brewmapp.features.main.search.param.data.paging.AdSearchPositionalDataSource
 import com.brewmapp.brewmapp.features.main.search.param.domain.CallbackFabric
@@ -28,4 +29,5 @@ interface AppComponent {
     fun inject(messagesPresenter: MessagesPresenter)
     fun inject(mapPresenter: MapPresenter)
     fun inject(friendsPresenter: FriendsPresenter)
+    fun inject(mainActivity: MainActivity)
 }

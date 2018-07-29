@@ -47,6 +47,8 @@ dependencies {
 
     //mosby
     compile 'com.hannesdorfmann.mosby3:mvp-conductor:3.1.0'
+    compile 'com.hannesdorfmann.mosby3:viewstate-conductor:3.1.0'
+    compile 'com.hannesdorfmann.mosby3:viewstate:3.1.0'
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'

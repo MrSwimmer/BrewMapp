@@ -9,7 +9,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
-        android:id="@+id/header_username"
+        android:id="@+id/username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/header_username"
+        app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_person" />
 

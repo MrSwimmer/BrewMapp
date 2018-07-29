@@ -52,4 +52,6 @@ class SearchPresenter : MvpBasePresenter<SearchContract.View>(), SearchContract.
         view.initAdapter(searches)
     }
 
+
+
 }

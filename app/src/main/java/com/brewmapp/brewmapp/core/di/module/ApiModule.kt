@@ -2,6 +2,8 @@ package com.brewmapp.brewmapp.core.di.module
 
 import com.brewmapp.brewmapp.features.auth.data.AuthApi
 import com.brewmapp.brewmapp.features.auth.domain.ApiAuthService
+import com.brewmapp.brewmapp.features.main.product.data.ProductApi
+import com.brewmapp.brewmapp.features.main.product.domain.ApiProductService
 import com.brewmapp.brewmapp.features.main.search.param.data.SearchApi
 import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ApiParamService
 import com.brewmapp.brewmapp.features.main.search.result.data.ResultApi
@@ -44,5 +46,12 @@ class ApiModule {
     fun providesResultService(retrofit: Retrofit): ApiResultService {
         val resultApi = retrofit.create(ResultApi::class.java)
         return ApiResultService(resultApi)
+    }
+
+    @Provides
+    @Singleton
+    fun providesProductService(retrofit: Retrofit): ApiProductService {
+        val productApi = retrofit.create(ProductApi::class.java)
+        return ApiProductService(productApi)
     }
 }
