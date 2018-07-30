@@ -36,6 +36,5 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
         Glide.with(view!!)
                 .load("https://developer.brewmapp.com/${model.getThumb}")
                 .into(view!!.image)
-        view!!.likes.strength =
     }
 }

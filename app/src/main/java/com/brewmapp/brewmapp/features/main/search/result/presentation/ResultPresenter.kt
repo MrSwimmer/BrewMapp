@@ -22,12 +22,14 @@ class ResultPresenter : BasePresenter<ResultContract.View>(), ResultContract.Pre
         var map: HashMap<String, String> = hashMapOf()
         SearchController.beerFieldMap.forEach {
             when (SearchController.mode) {
-                Mode.BEER.name -> map["Result[${it.key}]"] = it.value.joinToString(separator = ",")
+                Mode.BEER.name -> map["Beer[${it.key}]"] = it.value.joinToString(separator = ",")
                 Mode.BREWERY.name -> map["Brewery[${it.key}]"] = it.value.joinToString(separator = ",")
                 Mode.RESTO.name -> map["Resto[${it.key}]"] = it.value.joinToString(separator = ",")
             }
         }
-        Log.i("code", "map0 $map")
+        if (SearchController.mode == Mode.BREWERY.name)
+            map["Brewery[id]"] = ""
+            Log.i("code", "map0 $map")
         apiService.getResult(SearchController.mode, map, object : ApiResultService.ResultCallback {
             override fun onSuccess(it: Result) {
                 view.setAdapter(it.models)

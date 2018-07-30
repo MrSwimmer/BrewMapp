@@ -33,7 +33,8 @@ class ResultAdapter(private val models: List<Model>, val router: Router) : Recyc
                 .load("https://developer.brewmapp.com/${model.getThumb}")
                 .into(holder.itemView.image)
         holder.itemView.mark.text = model.avgBall
-        holder.itemView.description.text = Jsoup.parse(model.text["1"]).text()
-        holder.itemView.setOnClickListener({router.pushController(RouterTransaction.with(ProductController(model.id)))})
+        if (model.text["1"] != null)
+            holder.itemView.description.text = Jsoup.parse(model.text["1"]).text()
+        holder.itemView.setOnClickListener({ router.pushController(RouterTransaction.with(ProductController(model.id))) })
     }
 }

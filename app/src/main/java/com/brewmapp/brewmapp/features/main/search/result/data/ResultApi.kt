@@ -8,7 +8,7 @@ import java.util.HashMap
 interface ResultApi {
     @FormUrlEncoded
     @Headers("api-version: 1.05")
-    @POST("search/beer")
+    @POST("beer/beer")
     fun getBeerResults(@FieldMap fields: Map<String, String>) : Observable<Result>
 
     @FormUrlEncoded

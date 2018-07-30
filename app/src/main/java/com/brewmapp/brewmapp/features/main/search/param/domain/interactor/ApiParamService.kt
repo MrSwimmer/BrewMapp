@@ -16,6 +16,7 @@ class ApiParamService(val api: ParamApi) {
             TypeSearch.RESTO_TYPE.type -> CallbackFabric.paramCallback(api.getRestoType(), callback)
             TypeSearch.AVERAGE_PRICE.type -> CallbackFabric.paramCallback(api.getAveragePrice(), callback)
             TypeSearch.KITCHEN.type -> CallbackFabric.paramCallback(api.getKitchen(), callback)
+            TypeSearch.CITY.type -> CallbackFabric.paramCallback(api.getCity(), callback)
             else -> CallbackFabric.paramCallback(api.getSearch(type), callback)
         }
     }

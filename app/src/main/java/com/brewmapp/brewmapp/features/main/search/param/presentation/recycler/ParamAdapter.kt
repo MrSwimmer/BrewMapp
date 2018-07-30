@@ -48,10 +48,7 @@ class ParamAdapter(private val models: MutableList<Model>, private val field: St
         })
         Log.i("code", "field $field")
 
-        if (field == "type")
-            holder.itemView.title.text = model.nameEn
-        else
-            holder.itemView.title.text = model.id
+        holder.itemView.title.text = model.name["1"]
 
         Glide.with(holder.itemView)
                 .load(model.getThumb)

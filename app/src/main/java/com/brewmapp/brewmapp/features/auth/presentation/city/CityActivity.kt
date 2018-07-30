@@ -1,33 +1,36 @@
-package com.brewmapp.brewmapp.features.main.profile
+package com.brewmapp.brewmapp.features.auth.presentation.city
 
-import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
-import android.view.View
-import com.brewmapp.brewmapp.R
-import com.brewmapp.brewmapp.core.presentation.base.BaseMvpActivity
-import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
-import com.brewmapp.brewmapp.features.main.search.param.presentation.ParamContract
-import com.brewmapp.brewmapp.features.main.search.param.presentation.ParamPresenter
-import kotlinx.android.synthetic.main.activity_param.*
 import android.app.SearchManager
 import android.content.Context
+import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
+import com.brewmapp.brewmapp.R
+import com.brewmapp.brewmapp.core.presentation.base.BaseController
+import com.brewmapp.brewmapp.core.presentation.base.BaseMvpActivity
+import com.brewmapp.brewmapp.features.auth.presentation.city.recycler.CityAdapter
+import com.brewmapp.brewmapp.features.main.profile.SignInContract
+import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
 import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ParamAdapter
+import kotlinx.android.synthetic.main.activity_param.*
+import kotlinx.android.synthetic.main.controller_sign_in.view.*
 
-
-class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presenter>(), ParamContract.View {
-
+class CityActivity : BaseMvpActivity<CityContract.View, CityContract.Presenter>(), CityContract.View {
     override fun getView(): View {
         return getView()
     }
 
     lateinit var params: MutableList<Model>
 
-    lateinit var type: String
-    lateinit var field: String
+    override fun createPresenter(): CityContract.Presenter {
+        return CityPresenter()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,19 +38,13 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         setSupportActionBar(toolbar as Toolbar?)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         recycler.layoutManager = LinearLayoutManager(this)
-        type = intent.getStringExtra("type")
-        field = intent.getStringExtra("field")
-        presenter.setRecyclerData(type)
+        presenter.setRecyclerData()
         showProgress()
-    }
-
-    override fun createPresenter(): ParamContract.Presenter {
-        return ParamPresenter()
     }
 
     override fun initAdapter(models: MutableList<Model>) {
         params = models
-        recycler.adapter = ParamAdapter(models, field)
+        recycler.adapter = CityAdapter(models, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -90,11 +87,12 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
             if (it.id.contains(newText!!, true))
                 newParams.add(it)
         }
-        recycler.adapter = ParamAdapter(newParams, field)
+        recycler.adapter = CityAdapter(newParams, this)
     }
 
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
     }
+
 }

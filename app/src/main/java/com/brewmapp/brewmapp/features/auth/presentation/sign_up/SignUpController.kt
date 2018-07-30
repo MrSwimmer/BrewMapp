@@ -8,12 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
+import com.brewmapp.brewmapp.features.auth.presentation.city.CityActivity
 import com.brewmapp.brewmapp.features.main.MainActivity
 import com.hannesdorfmann.mosby3.mvp.conductor.MvpController
 import kotlinx.android.synthetic.main.controller_sign_up.view.*
 
 
 class SignUpController : BaseController<SignUpContract.View, SignUpContract.Presenter>(), SignUpContract.View{
+    companion object {
+        var cityId = "no"
+        var cityName = "no"
+    }
+
     override fun gotoMain() {
         val intent = Intent(activity, MainActivity::class.java)
         startActivity(intent)
@@ -31,6 +37,9 @@ class SignUpController : BaseController<SignUpContract.View, SignUpContract.Pres
         val view = inflater.inflate(R.layout.controller_sign_up, container, false)
         view.chooseDate.setOnClickListener({onDateClick()})
         view.registration.setOnClickListener({onRegClick()})
+        view.cityButton.setOnClickListener({
+            startActivity(Intent(activity, CityActivity::class.java))
+        })
         return view
     }
 
@@ -63,5 +72,11 @@ class SignUpController : BaseController<SignUpContract.View, SignUpContract.Pres
         //DatePickerDialog(activity, dateCallback, 2018, 1, 1)
         isDatePick = true
         DatePickerDialog(activity, date, year, month, day).show()
+    }
+
+    override fun onAttach(view: View) {
+        super.onAttach(view)
+        if(cityId != "no")
+            view.cityButton.text = cityName
     }
 }

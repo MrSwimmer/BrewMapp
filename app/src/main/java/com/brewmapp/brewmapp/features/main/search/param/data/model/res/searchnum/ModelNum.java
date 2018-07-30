@@ -15,9 +15,6 @@ public class ModelNum {
     @SerializedName("getThumb")
     @Expose
     private String getThumb;
-    @SerializedName("getThumbOriginal")
-    @Expose
-    private String getThumbOriginal;
 
     public String getId() {
         return id;
@@ -41,14 +38,6 @@ public class ModelNum {
 
     public void setGetThumb(String getThumb) {
         this.getThumb = getThumb;
-    }
-
-    public String getGetThumbOriginal() {
-        return getThumbOriginal;
-    }
-
-    public void setGetThumbOriginal(String getThumbOriginal) {
-        this.getThumbOriginal = getThumbOriginal;
     }
 
 }
