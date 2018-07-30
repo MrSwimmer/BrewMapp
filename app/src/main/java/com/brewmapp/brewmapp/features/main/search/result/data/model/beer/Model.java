@@ -103,7 +103,6 @@ public class Model {
     @SerializedName("avgPrices")
     @Expose
     private List<AvgPrice> avgPrices = null;
-
     public String getId() {
         return id;
     }

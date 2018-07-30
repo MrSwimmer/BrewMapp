@@ -11,21 +11,20 @@ class SearchPresenter : MvpBasePresenter<SearchContract.View>(), SearchContract.
         when(mode) {
             Mode.BEER.name -> setBeerRecyclerData()
             Mode.BREWERY.name -> setBreweryRecyclerData()
+            Mode.RESTO.name -> setRestoRecyclerData()
         }
     }
 
 
-    fun setRestaurantsRecyclerData() {
+    fun setRestoRecyclerData() {
         var searches = arrayListOf<Search>()
         //searches.add(Search("Поиск по названию заведения", "Любое", R.drawable.ic_search_name, TypeSearch.RESTO_TITLE))
         //searches.add(Search("Поиск по названию пива", "Любое", R.drawable.ic_search_name, TypeSearch.BEER_TITLE))
         searches.add(Search("Тип заведения", "Любой", R.drawable.ic_search_type, TypeSearch.RESTO_TYPE))
-        searches.add(Search("Тип пива", "Любой", R.drawable.ic_search_type, TypeSearch.RESTO_TYPE))
+        searches.add(Search("Тип пива", "Любой", R.drawable.ic_search_type, TypeSearch.TYPE))
         searches.add(Search("Кухня", "Любая", R.drawable.ic_search_type, TypeSearch.KITCHEN))
-        searches.add(Search("Средний счет", "Любая", R.drawable.ic_search_type, TypeSearch.KITCHEN))
-        searches.add(Search("Кухня", "Любая", R.drawable.ic_search_type, TypeSearch.KITCHEN))
-        searches.add(Search("Кухня", "Любая", R.drawable.ic_search_type, TypeSearch.KITCHEN))
-        searches.add(Search("Кухня", "Любая", R.drawable.ic_search_type, TypeSearch.KITCHEN))
+        searches.add(Search("Средний счет", "Любая", R.drawable.ic_search_type, TypeSearch.AVERAGE_PRICE))
+        view.initAdapter(searches)
     }
 
     fun setBreweryRecyclerData() {

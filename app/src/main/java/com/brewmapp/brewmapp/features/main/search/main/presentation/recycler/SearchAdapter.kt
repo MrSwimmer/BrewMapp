@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
+import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.profile.ParamActivity
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import kotlinx.android.synthetic.main.item_search.view.*
@@ -30,19 +31,24 @@ class SearchAdapter(private val searches: MutableList<Search>, val activity: Act
         holder.itemView.icon.setImageResource(search.image!!)
         holder.itemView.howMuch.text = search.select
         when (SearchController.mode) {
-            "beer" -> {
+            Mode.BEER.name -> {
                 if (SearchController.beerFieldMap[search.typeSearch.field] != null)
                     if (SearchController.beerFieldMap[search.typeSearch.field]!!.size > 0)
                         holder.itemView.howMuch.text = "С параметрами"
             }
-            "brewery" -> {
+            Mode.BREWERY.name -> {
                 if (SearchController.breweryFieldMap[search.typeSearch.field] != null)
                     if (SearchController.breweryFieldMap[search.typeSearch.field]!!.size > 0)
                         holder.itemView.howMuch.text = "С параметрами"
             }
+            Mode.RESTO.name -> {
+                if (SearchController.restoFieldMap[search.typeSearch.field] != null)
+                    if (SearchController.restoFieldMap[search.typeSearch.field]!!.size > 0)
+                        holder.itemView.howMuch.text = "С параметрами"
+            }
         }
         holder.itemView.setOnClickListener({
-            Log.i("code", "item click ${search.typeSearch}")
+            Log.i("code", "item click ${search.typeSearch.type}")
             val intent = Intent(activity, ParamActivity::class.java)
             intent.putExtra("field", search.typeSearch.field)
             intent.putExtra("type", search.typeSearch.type)

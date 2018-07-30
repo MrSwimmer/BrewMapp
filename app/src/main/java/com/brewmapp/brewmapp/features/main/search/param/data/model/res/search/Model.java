@@ -18,6 +18,19 @@ public class Model {
     @SerializedName("getThumbOriginal")
     @Expose
     private String getThumbOriginal;
+    @SerializedName("name_en")
+    @Expose
+    private String nameEn;
+
+    public String getNameEn() {
+        return nameEn;
+    }
+
+    public void setNameEn(String nameEn) {
+        this.nameEn = nameEn;
+    }
+
+
 
     public String getId() {
         return id;

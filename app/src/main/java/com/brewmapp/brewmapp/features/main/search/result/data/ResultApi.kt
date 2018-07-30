@@ -15,4 +15,5 @@ interface ResultApi {
     @POST("brewery")
     fun getBreweryResults(@Query("limit_start") start: Int, @Query("limit_end") end: Int, @FieldMap fields: Map<String, String>) : Observable<Beer>
 
+
 }

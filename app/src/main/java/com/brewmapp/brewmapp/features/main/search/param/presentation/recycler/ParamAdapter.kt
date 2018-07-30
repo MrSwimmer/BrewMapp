@@ -30,22 +30,29 @@ class ParamAdapter(private val models: MutableList<Model>, private val field: St
         when (SearchController.mode) {
             Mode.BEER.name -> map = SearchController.beerFieldMap
             Mode.BREWERY.name -> map = SearchController.breweryFieldMap
+            Mode.RESTO.name -> map = SearchController.restoFieldMap
         }
-        if(map[field] == null)
+        if (map[field] == null)
             map[field] = arrayListOf()
-        if(map[field]!!.contains(model!!.id)) {
+        if (map[field]!!.contains(model!!.id)) {
             holder.itemView.checkBox.isChecked = true
         }
         holder.itemView.checkBox.setOnCheckedChangeListener({ _, isChecked ->
-            if(isChecked)
+            if (isChecked)
                 map[field]!!.add(model.id)
             else
                 map[field]!!.remove(model.id)
             Log.i("code", "beer ${SearchController.beerFieldMap}")
             Log.i("code", "brewery ${SearchController.breweryFieldMap}")
+            Log.i("code", "resto ${SearchController.restoFieldMap}")
         })
+        Log.i("code", "field $field")
 
-        holder.itemView.title.text = model.id
+        if (field == "type")
+            holder.itemView.title.text = model.nameEn
+        else
+            holder.itemView.title.text = model.id
+
         Glide.with(holder.itemView)
                 .load(model.getThumb)
                 .into(holder.itemView.image)

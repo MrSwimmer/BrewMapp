@@ -29,6 +29,15 @@ interface ParamApi {
     @POST("brewery")
     fun getBrewery(): Observable<AdSearch>
 
+    @Headers("api-version: 1.04")
+    @GET("resto/type")
+    fun getRestoType(): Observable<AdSearch>
 
+    @Headers("api-version: 1.04")
+    @GET("resto/kitchen")
+    fun getKitchen(): Observable<AdSearch>
 
+    @Headers("api-version: 1.04")
+    @POST("resto/averageprice")
+    fun getAveragePrice(): Observable<AdSearch>
 }

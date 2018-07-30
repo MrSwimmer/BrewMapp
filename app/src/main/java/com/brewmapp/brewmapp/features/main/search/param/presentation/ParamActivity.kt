@@ -31,12 +31,20 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i("code", "create 1")
         setContentView(R.layout.activity_param)
+        Log.i("code", "create 2")
         setSupportActionBar(toolbar as Toolbar?)
+        Log.i("code", "create 3")
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        Log.i("code", "create 4")
         recycler.layoutManager = LinearLayoutManager(this)
+        Log.i("code", "create 5")
         type = intent.getStringExtra("type")
+        Log.i("code", "create 6")
         field = intent.getStringExtra("field")
+        Log.i("code", "create 7")
+        Log.i("code", "type $type")
         presenter.setRecyclerData(type)
         showProgress()
     }

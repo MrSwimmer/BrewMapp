@@ -20,12 +20,15 @@ class ResultPresenter : BasePresenter<ResultContract.View>(), ResultContract.Pre
             when (SearchController.mode) {
                 Mode.BEER.name -> map["Beer[${it.key}]"] = it.value.joinToString(separator = ",")
                 Mode.BREWERY.name -> map["Brewery[${it.key}]"] = it.value.joinToString(separator = ",")
+                Mode.RESTO.name -> map["Resto[${it.key}]"] = it.value.joinToString(separator = ",")
                 //"resto" -> map["Brewery[${it.key}]"] = it.value.joinToString(separator = ",")
             }
+            Log.i("code", "map $map")
             //map[it.key] = it.value.joinToString(separator = ",")
             //Log.i("code", "map[] ${map[it.key]}")
         }
-        Log.i("code", "map $map")
+        Log.i("code", "map0 $map")
+
         var positionalDataSource = ResultPositionalDataSource(map, SearchController.mode)
         val config = PagedList.Config.Builder()
                 .setEnablePlaceholders(false)
