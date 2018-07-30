@@ -2,7 +2,7 @@ package com.brewmapp.brewmapp.features.main.product.domain
 
 import android.util.Log
 import com.brewmapp.brewmapp.features.main.product.data.ProductApi
-import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
+import com.brewmapp.brewmapp.features.main.product.data.model.Model
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 

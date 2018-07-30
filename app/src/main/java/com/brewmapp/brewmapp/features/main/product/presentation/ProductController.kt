@@ -1,11 +1,14 @@
 package com.brewmapp.brewmapp.features.main.profile
 
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
-import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
+import com.brewmapp.brewmapp.features.main.product.data.model.Model
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.controller_product.view.*
 
 class ProductController() : BaseController<ProductContract.View, ProductContract.Presenter>(), ProductContract.View {
 
@@ -30,6 +33,9 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
     }
 
     override fun setProduct(model: Model) {
-        view!!.image
+        Glide.with(view!!)
+                .load("https://developer.brewmapp.com/${model.getThumb}")
+                .into(view!!.image)
+        view!!.likes.strength =
     }
 }
