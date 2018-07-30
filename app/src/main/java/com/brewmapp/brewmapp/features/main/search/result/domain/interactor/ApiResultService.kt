@@ -1,46 +1,37 @@
 package com.brewmapp.brewmapp.features.main.search.result.domain.interactor
 
-import android.arch.paging.PositionalDataSource
-import android.util.Log
+import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.search.result.data.ResultApi
-import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
+import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Result
+import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 class ApiResultService(private val api: ResultApi) {
 
-    fun loadRange(params: PositionalDataSource.LoadRangeParams, callback: PositionalDataSource.LoadRangeCallback<Model>, map: HashMap<String, String>, mode: String) {
+    fun getResult(mode: String, map: java.util.HashMap<String, String>, callback: ResultCallback) {
         when (mode) {
-            "beer" -> {
-                api.getBeerResults(params.startPosition, params.startPosition + params.loadSize, map)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ callback.onResult(it.models) }, { Log.i("code", "rangeres beer er ${it.message}") })
+            Mode.BEER.name -> {
+                setCallback(api.getBeerResults(map), callback)
             }
-            "brewery" -> {
-                api.getBreweryResults(params.startPosition, params.startPosition + params.loadSize, map)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ callback.onResult(it.models) }, { Log.i("code", "rangeres brewery er ${it.message}") })
+            Mode.BREWERY.name -> {
+                setCallback(api.getBreweryResults(map), callback)
+            }
+            Mode.RESTO.name -> {
+                setCallback(api.getRestoResults(map), callback)
             }
         }
+
     }
 
-    fun loadInitial(params: PositionalDataSource.LoadInitialParams, callback: PositionalDataSource.LoadInitialCallback<Model>, map: HashMap<String, String>, mode: String) {
-        when (mode) {
-            "beer" -> {
-                api.getBeerResults(0, params.pageSize, map)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ callback.onResult(it.models, 0) }, { Log.i("code", "initres er ${it.message}")})
-            }
-            "brewery" -> {
-                api.getBreweryResults(0, params.pageSize, map)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ callback.onResult(it.models, 0) }, { Log.i("code", "initres brewery er ${it.message}")})
-            }
-        }
+    fun setCallback(api: Observable<Result>, callback: ResultCallback) {
+        api.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({callback.onSuccess(it)}, {callback.onError(it)})
+    }
 
+    interface ResultCallback {
+        fun onSuccess(it: Result)
+        fun onError(it: Throwable)
     }
 }

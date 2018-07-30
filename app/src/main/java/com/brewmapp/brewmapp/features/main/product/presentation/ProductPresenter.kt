@@ -19,10 +19,12 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
         apiService.getProduct(id, object : ApiProductService.ProductCallback {
             override fun onSuccess(model: Model) {
                 view.setProduct(model)
+                view.hideProgress()
             }
 
             override fun onError(it: Throwable) {
                 view.showErrorMessage(it.message!!)
+                view.hideProgress()
             }
 
         })

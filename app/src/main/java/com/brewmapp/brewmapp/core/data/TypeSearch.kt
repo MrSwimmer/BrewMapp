@@ -13,7 +13,7 @@ enum class TypeSearch(val type: String, val field: String) {
     STRENGTH("strength", "strength_id"), //crepost
     PRICERANGE("pricerange", "pricerange_id"),
     //DENSITY("density", "_id"), //plotnost
-    IBU("ibu", "Beer[ibu_id]"),
+    IBU("ibu", "Result[ibu_id]"),
     BREWERY("brewery", "brewery_id"),
     BEER_TITLE("title", "title_id"),
     FILTER("filter", "filtered"),

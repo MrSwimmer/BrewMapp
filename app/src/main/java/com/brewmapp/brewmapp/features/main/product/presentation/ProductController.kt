@@ -30,6 +30,6 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
     }
 
     override fun setProduct(model: Model) {
-
+        view!!.image
     }
 }
