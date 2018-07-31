@@ -10,6 +10,6 @@ interface CityContract {
     }
 
     interface Presenter: BaseActivityContract.Presenter<View> {
-        fun setRecyclerData()
+        fun setRecyclerCity(city: String)
     }
 }

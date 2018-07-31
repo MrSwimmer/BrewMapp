@@ -8,6 +8,8 @@ import java.util.HashMap;
 
 public class Model {
 
+    @Expose
+    private String price;
     @SerializedName("id")
     @Expose
     private String id;
@@ -46,5 +48,13 @@ public class Model {
         this.id = id;
         this.name = name;
         this.getThumb = getThumb;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

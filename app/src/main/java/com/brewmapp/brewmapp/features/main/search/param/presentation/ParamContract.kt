@@ -14,5 +14,6 @@ interface ParamContract {
 
     interface Presenter: BaseActivityContract.Presenter<View> {
         fun setRecyclerData(type: String)
+        fun setRecyclerCity(city: String?)
     }
 }

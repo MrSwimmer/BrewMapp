@@ -35,7 +35,8 @@ interface ParamApi {
     @POST("resto/averageprice")
     fun getAveragePrice(): Observable<Param>
 
+    @FormUrlEncoded
     @Headers("api-version: 1.05")
     @POST("geo/city")
-    fun getCity(): Observable<Param>
+    fun getCity(@Field("City[name]") city: String): Observable<Param>
 }

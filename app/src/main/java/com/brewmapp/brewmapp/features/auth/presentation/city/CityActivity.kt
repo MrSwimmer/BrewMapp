@@ -15,6 +15,7 @@ import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
 import com.brewmapp.brewmapp.core.presentation.base.BaseMvpActivity
 import com.brewmapp.brewmapp.features.auth.presentation.city.recycler.CityAdapter
+import com.brewmapp.brewmapp.features.main.profile.ParamActivity
 import com.brewmapp.brewmapp.features.main.profile.SignInContract
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
 import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ParamAdapter
@@ -26,6 +27,9 @@ class CityActivity : BaseMvpActivity<CityContract.View, CityContract.Presenter>(
         return getView()
     }
 
+    companion object {
+        var curText = ""
+    }
     lateinit var params: MutableList<Model>
 
     override fun createPresenter(): CityContract.Presenter {
@@ -38,8 +42,8 @@ class CityActivity : BaseMvpActivity<CityContract.View, CityContract.Presenter>(
         setSupportActionBar(toolbar as Toolbar?)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         recycler.layoutManager = LinearLayoutManager(this)
-        presenter.setRecyclerData()
-        showProgress()
+        /*presenter.setRecyclerData()
+        showProgress()*/
     }
 
     override fun initAdapter(models: MutableList<Model>) {
@@ -63,8 +67,6 @@ class CityActivity : BaseMvpActivity<CityContract.View, CityContract.Presenter>(
             searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         }
 
-
-
         searchView!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Log.i("code", "search $query")
@@ -73,21 +75,16 @@ class CityActivity : BaseMvpActivity<CityContract.View, CityContract.Presenter>(
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 Log.i("code", "search new $newText")
-                searchInParams(newText)
+                if (newText != "") {
+                    curText = newText!!
+                    presenter.setRecyclerCity(newText)
+                    showProgress()
+                }
                 return false
             }
 
         })
         return super.onCreateOptionsMenu(menu)
-    }
-
-    fun searchInParams(newText: String?) {
-        val newParams = mutableListOf<Model>()
-        params.forEach {
-            if (it.id.contains(newText!!, true))
-                newParams.add(it)
-        }
-        recycler.adapter = CityAdapter(newParams, this)
     }
 
     override fun onSupportNavigateUp(): Boolean {

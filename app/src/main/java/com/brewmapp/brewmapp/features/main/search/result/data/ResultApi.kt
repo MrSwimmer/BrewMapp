@@ -13,13 +13,11 @@ interface ResultApi {
 
     @FormUrlEncoded
     @Headers("api-version: 1.05")
-    @POST("brewery")
+    @POST("brewery?limit_start=&limit_end=")
     fun getBreweryResults(@FieldMap fields: Map<String, String>) : Observable<Result>
 
     @FormUrlEncoded
     @Headers("api-version: 1.05")
-    @POST("search/resto")
+    @POST("search/resto?lat=&lon=&limit_start=&limit_end=&user_id=")
     fun getRestoResults(@FieldMap map: HashMap<String, String>): Observable<Result>
-
-
 }

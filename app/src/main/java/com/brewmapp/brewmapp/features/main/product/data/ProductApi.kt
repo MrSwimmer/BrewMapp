@@ -8,7 +8,8 @@ import rx.Observable
 interface ProductApi {
     @FormUrlEncoded
     @Headers("api-version: 1.05")
-    @POST("search/beer")
-    fun getProduct(@Field("Result[id]") id: String) : Observable<Product>
+    @POST("beer/beer")
+    fun getProduct(@Field("Beer[id]") id: String) : Observable<Product>
+
 
 }

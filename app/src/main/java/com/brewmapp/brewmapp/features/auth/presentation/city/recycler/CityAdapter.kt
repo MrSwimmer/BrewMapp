@@ -12,7 +12,7 @@ import com.brewmapp.brewmapp.features.main.profile.SignUpController
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
 import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ModelViewHolder
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_check.view.*
+import kotlinx.android.synthetic.main.item_city.view.*
 
 class CityAdapter(private val models: MutableList<Model>, val activity: Activity) : RecyclerView.Adapter<ModelViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModelViewHolder {
@@ -32,7 +32,7 @@ class CityAdapter(private val models: MutableList<Model>, val activity: Activity
             SignUpController.cityName = model.name["1"]!!
             activity.finish()
         })
-
+        holder.itemView.title.text = model.name["1"]
         Glide.with(holder.itemView)
                 .load(model.getThumb)
                 .into(holder.itemView.image)

@@ -15,6 +15,7 @@ import android.content.Context
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.view.Menu
+import com.brewmapp.brewmapp.core.data.TypeSearch
 import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ParamAdapter
 
 
@@ -22,6 +23,10 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
 
     override fun getView(): View {
         return getView()
+    }
+
+    companion object {
+        var cutText = ""
     }
 
     lateinit var params: MutableList<Model>
@@ -37,8 +42,12 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         recycler.layoutManager = LinearLayoutManager(this)
         type = intent.getStringExtra("type")
         field = intent.getStringExtra("field")
-        presenter.setRecyclerData(type)
-        showProgress()
+        if (field == TypeSearch.CITY.field) {
+            //showSnack("Введите название города")
+        } else {
+            presenter.setRecyclerData(type)
+            showProgress()
+        }
     }
 
     override fun createPresenter(): ParamContract.Presenter {
@@ -47,6 +56,7 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
 
     override fun initAdapter(models: MutableList<Model>) {
         params = models
+        hideProgress()
         recycler.adapter = ParamAdapter(models, field)
     }
 
@@ -66,8 +76,6 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
             searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         }
 
-
-
         searchView!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Log.i("code", "search $query")
@@ -76,7 +84,14 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 Log.i("code", "search new $newText")
-                searchInParams(newText)
+                if (field == TypeSearch.CITY.field) {
+                    if (newText != "") {
+                        cutText = newText!!
+                        presenter.setRecyclerCity(newText)
+                        showProgress()
+                    }
+                } else
+                    searchInParams(newText!!)
                 return false
             }
 
@@ -84,10 +99,10 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         return super.onCreateOptionsMenu(menu)
     }
 
-    fun searchInParams(newText: String?) {
+    fun searchInParams(newText: String) {
         val newParams = mutableListOf<Model>()
         params.forEach {
-            if (it.id.contains(newText!!, true))
+            if (it.name["1"]!!.contains(newText))
                 newParams.add(it)
         }
         recycler.adapter = ParamAdapter(newParams, field)

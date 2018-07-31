@@ -1,6 +1,5 @@
 package com.brewmapp.brewmapp.features.main.search.param.domain.interactor
 
-import android.arch.paging.PositionalDataSource
 import com.brewmapp.brewmapp.features.main.search.param.data.ParamApi
 import com.brewmapp.brewmapp.core.data.TypeSearch
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
@@ -16,9 +15,12 @@ class ApiParamService(val api: ParamApi) {
             TypeSearch.RESTO_TYPE.type -> CallbackFabric.paramCallback(api.getRestoType(), callback)
             TypeSearch.AVERAGE_PRICE.type -> CallbackFabric.paramCallback(api.getAveragePrice(), callback)
             TypeSearch.KITCHEN.type -> CallbackFabric.paramCallback(api.getKitchen(), callback)
-            TypeSearch.CITY.type -> CallbackFabric.paramCallback(api.getCity(), callback)
             else -> CallbackFabric.paramCallback(api.getSearch(type), callback)
         }
+    }
+
+    fun getCity(city: String, callback: ParamCallback) {
+        CallbackFabric.paramCallback(api.getCity(city), callback)
     }
 
     interface ParamCallback {

@@ -11,6 +11,17 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.controller_product.view.*
 
 class ProductController() : BaseController<ProductContract.View, ProductContract.Presenter>(), ProductContract.View {
+    override fun setBrand(brand: String?) {
+        view!!.brand.text = brand
+    }
+
+    override fun setCountry(country: String?) {
+        view!!.country.text = country
+    }
+
+    override fun setPrice(price: String?) {
+        view!!.cost.text = price
+    }
 
     lateinit var id: String
 
@@ -34,7 +45,7 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
 
     override fun setProduct(model: Model) {
         Glide.with(view!!)
-                .load("https://developer.brewmapp.com/${model.getThumb}")
+                .load(model.getThumb)
                 .into(view!!.image)
     }
 }

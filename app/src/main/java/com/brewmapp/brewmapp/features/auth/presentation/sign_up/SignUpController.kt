@@ -52,12 +52,12 @@ class SignUpController : BaseController<SignUpContract.View, SignUpContract.Pres
             showProgress()
             presenter.signUp(view!!.email.text.toString(), view!!.password.text.toString(), view!!.first.text.toString(), view!!.last.text.toString(), dateString)
         } else {
-            Snackbar.make(view!!, "Заполните все поля", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view!!, "Заполните все поля и выберите город", Snackbar.LENGTH_SHORT).show()
         }
     }
 
     fun isFeelingFields(): Boolean {
-        return view!!.email.text.toString() != "" && view!!.password.text.toString() != "" && view!!.first.text.toString() != "" && view!!.last.text.toString() != "" && isDatePick
+        return view!!.email.text.toString() != "" && view!!.password.text.toString() != "" && view!!.first.text.toString() != "" && view!!.last.text.toString() != "" && isDatePick && cityId != "no"
     }
 
     var date: DatePickerDialog.OnDateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->

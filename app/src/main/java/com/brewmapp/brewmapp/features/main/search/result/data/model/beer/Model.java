@@ -16,6 +16,8 @@ public class Model {
     private HashMap<String, String> title;
     @Expose
     private HashMap<String, String> text;
+    @Expose
+    private HashMap<String, String> name;
     @SerializedName("avg_ball")
     @Expose
     private String avgBall;
@@ -53,5 +55,13 @@ public class Model {
 
     public String getGetThumb() {
         return getThumb;
+    }
+
+    public HashMap<String, String> getName() {
+        return name;
+    }
+
+    public void setName(HashMap<String, String> name) {
+        this.name = name;
     }
 }

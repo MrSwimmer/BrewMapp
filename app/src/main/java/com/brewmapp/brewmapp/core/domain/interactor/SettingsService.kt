@@ -6,6 +6,8 @@ class SettingsService(private val sharedPreferences: SharedPreferences) {
     val TOKEN = "token"
     val ERROR = "error"
     val FIRST = "first"
+    val CITY_ID = "city id"
+    val CITY_NAME = "city name"
 
     fun setToken(token: String) {
         val editor = sharedPreferences.edit()
@@ -26,4 +28,18 @@ class SettingsService(private val sharedPreferences: SharedPreferences) {
         editor.putString(FIRST, first)
         editor.apply()
     }
+
+    fun setCityId(cityId: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(CITY_ID, cityId)
+        editor.apply()
+    }
+
+    fun setCityName(cityName: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(CITY_NAME, cityName)
+        editor.apply()
+    }
+
+
 }

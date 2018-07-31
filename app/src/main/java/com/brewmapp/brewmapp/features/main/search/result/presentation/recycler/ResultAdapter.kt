@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
+import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.profile.ProductController
+import com.brewmapp.brewmapp.features.main.profile.SearchController
 import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_result.view.*
@@ -26,11 +28,19 @@ class ResultAdapter(private val models: List<Model>, val router: Router) : Recyc
 
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
         val model = models[position]
-        Log.i("code", "title ${model.title["1"]}")
+        if(model.title == null) {
+            holder.itemView.title.text = model.name["1"]
+        } else
+            holder.itemView.title.text = model.title["1"]
+        //Log.i("code", "title ${model.title["1"]}")
         Log.i("code", "text ${model.text["1"]}")
-        holder.itemView.title.text = model.title["1"]
+        var url: String
+        url = if(SearchController.mode == Mode.BEER.name)
+            model.getThumb
+        else
+            "https://developer.brewmapp.com/${model.getThumb}"
         Glide.with(holder.itemView)
-                .load("https://developer.brewmapp.com/${model.getThumb}")
+                .load(url)
                 .into(holder.itemView.image)
         holder.itemView.mark.text = model.avgBall
         if (model.text["1"] != null)
