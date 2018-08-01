@@ -1,38 +1,40 @@
-package com.brewmapp.brewmapp.features.main.profile
+package com.brewmapp.brewmapp.features.auth.presentation.city
 
-import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
-import android.view.View
-import com.brewmapp.brewmapp.R
-import com.brewmapp.brewmapp.core.presentation.base.BaseMvpActivity
-import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
-import com.brewmapp.brewmapp.features.main.search.param.presentation.ParamContract
-import com.brewmapp.brewmapp.features.main.search.param.presentation.ParamPresenter
-import kotlinx.android.synthetic.main.activity_param.*
 import android.app.SearchManager
 import android.content.Context
+import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
-import com.brewmapp.brewmapp.core.data.TypeSearch
+import android.view.View
+import android.view.ViewGroup
+import com.brewmapp.brewmapp.R
+import com.brewmapp.brewmapp.core.presentation.base.BaseController
+import com.brewmapp.brewmapp.core.presentation.base.BaseMvpActivity
+import com.brewmapp.brewmapp.features.auth.presentation.city.recycler.CityAdapter
+import com.brewmapp.brewmapp.features.main.profile.ParamActivity
+import com.brewmapp.brewmapp.features.main.profile.SignInContract
+import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
 import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ParamAdapter
+import kotlinx.android.synthetic.main.activity_param.*
+import kotlinx.android.synthetic.main.controller_sign_in.view.*
 
-
-class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presenter>(), ParamContract.View {
-
+class CityActivity : BaseMvpActivity<CityContract.View, CityContract.Presenter>(), CityContract.View {
     override fun getView(): View {
         return getView()
     }
 
     companion object {
-        var cutText = ""
+        var curText = ""
     }
-
     lateinit var params: MutableList<Model>
 
-    lateinit var type: String
-    lateinit var field: String
+    override fun createPresenter(): CityContract.Presenter {
+        return CityPresenter()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,24 +42,13 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         setSupportActionBar(toolbar as Toolbar?)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         recycler.layoutManager = LinearLayoutManager(this)
-        type = intent.getStringExtra("type")
-        field = intent.getStringExtra("field")
-        if (field == TypeSearch.CITY.field) {
-            //showSnack("Введите название города")
-        } else {
-            presenter.setRecyclerData(type)
-            showProgress()
-        }
-    }
-
-    override fun createPresenter(): ParamContract.Presenter {
-        return ParamPresenter()
+        /*presenter.setRecyclerData()
+        showProgress()*/
     }
 
     override fun initAdapter(models: MutableList<Model>) {
         params = models
-        hideProgress()
-        recycler.adapter = ParamAdapter(models, field)
+        recycler.adapter = CityAdapter(models, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -84,14 +75,11 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 Log.i("code", "search new $newText")
-                if (field == TypeSearch.CITY.field) {
-                    if (newText != "") {
-                        cutText = newText!!
-                        presenter.setRecyclerCity(newText)
-                        showProgress()
-                    }
-                } else
-                    searchInParams(newText!!)
+                if (newText != "") {
+                    curText = newText!!
+                    presenter.setRecyclerCity(newText)
+                    showProgress()
+                }
                 return false
             }
 
@@ -99,17 +87,9 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         return super.onCreateOptionsMenu(menu)
     }
 
-    fun searchInParams(newText: String) {
-        val newParams = mutableListOf<Model>()
-        params.forEach {
-            if (it.name["1"]!!.contains(newText))
-                newParams.add(it)
-        }
-        recycler.adapter = ParamAdapter(newParams, field)
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
     }
+
 }

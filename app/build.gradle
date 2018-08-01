@@ -76,4 +76,9 @@ dependencies {
 
     //jsoup
     implementation 'org.jsoup:jsoup:1.11.3'
+
+    //room
+    implementation "android.arch.persistence.room:runtime:1.1.0"
+    kapt "android.arch.persistence.room:compiler:1.1.0"
+    implementation "android.arch.persistence.room:rxjava2:1.1.0"
 }

@@ -42,10 +42,10 @@ class SearchController : BaseController<SearchContract.View, SearchContract.Pres
 
         })
         view.restaurants.setOnClickListener({
-            /*mode = Mode.RESTO.name
-            setTabs()
-            presenter.setPagingRecyclerData(mode)*/
-            showSnack("В разработке")
+            mode = Mode.RESTO.name
+            setTabs(view)
+            presenter.setRecyclerData(mode)
+            //showSnack("В разработке")
         })
         return view
     }

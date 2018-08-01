@@ -6,7 +6,7 @@ import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
 
 interface ResultContract {
     interface View : BaseContract.View {
-        fun setAdapter(pagedList: PagedList<Model>)
+        fun setAdapter(models: List<Model>)
     }
 
     interface Presenter: BaseContract.Presenter<View> {

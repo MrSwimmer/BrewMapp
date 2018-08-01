@@ -1,44 +1,30 @@
 package com.brewmapp.brewmapp.features.main.search.param.domain.interactor
 
-import android.arch.paging.PositionalDataSource
-import com.brewmapp.brewmapp.features.main.search.param.data.SearchApi
+import com.brewmapp.brewmapp.features.main.search.param.data.ParamApi
 import com.brewmapp.brewmapp.core.data.TypeSearch
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
 import com.brewmapp.brewmapp.features.main.search.param.domain.CallbackFabric
 
-class ApiParamService(val api: SearchApi) {
+class ApiParamService(val api: ParamApi) {
 
-    fun loadRange(type: String, params: PositionalDataSource.LoadRangeParams, callback: PositionalDataSource.LoadRangeCallback<Model>) {
+    fun getParams(type: String, callback: ParamCallback) {
         when (type) {
-            TypeSearch.COUNTRY.type -> {
-                CallbackFabric.rangeCallback(api.getCountry(params.startPosition, params.startPosition + params.loadSize), callback)
-            }
-            TypeSearch.BREWERY.type -> {
-                CallbackFabric.rangeCallback(api.getBrewery(params.startPosition, params.startPosition + params.loadSize), callback)
-            }
-            TypeSearch.STRENGTH.type, TypeSearch.IBU.type, TypeSearch.PACKING.type -> {
-                CallbackFabric.rangeNumCallback(api.getSearchNum(type, params.startPosition, params.startPosition + params.loadSize), callback)
-            }
-            else -> {
-                CallbackFabric.rangeCallback(api.getSearch(type, params.startPosition, params.startPosition + params.loadSize), callback)
-            }
+            TypeSearch.COUNTRY.type -> CallbackFabric.paramCallback(api.getCountry(), callback)
+            TypeSearch.BREWERY.type -> CallbackFabric.paramCallback(api.getBrewery(), callback)
+            TypeSearch.STRENGTH.type, TypeSearch.IBU.type, TypeSearch.PACKING.type -> CallbackFabric.paramNumCallback(api.getSearchNum(type), callback)
+            TypeSearch.RESTO_TYPE.type -> CallbackFabric.paramCallback(api.getRestoType(), callback)
+            TypeSearch.AVERAGE_PRICE.type -> CallbackFabric.paramCallback(api.getAveragePrice(), callback)
+            TypeSearch.KITCHEN.type -> CallbackFabric.paramCallback(api.getKitchen(), callback)
+            else -> CallbackFabric.paramCallback(api.getSearch(type), callback)
         }
     }
 
-    fun loadInitial(type: String, params: PositionalDataSource.LoadInitialParams, callback: PositionalDataSource.LoadInitialCallback<Model>) {
-        when (type) {
-            TypeSearch.COUNTRY.type -> {
-                CallbackFabric.initCallback(api.getCountry(0, params.pageSize), callback)
-            }
-            TypeSearch.BREWERY.type -> {
-                CallbackFabric.initCallback(api.getBrewery(0, params.pageSize), callback)
-            }
-            TypeSearch.STRENGTH.type, TypeSearch.IBU.type, TypeSearch.PACKING.type -> {
-                CallbackFabric.initNumCallback(api.getSearchNum(type, 0, params.pageSize), callback)
-            }
-            else -> {
-                CallbackFabric.initCallback(api.getSearch(type, 0, params.pageSize), callback)
-            }
-        }
+    fun getCity(city: String, callback: ParamCallback) {
+        CallbackFabric.paramCallback(api.getCity(city), callback)
+    }
+
+    interface ParamCallback {
+        fun onSuccess(models: MutableList<Model>)
+        fun onError(it: Throwable)
     }
 }

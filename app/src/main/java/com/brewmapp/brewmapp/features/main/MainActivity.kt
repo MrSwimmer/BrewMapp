@@ -65,6 +65,11 @@ class MainActivity : BaseActivity() {
             if (subMenu != null && subMenu!!.size() > 0) {
                 for (j in 0 until subMenu!!.size()) {
                     val subMenuItem = subMenu!!.getItem(j)
+                    if (j == 1 || j == 2 || j == 4) {
+                        subMenuItem.isCheckable = false
+                        subMenuItem.isEnabled = false
+                        //subMenuItem.isEnabled = false
+                    }
                     applyFontToMenuItem(subMenuItem)
                 }
             }

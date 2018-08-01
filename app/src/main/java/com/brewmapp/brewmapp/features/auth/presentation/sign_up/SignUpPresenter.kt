@@ -4,10 +4,8 @@ import android.util.Log
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.domain.interactor.SettingsService
 import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
-import com.brewmapp.brewmapp.features.auth.data.model.req.UserReg
 import com.brewmapp.brewmapp.features.auth.data.model.res.UserData
 import com.brewmapp.brewmapp.features.auth.domain.ApiAuthService
-import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
 import javax.inject.Inject
 
 class SignUpPresenter : BasePresenter<SignUpContract.View>(), SignUpContract.Presenter {
@@ -22,6 +20,8 @@ class SignUpPresenter : BasePresenter<SignUpContract.View>(), SignUpContract.Pre
                 Log.i("code", "success sign up ${data.user.token}")
                 settingsService.setToken(data.user.token)
                 settingsService.setUsername(data.user.firstname as String)
+                settingsService.setCityId(SignUpController.cityId)
+                settingsService.setCityName(SignUpController.cityName)
                 view.hideProgress()
                 view.gotoMain()
             }

@@ -3,7 +3,7 @@ package com.brewmapp.brewmapp.core.data
 
 enum class TypeSearch(val type: String, val field: String) {
     COUNTRY("country", "country_id"),
-    TYPE("typeSearch", "type_id"),
+    TYPE("type", "type_id"),
     BRAND("brand", "brand_id"),
     COLOR("color", "colors_search"),
     FRAGRANCE("fragrance", "fragrances_search"), //aromat
@@ -13,9 +13,16 @@ enum class TypeSearch(val type: String, val field: String) {
     STRENGTH("strength", "strength_id"), //crepost
     PRICERANGE("pricerange", "pricerange_id"),
     //DENSITY("density", "_id"), //plotnost
-    IBU("ibu", "Beer[ibu_id]"),
+    IBU("ibu", "Result[ibu_id]"),
     BREWERY("brewery", "brewery_id"),
-    TITLE("title", "title_id"),
+    BEER_TITLE("title", "title_id"),
     FILTER("filter", "filtered"),
-    CITY("city", "city_id")
+    CITY("city", "restoCity"),
+    RESTO_TYPE("resto_type", "restoTypes"),
+    KITCHEN("kitchen", "restoKitchens"),
+    AVERAGE_PRICE("averageprice", "averageprice"),
+
+    BREWERY_BRAND("brand", "beer_brand_id"),
+    BREWERY_TYPE("type", "beer_type_id"),
+    RESTO_BEER_TYPE("type", "beerTypeID")
 }

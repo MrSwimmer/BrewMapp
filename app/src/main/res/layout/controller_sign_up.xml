@@ -108,6 +108,15 @@
                 android:textColorHint="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
+        <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.ButtonPlus
+            android:id="@+id/cityButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/selector_button_green_frame"
+            android:text="Выбрать город"
+            android:textColor="@color/color_text_button_green" />
+
         <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

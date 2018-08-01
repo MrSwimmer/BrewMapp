@@ -1,13 +1,13 @@
 package com.brewmapp.brewmapp.features.main.profile
 
 import com.brewmapp.brewmapp.core.presentation.base.BaseContract
-import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
-import com.hannesdorfmann.mosby3.mvp.MvpPresenter
-import com.hannesdorfmann.mosby3.mvp.MvpView
 
 interface ProductContract {
     interface View : BaseContract.View {
-        fun setProduct(model: Model)
+        fun setProduct(model: com.brewmapp.brewmapp.features.main.product.data.model.Model)
+        fun setBrand(brand: String?)
+        fun setCountry(country: String?)
+        fun setPrice(price: String?)
     }
 
     interface Presenter: BaseContract.Presenter<View> {

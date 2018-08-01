@@ -1,19 +1,15 @@
-package com.brewmapp.brewmapp.features.main.search.param.presentation
+package com.brewmapp.brewmapp.features.auth.presentation.city
 
-import android.arch.paging.PagedList
 import com.brewmapp.brewmapp.core.presentation.base.BaseActivityContract
 import com.brewmapp.brewmapp.core.presentation.base.BaseContract
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
-import com.hannesdorfmann.mosby3.mvp.MvpPresenter
-import com.hannesdorfmann.mosby3.mvp.MvpView
 
-interface ParamContract {
+interface CityContract {
     interface View : BaseActivityContract.View {
         fun initAdapter(models: MutableList<Model>)
     }
 
     interface Presenter: BaseActivityContract.Presenter<View> {
-        fun setRecyclerData(type: String)
-        fun setRecyclerCity(city: String?)
+        fun setRecyclerCity(city: String)
     }
 }
