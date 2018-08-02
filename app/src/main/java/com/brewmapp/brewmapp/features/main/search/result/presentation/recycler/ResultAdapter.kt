@@ -28,14 +28,14 @@ class ResultAdapter(private val models: List<Model>, val router: Router) : Recyc
 
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
         val model = models[position]
-        if(model.title == null) {
+        if (model.title == null) {
             holder.itemView.title.text = model.name["1"]
         } else
             holder.itemView.title.text = model.title["1"]
         //Log.i("code", "title ${model.title["1"]}")
         Log.i("code", "text ${model.text["1"]}")
         var url: String
-        url = if(SearchController.mode == Mode.BEER.name)
+        url = if (SearchController.mode == Mode.BEER.name)
             model.getThumb
         else
             "https://developer.brewmapp.com/${model.getThumb}"
@@ -45,6 +45,9 @@ class ResultAdapter(private val models: List<Model>, val router: Router) : Recyc
         holder.itemView.mark.text = model.avgBall
         if (model.text["1"] != null)
             holder.itemView.description.text = Jsoup.parse(model.text["1"]).text()
-        holder.itemView.setOnClickListener({ router.pushController(RouterTransaction.with(ProductController(model.id))) })
+        holder.itemView.setOnClickListener({
+
+            //router.pushController(RouterTransaction.with(ProductController(model.id)))
+        })
     }
 }
