@@ -8,7 +8,6 @@ import com.bluelinelabs.conductor.Router
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.features.main.news.data.model.Model
 import com.brewmapp.brewmapp.features.main.news.domain.util.NewsDiffUtilCallback
-import com.brewmapp.brewmapp.features.main.search.result.presentation.recycler.ResultViewHolder
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_news.view.*
 

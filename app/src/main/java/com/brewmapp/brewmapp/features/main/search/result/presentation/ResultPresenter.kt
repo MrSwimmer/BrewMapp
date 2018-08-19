@@ -23,17 +23,17 @@ class ResultPresenter : BasePresenter<ResultContract.View>(), ResultContract.Pre
         var map: HashMap<String, String> = hashMapOf()
         var curMap = hashMapOf<String, ArrayList<String>>()
         when (SearchController.mode) {
-            Mode.BEER.name -> curMap = SearchController.beerFieldMap
-            Mode.BREWERY.name -> curMap = SearchController.breweryFieldMap //brand or type
-            Mode.RESTO.name -> curMap = SearchController.restoFieldMap //restoType
+            Mode.BEER -> curMap = SearchController.beerFieldMap
+            Mode.BREWERY -> curMap = SearchController.breweryFieldMap //brand or type
+            Mode.RESTO -> curMap = SearchController.restoFieldMap //restoType
         }
-        if (SearchController.mode == Mode.BREWERY.name)
+        if (SearchController.mode == Mode.BREWERY)
             map["Brewery[id]"] = ""
         curMap.forEach {
             when (SearchController.mode) {
-                Mode.BEER.name -> map["Beer[${it.key}]"] = it.value.joinToString(separator = ",")
-                Mode.BREWERY.name -> map["Brewery[${it.key}]"] = it.value.joinToString(separator = ",")
-                Mode.RESTO.name -> map[it.key] = it.value.joinToString(separator = "|")
+                Mode.BEER -> map["Beer[${it.key}]"] = it.value.joinToString(separator = ",")
+                Mode.BREWERY -> map["Brewery[${it.key}]"] = it.value.joinToString(separator = ",")
+                Mode.RESTO -> map[it.key] = it.value.joinToString(separator = "|")
             }
         }
 

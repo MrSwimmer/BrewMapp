@@ -35,7 +35,7 @@ class ResultAdapter(private val models: List<Model>, val router: Router) : Recyc
         //Log.i("code", "title ${model.title["1"]}")
         Log.i("code", "text ${model.text["1"]}")
         var url: String
-        url = if (SearchController.mode == Mode.BEER.name)
+        url = if (SearchController.mode == Mode.BEER)
             model.getThumb
         else
             "https://developer.brewmapp.com/${model.getThumb}"

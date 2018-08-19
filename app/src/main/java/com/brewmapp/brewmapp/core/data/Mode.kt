@@ -1,11 +1,11 @@
 package com.brewmapp.brewmapp.core.data
 
-enum class Mode(mode: String) {
-    BEER("beer"),
-    BREWERY("brewery"),
-    RESTO("resto"),
+enum class Mode {
+    BEER,
+    BREWERY,
+    RESTO,
 
-    NEWS("news"),
-    EVENTS("events"),
-    REVIEWS("reviews")
+    NEWS,
+    EVENTS,
+    REVIEWS
 }

@@ -9,15 +9,15 @@ import rx.schedulers.Schedulers
 
 class ApiResultService(private val api: ResultApi) {
 
-    fun getResult(mode: String, map: java.util.HashMap<String, String>, callback: ResultCallback) {
+    fun getResult(mode: Mode, map: java.util.HashMap<String, String>, callback: ResultCallback) {
         when (mode) {
-            Mode.BEER.name -> {
+            Mode.BEER -> {
                 setCallback(api.getBeerResults(map), callback)
             }
-            Mode.BREWERY.name -> {
+            Mode.BREWERY -> {
                 setCallback(api.getBreweryResults(map), callback)
             }
-            Mode.RESTO.name -> {
+            Mode.RESTO -> {
                 setCallback(api.getRestoResults(map), callback)
             }
         }

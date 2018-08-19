@@ -45,7 +45,7 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
     }
 
     fun setPrice(price: String?) {
-        apiParamsService.getParams(TypeSearch.AVERAGE_PRICE.type, object : ApiParamService.ParamCallback {
+        apiParamsService.getParams(TypeSearch.AVERAGE_PRICE, object : ApiParamService.ParamCallback {
             override fun onSuccess(models: MutableList<com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model>) {
                 models.forEach {
                     if (it.id == price)
@@ -62,7 +62,7 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
     }
 
     fun setCounty(countryId: String) {
-        apiParamsService.getParams(TypeSearch.COUNTRY.type, object : ApiParamService.ParamCallback {
+        apiParamsService.getParams(TypeSearch.COUNTRY, object : ApiParamService.ParamCallback {
             override fun onSuccess(models: MutableList<com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model>) {
                 models.forEach {
                     if (it.id == countryId)
@@ -78,7 +78,7 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
     }
 
     fun setBrand(brandId: String) {
-        apiParamsService.getParams(TypeSearch.BRAND.type, object : ApiParamService.ParamCallback {
+        apiParamsService.getParams(TypeSearch.BRAND, object : ApiParamService.ParamCallback {
             override fun onSuccess(models: MutableList<com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model>) {
                 models.forEach {
                     if (it.id == brandId)
