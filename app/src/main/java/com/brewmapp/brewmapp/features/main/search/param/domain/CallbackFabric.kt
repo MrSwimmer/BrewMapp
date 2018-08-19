@@ -2,7 +2,6 @@ package com.brewmapp.brewmapp.features.main.search.param.domain
 
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Param
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
-import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Name
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.searchnum.ParamNum
 import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ApiParamService
 import rx.Observable

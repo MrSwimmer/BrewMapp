@@ -23,20 +23,20 @@ class ParamAdapter(private val models: MutableList<Model>, private val field: St
     }
 
     override fun onBindViewHolder(holder: ModelViewHolder, position: Int) {
+        Log.i("code", "bindviewholder models ${models.size}")
         val model = models[position]
         var map: HashMap<String, ArrayList<String>> = hashMapOf()
-        Log.i("code", SearchController.mode)
+        Log.i("code", SearchController.mode.toString())
         Log.i("code", model.toString())
         when (SearchController.mode) {
-            Mode.BEER.name -> map = SearchController.beerFieldMap
-            Mode.BREWERY.name -> map = SearchController.breweryFieldMap
-            Mode.RESTO.name -> map = SearchController.restoFieldMap
+            Mode.BEER -> map = SearchController.beerFieldMap
+            Mode.BREWERY -> map = SearchController.breweryFieldMap
+            Mode.RESTO -> map = SearchController.restoFieldMap
         }
         if (map[field] == null)
             map[field] = arrayListOf()
-        if (map[field]!!.contains(model!!.id)) {
+        if (map[field]!!.contains(model.id))
             holder.itemView.checkBox.isChecked = true
-        }
         holder.itemView.checkBox.setOnCheckedChangeListener({ _, isChecked ->
             if (isChecked)
                 map[field]!!.add(model.id)

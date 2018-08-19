@@ -7,53 +7,51 @@ import com.brewmapp.brewmapp.features.main.search.main.presentation.recycler.Sea
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
 
 class SearchPresenter : MvpBasePresenter<SearchContract.View>(), SearchContract.Presenter {
-    override fun setRecyclerData(mode: String) {
+    override fun setRecyclerData(mode: Mode) {
         when(mode) {
-            Mode.BEER.name -> setBeerRecyclerData()
-            Mode.BREWERY.name -> setBreweryRecyclerData()
-            Mode.RESTO.name -> setRestoRecyclerData()
+            Mode.BEER -> setBeerRecyclerData()
+            Mode.BREWERY -> setBreweryRecyclerData()
+            Mode.RESTO -> setRestoRecyclerData()
         }
     }
 
 
-    fun setRestoRecyclerData() {
-        var searches = arrayListOf<Search>()
+    private fun setRestoRecyclerData() {
+        val searches = arrayListOf<Search>()
         //searches.add(Search("Поиск по названию заведения", "Любое", R.drawable.ic_search_name, TypeSearch.RESTO_TITLE))
         //searches.add(Search("Поиск по названию пива", "Любое", R.drawable.ic_search_name, TypeSearch.BEER_TITLE))
-        searches.add(Search("Тип заведения", "Любой", R.drawable.ic_search_type, TypeSearch.RESTO_TYPE))
-        searches.add(Search("Тип пива", "Любой", R.drawable.ic_search_type, TypeSearch.RESTO_BEER_TYPE))
-        searches.add(Search("Кухня", "Любая", R.drawable.ic_search_type, TypeSearch.KITCHEN))
-        searches.add(Search("Где искать", "Любой город", R.drawable.ic_search_city, TypeSearch.CITY))
+        searches.add(Search("Тип заведения", R.drawable.ic_search_type, TypeSearch.RESTO_TYPE))
+        searches.add(Search("Тип пива", R.drawable.ic_search_type, TypeSearch.RESTO_BEER_TYPE))
+        searches.add(Search("Кухня", R.drawable.ic_search_type, TypeSearch.KITCHEN))
+        searches.add(Search("Город", R.drawable.ic_search_city, TypeSearch.CITY))
         //searches.add(Search("Средний счет", "Любая", R.drawable.ic_search_type, TypeSearch.AVERAGE_PRICE))
         view.initAdapter(searches)
     }
 
-    fun setBreweryRecyclerData() {
-        var searches = arrayListOf<Search>()
+    private fun setBreweryRecyclerData() {
+        val searches = arrayListOf<Search>()
         //searches.add(Search("Поиск по названию пивоварни", "Любое", R.drawable.ic_search_name, TypeSearch.BREWERY_TITLE))
-        searches.add(Search("Страна", "Не имеет значения", R.drawable.ic_search_country, TypeSearch.COUNTRY))
-        searches.add(Search("Бренд пива", "Любой", R.drawable.ic_search_brand, TypeSearch.BREWERY_BRAND))
-        searches.add(Search("Тип пива", "Любой", R.drawable.ic_search_type, TypeSearch.BREWERY_TYPE))
+        searches.add(Search("Страна пивоварни", R.drawable.ic_search_country, TypeSearch.COUNTRY))
+        searches.add(Search("Бренд пива", R.drawable.ic_search_brand, TypeSearch.BREWERY_BRAND))
+        searches.add(Search("Тип пива", R.drawable.ic_search_type, TypeSearch.BREWERY_TYPE))
         view.initAdapter(searches)
     }
 
-    fun setBeerRecyclerData() {
-        var searches = arrayListOf<Search>()
+    private fun setBeerRecyclerData() {
+        val searches = arrayListOf<Search>()
         //searches.add(Search("Поиск по названию", "Любое", R.drawable.ic_search_name, TypeSearch.BEER_TITLE))
-        searches.add(Search("Страна - производитель", "Не имеет значения", R.drawable.ic_search_country, TypeSearch.COUNTRY))
-        searches.add(Search("Тип пива", "Любой", R.drawable.ic_search_type, TypeSearch.TYPE))
-        searches.add(Search("Бренд пива", "Любой", R.drawable.ic_search_brand, TypeSearch.BRAND))
-        searches.add(Search("Крепость пива", "Любая", R.drawable.ic_search_strength, TypeSearch.STRENGTH))
-        //searches.add(Search("Фильтрация пива", "Любая", R.drawable.ic_search_filter_beer, TypeSearch.FILTER.typeSearch))//
-        //searches.add(Search("Тип брожения", "Любой", R.drawable.ic_search_type_ferm, TypeSearch.FERM.typeSearch))//
-        searches.add(Search("IBU", "Любой", R.drawable.ic_search_ibu, TypeSearch.IBU))
-        searches.add(Search("Вид емкости", "Любой", R.drawable.ic_search_capacity, TypeSearch.PACKING))
-        searches.add(Search("Цвет", "Любой", R.drawable.ic_search_color, TypeSearch.COLOR))
-        searches.add(Search("Аромат", "Любой", R.drawable.ic_search_scent, TypeSearch.FRAGRANCE))
-        searches.add(Search("Вкус", "Любой", R.drawable.ic_search_taste, TypeSearch.TASTE))
-        searches.add(Search("Послевкусие", "Любое", R.drawable.ic_search_aftertaste, TypeSearch.AFTERTASTE))
-        searches.add(Search("Пивоварня", "Любая", R.drawable.ic_search_brewery, TypeSearch.BREWERY))
-        searches.add(Search("Цена", "Любая", R.drawable.ic_search_price, TypeSearch.PRICERANGE))
+        searches.add(Search("Страна - производитель", R.drawable.ic_search_country, TypeSearch.COUNTRY))
+        searches.add(Search("Тип пива", R.drawable.ic_search_type, TypeSearch.TYPE))
+        searches.add(Search("Бренд пива", R.drawable.ic_search_brand, TypeSearch.BRAND))
+        searches.add(Search("Крепость пива", R.drawable.ic_search_strength, TypeSearch.STRENGTH))
+        searches.add(Search("IBU", R.drawable.ic_search_ibu, TypeSearch.IBU))
+        searches.add(Search("Вид емкости", R.drawable.ic_search_capacity, TypeSearch.PACKING))
+        searches.add(Search("Цвет", R.drawable.ic_search_color, TypeSearch.COLOR))
+        searches.add(Search("Аромат", R.drawable.ic_search_scent, TypeSearch.FRAGRANCE))
+        searches.add(Search("Вкус", R.drawable.ic_search_taste, TypeSearch.TASTE))
+        searches.add(Search("Послевкусие", R.drawable.ic_search_aftertaste, TypeSearch.AFTERTASTE))
+        searches.add(Search("Пивоварня", R.drawable.ic_search_brewery, TypeSearch.BREWERY))
+        searches.add(Search("Цена", R.drawable.ic_search_price, TypeSearch.PRICERANGE))
         view.initAdapter(searches)
     }
 

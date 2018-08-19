@@ -18,7 +18,7 @@ class CityPresenter : MvpBasePresenter<CityContract.View>(), CityContract.Presen
     lateinit var apiService: ApiParamService
 
     override fun setRecyclerCity(city: String) {
-        apiService.getCity(city!!, object : ApiParamService.ParamCallback {
+        apiService.getCity(city, object : ApiParamService.ParamCallback {
             override fun onSuccess(models: MutableList<Model>) {
                 if (CityActivity.curText == city) {
                     view.initAdapter(models)

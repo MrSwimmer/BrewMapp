@@ -31,23 +31,14 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
 
     lateinit var params: MutableList<Model>
 
-    lateinit var type: String
-    lateinit var field: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_param)
         setSupportActionBar(toolbar as Toolbar?)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         recycler.layoutManager = LinearLayoutManager(this)
-        type = intent.getStringExtra("type")
-        field = intent.getStringExtra("field")
-        if (field == TypeSearch.CITY.field) {
-            //showSnack("Введите название города")
-        } else {
-            presenter.setRecyclerData(type)
-            showProgress()
-        }
+        presenter.setRecyclerData(SearchController.field)
+        showProgress()
     }
 
     override fun createPresenter(): ParamContract.Presenter {
@@ -55,9 +46,11 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
     }
 
     override fun initAdapter(models: MutableList<Model>) {
+        Log.i("code", "initAdapter ${models.size}")
         params = models
         hideProgress()
-        recycler.adapter = ParamAdapter(models, field)
+        Log.i("code", "hide in initad")
+        recycler.adapter = ParamAdapter(models, SearchController.field.field)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -84,7 +77,7 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 Log.i("code", "search new $newText")
-                if (field == TypeSearch.CITY.field) {
+                if (SearchController.field == TypeSearch.CITY) {
                     if (newText != "") {
                         cutText = newText!!
                         presenter.setRecyclerCity(newText)
@@ -105,7 +98,7 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
             if (it.name["1"]!!.contains(newText))
                 newParams.add(it)
         }
-        recycler.adapter = ParamAdapter(newParams, field)
+        recycler.adapter = ParamAdapter(newParams, SearchController.field.field)
     }
 
     override fun onSupportNavigateUp(): Boolean {
