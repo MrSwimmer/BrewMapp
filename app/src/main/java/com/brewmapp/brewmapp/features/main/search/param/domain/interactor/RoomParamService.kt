@@ -1,18 +1,15 @@
-package com.brewmapp.brewmapp.core.domain.interactor
+package com.brewmapp.brewmapp.features.main.search.param.domain.interactor
 
-import android.annotation.SuppressLint
 import com.bignerdranch.android.osm.data.room.Param
 import com.bignerdranch.android.osm.data.room.NoteDao
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import rx.Observable
 
-class RoomService(var db: NoteDao) {
+class RoomParamService(var db: NoteDao) {
 
-    @SuppressLint("CheckResult")
-    fun getAll(id: String, type: String, callback: ParamCallback) {
-        db.getAll(id, type)
+    fun getAllParams(type: String, callback: ParamCallback) {
+        db.getAllByType(type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ callback.onSuccess(it) }, { callback.onError(it) })

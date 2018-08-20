@@ -1,18 +1,19 @@
 
-package com.brewmapp.brewmapp.features.main.search.param.data.model.res.search;
+package com.brewmapp.brewmapp.features.main.search.param.data.model.res.searchnum;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Param {
+import java.util.List;
+
+public class ParamResultNum {
 
     @SerializedName("total")
     @Expose
     private String total;
     @SerializedName("models")
     @Expose
-    private List<Model> models = null;
+    private List<ModelNum> models = null;
 
     public String getTotal() {
         return total;
@@ -22,12 +23,11 @@ public class Param {
         this.total = total;
     }
 
-    public List<Model> getModels() {
+    public List<ModelNum> getModels() {
         return models;
     }
 
-    public void setModels(List<Model> models) {
+    public void setModels(List<ModelNum> models) {
         this.models = models;
     }
-
 }

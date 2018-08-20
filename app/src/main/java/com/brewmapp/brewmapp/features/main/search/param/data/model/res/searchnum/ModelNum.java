@@ -14,7 +14,7 @@ public class ModelNum {
     private String name;
     @SerializedName("getThumb")
     @Expose
-    private String getThumb;
+    private String getThumb = "";
 
     public String getId() {
         return id;

@@ -3,6 +3,7 @@ package com.brewmapp.brewmapp
 import android.app.Application
 import com.brewmapp.brewmapp.core.di.AppComponent
 import com.brewmapp.brewmapp.core.di.DaggerAppComponent
+import com.brewmapp.brewmapp.core.di.module.RoomModule
 import com.brewmapp.brewmapp.core.di.module.SharedPreferencesModule
 
 class App : Application() {
@@ -15,6 +16,7 @@ class App : Application() {
         super.onCreate()
         component = DaggerAppComponent.builder()
                 .sharedPreferencesModule(SharedPreferencesModule(applicationContext))
+                .roomModule(RoomModule(applicationContext))
                 .build()
     }
 }

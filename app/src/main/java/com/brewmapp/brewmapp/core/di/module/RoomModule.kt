@@ -4,7 +4,7 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import com.bignerdranch.android.osm.data.room.AppDatabase
 import com.bignerdranch.android.osm.data.room.NoteDao
-import com.brewmapp.brewmapp.core.domain.interactor.RoomService
+import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.RoomParamService
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -30,7 +30,7 @@ class RoomModule(private var context: Context) {
 
     @Provides
     @Singleton
-    fun roomService(dao: NoteDao): RoomService {
-        return RoomService(dao)
+    fun roomService(dao: NoteDao): RoomParamService {
+        return RoomParamService(dao)
     }
 }
