@@ -7,6 +7,7 @@ import com.brewmapp.brewmapp.features.auth.presentation.AuthActivity
 import com.brewmapp.brewmapp.features.auth.presentation.city.CityPresenter
 import com.brewmapp.brewmapp.features.main.MainActivity
 import com.brewmapp.brewmapp.features.main.news.data.paging.NewsPositionalDataSource
+import com.brewmapp.brewmapp.features.main.news.data.paging.ResultPositionalDataSource
 import com.brewmapp.brewmapp.features.main.product.domain.ApiProductService
 import com.brewmapp.brewmapp.features.main.profile.*
 import com.brewmapp.brewmapp.features.main.search.param.domain.CallbackFabric
@@ -36,4 +37,5 @@ interface AppComponent {
     fun inject(cityPresenter: CityPresenter)
     fun inject(apiProductService: ApiProductService)
     fun inject(newsPositionalDataSource: NewsPositionalDataSource)
+    fun inject(resultPositionalDataSource: ResultPositionalDataSource)
 }

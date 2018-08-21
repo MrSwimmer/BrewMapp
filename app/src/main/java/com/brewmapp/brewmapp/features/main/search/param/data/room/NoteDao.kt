@@ -12,10 +12,10 @@ interface NoteDao {
     fun addParams(params: List<Param>)
 
     @Query("SELECT * FROM params WHERE type = :type")
-    fun getAllByType(type: String): Single<List<Param>>
+    fun getParams(type: String): Single<List<Param>>
 
     @Delete
-    fun delete(param: Param)
+    fun deleteParams(params: List<Param>)
 
     @Query("DELETE FROM params")
     fun deleteAll()

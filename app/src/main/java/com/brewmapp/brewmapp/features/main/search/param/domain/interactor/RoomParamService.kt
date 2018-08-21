@@ -9,7 +9,7 @@ import rx.Observable
 class RoomParamService(var db: NoteDao) {
 
     fun getAllParams(type: String, callback: ParamCallback) {
-        db.getAllByType(type)
+        db.getParams(type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ callback.onSuccess(it) }, { callback.onError(it) })

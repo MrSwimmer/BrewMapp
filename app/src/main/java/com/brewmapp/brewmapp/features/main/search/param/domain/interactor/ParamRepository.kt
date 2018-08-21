@@ -2,10 +2,8 @@ package com.brewmapp.brewmapp.features.main.search.param.domain.interactor
 
 import android.util.Log
 import com.bignerdranch.android.osm.data.room.Param
-import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.data.TypeSearch
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
-import javax.inject.Inject
 
 class ParamRepository(val apiParamService: ApiParamService, val roomParamService: RoomParamService) {
 
