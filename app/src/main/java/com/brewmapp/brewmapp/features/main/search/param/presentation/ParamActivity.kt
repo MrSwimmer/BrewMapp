@@ -37,8 +37,10 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         setSupportActionBar(toolbar as Toolbar?)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         recycler.layoutManager = LinearLayoutManager(this)
-        presenter.setRecyclerData(SearchController.field)
-        showProgress()
+        if (SearchController.field != TypeSearch.CITY) {
+            presenter.setRecyclerData(SearchController.field)
+            showProgress()
+        }
     }
 
     override fun createPresenter(): ParamContract.Presenter {

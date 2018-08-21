@@ -1,8 +1,8 @@
 package com.brewmapp.brewmapp.features.main.search.param.domain
 
-import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Param
+import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.ParamResult
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
-import com.brewmapp.brewmapp.features.main.search.param.data.model.res.searchnum.ParamNum
+import com.brewmapp.brewmapp.features.main.search.param.data.model.res.searchnum.ParamResultNum
 import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ApiParamService
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -11,12 +11,12 @@ import rx.schedulers.Schedulers
 class CallbackFabric {
 
     companion object {
-        fun paramCallback(api: Observable<Param>, callback: ApiParamService.ParamCallback) {
+        fun paramCallback(api: Observable<ParamResult>, callback: ApiParamService.ParamCallback) {
             api.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ callback.onSuccess(it.models) }, { callback.onError(it) })
         }
-        fun paramNumCallback(api: Observable<ParamNum>, callback: ApiParamService.ParamCallback) {
+        fun paramNumCallback(api: Observable<ParamResultNum>, callback: ApiParamService.ParamCallback) {
             api.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({

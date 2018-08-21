@@ -1,13 +1,18 @@
 package com.brewmapp.brewmapp.features.main.search.result.presentation
 
+import android.arch.paging.PagedList
 import android.util.Log
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
+import com.brewmapp.brewmapp.features.main.news.data.paging.NewsPositionalDataSource
+import com.brewmapp.brewmapp.features.main.news.data.paging.ResultPositionalDataSource
+import com.brewmapp.brewmapp.features.main.profile.NewsPresenter
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Result
 import com.brewmapp.brewmapp.features.main.search.result.domain.interactor.ApiResultService
 import java.util.*
+import java.util.concurrent.Executors
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
@@ -20,7 +25,7 @@ class ResultPresenter : BasePresenter<ResultContract.View>(), ResultContract.Pre
     lateinit var apiService: ApiResultService
 
     override fun setRecyclerData() {
-        var map: HashMap<String, String> = hashMapOf()
+        val map: HashMap<String, String> = hashMapOf()
         var curMap = hashMapOf<String, ArrayList<String>>()
         when (SearchController.mode) {
             Mode.BEER -> curMap = SearchController.beerFieldMap
@@ -36,19 +41,16 @@ class ResultPresenter : BasePresenter<ResultContract.View>(), ResultContract.Pre
                 Mode.RESTO -> map[it.key] = it.value.joinToString(separator = "|")
             }
         }
-
         Log.i("code", "map0 $map")
-        apiService.getResult(SearchController.mode, map, object : ApiResultService.ResultCallback {
-            override fun onSuccess(it: Result) {
-                view.setAdapter(it.models)
-            }
-
-            override fun onError(it: Throwable) {
-                Log.i("code", "error ${it.message}")
-                view.showErrorMessage("Ошибка")
-                view.hideProgress()
-            }
-
-        })
+        var positionalDataSource = ResultPositionalDataSource(SearchController.mode, map)
+        val config = PagedList.Config.Builder()
+                .setEnablePlaceholders(false)
+                .setPageSize(8)
+                .build()
+        val pagedList = PagedList.Builder(positionalDataSource, config)
+                .setNotifyExecutor(NewsPresenter.MainThreadExecutor())
+                .setFetchExecutor(Executors.newSingleThreadExecutor())
+                .build()
+        view.setAdapter(pagedList)
     }
 }

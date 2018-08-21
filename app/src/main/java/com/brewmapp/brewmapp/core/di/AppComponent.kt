@@ -1,21 +1,24 @@
 package com.brewmapp.brewmapp.core.di
 
 import com.brewmapp.brewmapp.core.di.module.ApiModule
+import com.brewmapp.brewmapp.core.di.module.RoomModule
 import com.brewmapp.brewmapp.core.di.module.SharedPreferencesModule
 import com.brewmapp.brewmapp.features.auth.presentation.AuthActivity
 import com.brewmapp.brewmapp.features.auth.presentation.city.CityPresenter
 import com.brewmapp.brewmapp.features.main.MainActivity
 import com.brewmapp.brewmapp.features.main.news.data.paging.NewsPositionalDataSource
+import com.brewmapp.brewmapp.features.main.news.data.paging.ResultPositionalDataSource
 import com.brewmapp.brewmapp.features.main.product.domain.ApiProductService
 import com.brewmapp.brewmapp.features.main.profile.*
 import com.brewmapp.brewmapp.features.main.search.param.domain.CallbackFabric
+import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ParamRepository
 import com.brewmapp.brewmapp.features.main.search.param.presentation.ParamPresenter
 import com.brewmapp.brewmapp.features.main.search.result.presentation.ResultPresenter
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApiModule::class, SharedPreferencesModule::class])
+@Component(modules = [ApiModule::class, SharedPreferencesModule::class, RoomModule::class])
 interface AppComponent {
     fun inject(signInPresenter: SignInPresenter)
     fun inject(signInPresenter: SignUpPresenter)
@@ -34,4 +37,5 @@ interface AppComponent {
     fun inject(cityPresenter: CityPresenter)
     fun inject(apiProductService: ApiProductService)
     fun inject(newsPositionalDataSource: NewsPositionalDataSource)
+    fun inject(resultPositionalDataSource: ResultPositionalDataSource)
 }

@@ -1,6 +1,10 @@
 
 package com.brewmapp.brewmapp.features.main.search.param.data.model.res.search;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.Nullable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -18,7 +22,10 @@ public class Model {
     private HashMap<String, String> name;
     @SerializedName("getThumb")
     @Expose
-    private String getThumb;
+    private String getThumb = "";
+
+    @PrimaryKey(autoGenerate = true)
+    Long idKey = 0L;
 
     public String getId() {
         return id;

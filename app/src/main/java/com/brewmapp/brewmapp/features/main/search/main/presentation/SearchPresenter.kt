@@ -50,7 +50,7 @@ class SearchPresenter : MvpBasePresenter<SearchContract.View>(), SearchContract.
         searches.add(Search("Аромат", R.drawable.ic_search_scent, TypeSearch.FRAGRANCE))
         searches.add(Search("Вкус", R.drawable.ic_search_taste, TypeSearch.TASTE))
         searches.add(Search("Послевкусие", R.drawable.ic_search_aftertaste, TypeSearch.AFTERTASTE))
-        searches.add(Search("Пивоварня", R.drawable.ic_search_brewery, TypeSearch.BREWERY))
+        //searches.add(Search("Пивоварня", R.drawable.ic_search_brewery, TypeSearch.BREWERY))
         searches.add(Search("Цена", R.drawable.ic_search_price, TypeSearch.PRICERANGE))
         view.initAdapter(searches)
     }

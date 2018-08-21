@@ -3,23 +3,23 @@ package com.brewmapp.brewmapp.features.main.news.data.paging
 import android.arch.paging.PositionalDataSource
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.data.Mode
-import com.brewmapp.brewmapp.features.main.news.data.model.Model
-import com.brewmapp.brewmapp.features.main.news.domain.interactor.ApiNewsService
+import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
+import com.brewmapp.brewmapp.features.main.search.result.domain.interactor.ApiResultService
 import javax.inject.Inject
 
-class NewsPositionalDataSource(val map: HashMap<String, String>, val mode: Mode) : PositionalDataSource<Model>() {
+class ResultPositionalDataSource(val mode: Mode, val map: HashMap<String, String>) : PositionalDataSource<Model>() {
     init {
         App.component.inject(this)
     }
 
     @Inject
-    lateinit var apiNewsService: ApiNewsService
+    lateinit var apiResultService: ApiResultService
 
     override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<Model>) {
-        apiNewsService.loadRange(params, callback, map, mode)
+        apiResultService.loadRange(params, callback, map, mode)
     }
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<Model>) {
-        apiNewsService.loadInit(params, callback, map, mode)
+        apiResultService.loadInit(params, callback, map, mode)
     }
 }
