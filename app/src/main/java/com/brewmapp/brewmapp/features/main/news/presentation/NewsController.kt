@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.controller_news.view.*
 class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>(), NewsContract.View {
 
     companion object {
-        var mode = Mode.NEWS.name
+        var mode = Mode.NEWS
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -24,21 +24,23 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
         view.recycler.layoutManager = LinearLayoutManager(activity)
         setTabs(view)
         view.news.setOnClickListener({
-            mode = Mode.NEWS.name
+            mode = Mode.NEWS
             setTabs(view)
             presenter.setRecyclerData(mode)
+            showProgress()
         })
         view.events.setOnClickListener({
-            mode = Mode.EVENTS.name
+            mode = Mode.EVENTS
             setTabs(view)
             presenter.setRecyclerData(mode)
+            showProgress()
 
         })
         view.reviews.setOnClickListener({
-            mode = Mode.REVIEWS.name
+            mode = Mode.REVIEWS
             setTabs(view)
             presenter.setRecyclerData(mode)
-            //showSnack("В разработке")
+            showProgress()
         })
         return view
     }
@@ -46,6 +48,7 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
     override fun onAttach(view: View) {
         super.onAttach(view)
         presenter.setRecyclerData(mode)
+        showProgress()
     }
 
     override fun createPresenter(): NewsContract.Presenter {
@@ -57,9 +60,9 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
         view.events.background = resources!!.getDrawable(R.color.transparent)
         view.reviews.background = resources!!.getDrawable(R.color.transparent)
         when (mode) {
-            Mode.NEWS.name -> view.news.background = resources!!.getDrawable(R.drawable.tab_background_red)
-            Mode.EVENTS.name -> view.events.background = resources!!.getDrawable(R.drawable.tab_background_red)
-            Mode.REVIEWS.name -> view.reviews.background = resources!!.getDrawable(R.drawable.tab_background_red)
+            Mode.NEWS -> view.news.background = resources!!.getDrawable(R.drawable.tab_background_red)
+            Mode.EVENTS -> view.events.background = resources!!.getDrawable(R.drawable.tab_background_red)
+            Mode.REVIEWS -> view.reviews.background = resources!!.getDrawable(R.drawable.tab_background_red)
         }
     }
 

@@ -10,4 +10,15 @@ interface NewsApi {
     @Headers("api-version: 1.04")
     @POST("news")
     fun getNews(@Query("limit_start") start: Int, @Query("limit_end") end: Int, @FieldMap fields: Map<String, String>) : Observable<News>
+
+    @FormUrlEncoded
+    @Headers("api-version: 1.04")
+    @POST("event")
+    fun getEvents(@Query("limit_start") start: Int, @Query("limit_end") end: Int, @FieldMap fields: Map<String, String>) : Observable<News>
+
+    @FormUrlEncoded
+    @Headers("api-version: 1.04")
+    @POST("reviews")
+    fun getReviews(@Query("limit_start") start: Int, @Query("limit_end") end: Int, @FieldMap fields: Map<String, String>) : Observable<News>
+
 }
