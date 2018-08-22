@@ -1,27 +1,18 @@
 package com.brewmapp.brewmapp.features.main.profile
 
-import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
-import com.brewmapp.brewmapp.features.main.product.data.model.Model
+import com.brewmapp.brewmapp.features.main.card.product.data.model.newmodel.Model
+import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.Param
+import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.ParamAdapter
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.controller_product.view.*
 
 class ProductController() : BaseController<ProductContract.View, ProductContract.Presenter>(), ProductContract.View {
-    override fun setBrand(brand: String?) {
-        view!!.brand.text = brand
-    }
-
-    override fun setCountry(country: String?) {
-        view!!.country.text = country
-    }
-
-    override fun setPrice(price: String?) {
-        view!!.cost.text = price
-    }
 
     lateinit var id: String
 
@@ -30,7 +21,9 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.controller_product, container, false)
+        val view = inflater.inflate(R.layout.controller_product, container, false)
+        view.paramRecycler.layoutManager = LinearLayoutManager(activity!!)
+        return view
     }
 
     override fun createPresenter(): ProductContract.Presenter {
@@ -39,12 +32,20 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-        showProgress()
+        //showProgress()
         presenter.getProduct(id)
     }
 
+    override fun setParams(paramsList: MutableList<Param>) {
+        view!!.paramRecycler.adapter = ParamAdapter(paramsList)
+    }
+
     override fun setProduct(model: Model) {
-        Glide.with(view!!)
+        view!!.text.text = model.text.get1()
+        view!!.likes.text = model.like
+        view!!.dislikes.text = model.disLike
+        view!!.strength.text = model.relations.beerStrength.name
+        Glide.with(activity!!)
                 .load(model.getThumb)
                 .into(view!!.image)
     }

@@ -47,6 +47,7 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: 
         if (model.text["1"] != null)
             holder.itemView.description.text = Jsoup.parse(model.text["1"]).text()
         holder.itemView.setOnClickListener({
+            router.pushController(RouterTransaction.with(ProductController(model.id)))
         })
     }
 }

@@ -1,8 +1,9 @@
 
-package com.brewmapp.brewmapp.features.main.product.data.model;
+package com.brewmapp.brewmapp.features.main.card.product.data.model.newmodel;
 
-import java.util.HashMap;
 import java.util.List;
+
+import com.brewmapp.brewmapp.features.main.card.product.data.model.oldmodel.AvgPrice;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -41,9 +42,18 @@ public class Model {
     @SerializedName("pricerange_id")
     @Expose
     private String pricerangeId;
+    @SerializedName("title")
+    @Expose
+    private Title title;
     @SerializedName("title_ru")
     @Expose
     private String titleRu;
+    @SerializedName("text")
+    @Expose
+    private Text text;
+    @SerializedName("short_text")
+    @Expose
+    private List<Object> shortText = null;
     @SerializedName("avg_ball")
     @Expose
     private String avgBall;
@@ -77,14 +87,24 @@ public class Model {
     @SerializedName("getThumb")
     @Expose
     private String getThumb;
+    @SerializedName("getThumbOriginal")
+    @Expose
+    private String getThumbOriginal;
+    @SerializedName("relations")
+    @Expose
+    private Relations relations;
+    @SerializedName("counts")
+    @Expose
+    private Counts counts;
+    @SerializedName("like")
+    @Expose
+    private String like;
+    @SerializedName("dis_like")
+    @Expose
+    private String disLike;
     @SerializedName("avgPrices")
     @Expose
     private List<AvgPrice> avgPrices = null;
-    @SerializedName("title")
-    @Expose
-    private HashMap<String, String> title;
-    @Expose
-    private HashMap<String, String> text;
 
     public String getId() {
         return id;
@@ -174,12 +194,36 @@ public class Model {
         this.pricerangeId = pricerangeId;
     }
 
+    public Title getTitle() {
+        return title;
+    }
+
+    public void setTitle(Title title) {
+        this.title = title;
+    }
+
     public String getTitleRu() {
         return titleRu;
     }
 
     public void setTitleRu(String titleRu) {
         this.titleRu = titleRu;
+    }
+
+    public Text getText() {
+        return text;
+    }
+
+    public void setText(Text text) {
+        this.text = text;
+    }
+
+    public List<Object> getShortText() {
+        return shortText;
+    }
+
+    public void setShortText(List<Object> shortText) {
+        this.shortText = shortText;
     }
 
     public String getAvgBall() {
@@ -270,6 +314,46 @@ public class Model {
         this.getThumb = getThumb;
     }
 
+    public String getGetThumbOriginal() {
+        return getThumbOriginal;
+    }
+
+    public void setGetThumbOriginal(String getThumbOriginal) {
+        this.getThumbOriginal = getThumbOriginal;
+    }
+
+    public Relations getRelations() {
+        return relations;
+    }
+
+    public void setRelations(Relations relations) {
+        this.relations = relations;
+    }
+
+    public Counts getCounts() {
+        return counts;
+    }
+
+    public void setCounts(Counts counts) {
+        this.counts = counts;
+    }
+
+    public String getLike() {
+        return like;
+    }
+
+    public void setLike(String like) {
+        this.like = like;
+    }
+
+    public String getDisLike() {
+        return disLike;
+    }
+
+    public void setDisLike(String disLike) {
+        this.disLike = disLike;
+    }
+
     public List<AvgPrice> getAvgPrices() {
         return avgPrices;
     }
@@ -278,19 +362,4 @@ public class Model {
         this.avgPrices = avgPrices;
     }
 
-    public HashMap<String, String> getTitle() {
-        return title;
-    }
-
-    public void setTitle(HashMap<String, String> title) {
-        this.title = title;
-    }
-
-    public HashMap<String, String> getText() {
-        return text;
-    }
-
-    public void setText(HashMap<String, String> text) {
-        this.text = text;
-    }
 }

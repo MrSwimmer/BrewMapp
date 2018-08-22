@@ -1,9 +1,10 @@
 
-package com.brewmapp.brewmapp.features.main.product.data.model;
+package com.brewmapp.brewmapp.features.main.card.product.data.model.newmodel;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class Product {
 

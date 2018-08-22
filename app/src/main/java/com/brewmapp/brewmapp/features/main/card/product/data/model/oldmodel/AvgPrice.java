@@ -1,5 +1,5 @@
 
-package com.brewmapp.brewmapp.features.main.product.data.model;
+package com.brewmapp.brewmapp.features.main.card.product.data.model.oldmodel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

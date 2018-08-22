@@ -30,7 +30,7 @@ class RoomModule(private var context: Context) {
 
     @Provides
     @Singleton
-    fun roomService(dao: NoteDao): RoomParamService {
+    fun roomParamService(dao: NoteDao): RoomParamService {
         return RoomParamService(dao)
     }
 }
