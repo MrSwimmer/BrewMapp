@@ -1,11 +1,12 @@
 
-package com.brewmapp.brewmapp.features.main.news.data.model;
+package com.brewmapp.brewmapp.features.main.news.data.model.reviews;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class News {
+import java.util.List;
+
+public class Reviews {
 
     @SerializedName("total")
     @Expose

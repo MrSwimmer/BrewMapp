@@ -1,7 +1,7 @@
 package com.brewmapp.brewmapp.features.main.news.domain.util
 
 import android.support.v7.util.DiffUtil
-import com.brewmapp.brewmapp.features.main.news.data.model.Model
+import com.brewmapp.brewmapp.features.main.news.data.model.news.Model
 
 
 class NewsDiffUtilCallback : DiffUtil.ItemCallback<Model>() {

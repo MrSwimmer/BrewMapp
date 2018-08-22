@@ -3,7 +3,7 @@ package com.brewmapp.brewmapp.features.main.profile
 import android.arch.paging.PagedList
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.core.presentation.base.BaseContract
-import com.brewmapp.brewmapp.features.main.news.data.model.Model
+import com.brewmapp.brewmapp.features.main.news.data.model.news.Model
 
 interface NewsContract {
     interface View : BaseContract.View {

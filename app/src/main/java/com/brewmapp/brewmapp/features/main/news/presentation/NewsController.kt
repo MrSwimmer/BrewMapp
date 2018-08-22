@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
-import com.brewmapp.brewmapp.features.main.news.data.model.Model
+import com.brewmapp.brewmapp.features.main.news.data.model.news.Model
 import com.brewmapp.brewmapp.features.main.news.domain.util.NewsDiffUtilCallback
 import com.brewmapp.brewmapp.features.main.news.presentation.recycler.NewsPagingAdapter
 import kotlinx.android.synthetic.main.controller_news.view.*

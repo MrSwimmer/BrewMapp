@@ -3,7 +3,7 @@ package com.brewmapp.brewmapp.features.main.news.data.paging
 import android.arch.paging.PositionalDataSource
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.data.Mode
-import com.brewmapp.brewmapp.features.main.news.data.model.Model
+import com.brewmapp.brewmapp.features.main.news.data.model.news.Model
 import com.brewmapp.brewmapp.features.main.news.domain.interactor.ApiNewsService
 import javax.inject.Inject
 

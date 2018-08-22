@@ -1,5 +1,5 @@
 
-package com.brewmapp.brewmapp.features.main.news.data.model;
+package com.brewmapp.brewmapp.features.main.news.data.model.news;
 
 import java.util.HashMap;
 import java.util.List;
@@ -99,5 +99,16 @@ public class Model {
 
     public void setGetThumb(String getThumb) {
         this.getThumb = getThumb;
+    }
+
+    public Model(String id, HashMap<String, String> text, String timestamp, String getThumb, String like, String disLike, String interested, String noInterested) {
+        this.id = id;
+        this.text = text;
+        this.timestamp = timestamp;
+        this.getThumb = getThumb;
+        this.like = like;
+        this.disLike = disLike;
+        this.interested = interested;
+        this.noInterested = noInterested;
     }
 }
