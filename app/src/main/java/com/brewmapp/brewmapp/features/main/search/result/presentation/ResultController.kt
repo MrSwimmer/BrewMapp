@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
-import com.brewmapp.brewmapp.features.main.news.domain.util.NewsDiffUtilCallback
-import com.brewmapp.brewmapp.features.main.news.presentation.recycler.NewsPagingAdapter
 import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
 import com.brewmapp.brewmapp.features.main.search.result.domain.util.ResultDiffUtilCallback
 import com.brewmapp.brewmapp.features.main.search.result.presentation.recycler.ResultPagingAdapter

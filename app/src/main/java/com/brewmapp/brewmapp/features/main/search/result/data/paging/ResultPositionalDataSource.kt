@@ -1,4 +1,4 @@
-package com.brewmapp.brewmapp.features.main.news.data.paging
+package com.brewmapp.brewmapp.features.main.news.news.data.paging
 
 import android.arch.paging.PositionalDataSource
 import com.brewmapp.brewmapp.App

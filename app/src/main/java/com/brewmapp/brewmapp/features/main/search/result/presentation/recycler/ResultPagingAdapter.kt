@@ -1,7 +1,6 @@
 package com.brewmapp.brewmapp.features.main.search.result.presentation.recycler
 
 import android.arch.paging.PagedListAdapter
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
-import com.brewmapp.brewmapp.features.main.news.presentation.recycler.NewsViewHolder
 import com.brewmapp.brewmapp.features.main.profile.ProductController
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
