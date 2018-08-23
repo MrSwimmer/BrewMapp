@@ -9,7 +9,9 @@ import com.brewmapp.brewmapp.core.presentation.base.BaseController
 import com.brewmapp.brewmapp.features.main.card.product.data.model.product.Model
 import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.Param
 import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.ParamAdapter
+import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.RestoAdapter
 import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.ReviewAdapter
+import com.brewmapp.brewmapp.features.main.card.product.presentation.resto_recycler.Resto
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.controller_product.view.*
 import org.jsoup.Jsoup
@@ -26,6 +28,7 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
         val view = inflater.inflate(R.layout.controller_product, container, false)
         view.paramRecycler.layoutManager = LinearLayoutManager(activity!!)
         view.recyclerResto.layoutManager = LinearLayoutManager(activity!!)
+        view.recyclerReview.layoutManager = LinearLayoutManager(activity!!)
         return view
     }
 
@@ -53,10 +56,10 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
     }
 
     override fun setResto(restoList: MutableList<Resto>) {
-        view!!.recyclerResto.adapter = ReviewAdapter(restoList)
+        view!!.recyclerResto.adapter = RestoAdapter(restoList)
     }
 
-    override fun setReview(model: com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model) {
-
+    override fun setReview(models: MutableList<com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model>) {
+        view!!.recyclerReview.adapter = ReviewAdapter(models)
     }
 }

@@ -31,5 +31,6 @@
     <color name="empty_text">#c5ffffff</color>
 
     <color name="trans_back">#7f898989</color>
-    <color name="green_transparent">#7241c466</color>
+    <color name="green_transparent">#4841c466</color>
+    <color name="red_transparent">#43dd6567</color>
 </resources>

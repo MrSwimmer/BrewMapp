@@ -9,6 +9,7 @@ import com.brewmapp.brewmapp.features.main.card.product.data.model.product.Model
 import com.brewmapp.brewmapp.features.main.card.product.data.model.product.RestoMenu
 import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
 import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.Param
+import com.brewmapp.brewmapp.features.main.card.product.presentation.resto_recycler.Resto
 import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ParamRepository
 import javax.inject.Inject
 
@@ -100,15 +101,11 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
     fun getReview(id: String) {
         apiService.getReview(id, object : ApiProductService.ReviewCallback {
             override fun onSuccess(models: MutableList<com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model>) {
-                val model = models[0]
-                view.setReview(model)
-                models.forEach {
-
-                }
+                view.setReview(models)
             }
 
             override fun onError(it: Throwable) {
-
+                Log.i("code", "error review ${it.message}")
             }
 
         })
