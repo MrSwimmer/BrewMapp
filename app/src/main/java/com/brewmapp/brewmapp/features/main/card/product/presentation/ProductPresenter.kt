@@ -27,6 +27,7 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
 
     var paramsList = mutableListOf<Param>()
     var restoList = mutableListOf<Resto>()
+    var reviewList = mutableListOf<com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model>()
 
     var restoAmount = 0
 
@@ -43,6 +44,7 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
 
                 restoList.clear()
                 restoAmount = model.relations.restoMenu.size
+                Log.i("code", "restoamount $restoAmount")
                 for (i in 0 until model.relations.restoMenu.size) {
                     Log.i("code", "av1")
                     val mark: String = if (model.avgBall == null)
@@ -54,7 +56,6 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
                     else
                         model.title.get1()
                     getResto(model.relations.restoMenu[i], title, model.getThumb, mark)
-                    Log.i("code", "av2")
                 }
 
                 getReview(model.id)
@@ -83,16 +84,23 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
             override fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.product.data.model.resto.Model) {
                 val resto = model.resto[0]
                 val location = resto.location
-                Log.i("code", "av3")
                 val restofin = Resto(resto.name.get1(), title, "", avgBall, location.cityId.get1(), location.metro.name.get1(), resto.getThumb, thumb)
                 restoList.add(restofin)
-                if (restoList.size == 2 || (restoList.size == restoAmount && restoList.size < 3)) {
+                Log.i("code", "resto size " + restoList.size)
+                Log.i("code", "resto amount " + restoAmount)
+                if (restoList.size == restoAmount) {
+                    Log.i("code", "true set resto " + restoList.size.toString())
                     view.setResto(restoList)
                 }
             }
 
             override fun onError(it: Throwable) {
                 Log.i("code", "error get resto ${it.message}")
+                restoAmount -= 1
+                if (restoList.size == restoAmount) {
+                    Log.i("code", "true set resto " + restoList.size.toString())
+                    view.setResto(restoList)
+                }
             }
 
         })
@@ -101,6 +109,7 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
     fun getReview(id: String) {
         apiService.getReview(id, object : ApiProductService.ReviewCallback {
             override fun onSuccess(models: MutableList<com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model>) {
+                reviewList = models
                 view.setReview(models)
             }
 

@@ -11,6 +11,64 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:id="@+id/showAllReview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_search_country" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/showAllReviewText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Все отзывы"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+        <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+            android:id="@+id/noreviews"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="Отзывов пока нет"
+            android:textSize="18sp"
+            app:customFont="@string/font_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+            android:id="@+id/noinresto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="Нет в наличиии"
+            android:textSize="18sp"
+            app:customFont="@string/font_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
         <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
             android:id="@+id/textView11"
             android:layout_width="0dp"
@@ -29,12 +87,12 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerReview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="183dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/showAllReview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/noreviews" />
 
         <ImageView
             android:id="@+id/image"
@@ -179,15 +237,16 @@
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            app:layout_constraintTop_toBottomOf="@+id/noinresto" />
 
         <LinearLayout
             android:id="@+id/showAllResto"
             android:layout_width="0dp"
-            android:background="@color/white"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerResto">
@@ -200,13 +259,13 @@
                 app:srcCompat="@drawable/ic_search_country" />
 
             <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
-                app:customFont="@string/font_main"
-                android:textSize="18sp"
-                android:id="@+id/textView2"
+                android:id="@+id/showAllRestoText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Все заведения" />
+                android:text="Все заведения"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>

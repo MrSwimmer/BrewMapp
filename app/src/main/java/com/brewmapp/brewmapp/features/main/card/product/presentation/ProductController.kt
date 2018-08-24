@@ -24,11 +24,31 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
         this.id = id
     }
 
+    var isAllReviewShowed = false
+    var isAllRestoShowed = false
+
+    var restoList = mutableListOf<Resto>()
+    var reviewList = mutableListOf<com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_product, container, false)
         view.paramRecycler.layoutManager = LinearLayoutManager(activity!!)
         view.recyclerResto.layoutManager = LinearLayoutManager(activity!!)
         view.recyclerReview.layoutManager = LinearLayoutManager(activity!!)
+        view.showAllResto.setOnClickListener({
+            if (isAllRestoShowed)
+                hideAllResto()
+            else
+                showAllResto()
+            isAllRestoShowed = !isAllRestoShowed
+        })
+        view.showAllReview.setOnClickListener({
+            if (isAllReviewShowed)
+                hideAllReview()
+            else
+                showAllReview()
+            isAllReviewShowed = !isAllReviewShowed
+        })
         return view
     }
 
@@ -56,10 +76,42 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
     }
 
     override fun setResto(restoList: MutableList<Resto>) {
-        view!!.recyclerResto.adapter = RestoAdapter(restoList)
+        this.restoList = restoList
+        if (restoList.size > 0)
+            view!!.noinresto.visibility = View.GONE
+        if (restoList.size > 3) {
+            view!!.showAllResto.visibility = View.VISIBLE
+        }
+        view!!.recyclerResto.adapter = RestoAdapter(restoList.subList(0, 2))
     }
 
     override fun setReview(models: MutableList<com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model>) {
-        view!!.recyclerReview.adapter = ReviewAdapter(models)
+        reviewList = models
+        if (models.size > 0)
+            view!!.noreviews.visibility = View.GONE
+        if (models.size > 1) {
+            view!!.showAllReview.visibility = View.VISIBLE
+        }
+        view!!.recyclerReview.adapter = ReviewAdapter(models.subList(0, 1))
+    }
+
+    fun showAllReview() {
+        view!!.showAllReviewText.text = "Скрыть все отзывы"
+        view!!.recyclerReview.adapter = ReviewAdapter(reviewList)
+    }
+
+    fun hideAllReview() {
+        view!!.showAllReviewText.text = "Все отзывы"
+        view!!.recyclerReview.adapter = ReviewAdapter(reviewList.subList(0, 1))
+    }
+
+    fun showAllResto() {
+        view!!.showAllRestoText.text = "Скрыть все заведения"
+        view!!.recyclerResto.adapter = RestoAdapter(restoList)
+    }
+
+    fun hideAllResto() {
+        view!!.showAllRestoText.text = "Все заведения"
+        view!!.recyclerResto.adapter = RestoAdapter(restoList.subList(0, 2))
     }
 }

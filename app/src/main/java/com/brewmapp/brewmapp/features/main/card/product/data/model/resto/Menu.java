@@ -60,9 +60,6 @@ public class Menu {
     @SerializedName("beer_name")
     @Expose
     private BeerName beerName;
-    @SerializedName("beer_short_text")
-    @Expose
-    private String beerShortText;
     @SerializedName("beer_avg_ball")
     @Expose
     private String beerAvgBall;
@@ -215,14 +212,6 @@ public class Menu {
 
     public void setBeerName(BeerName beerName) {
         this.beerName = beerName;
-    }
-
-    public String getBeerShortText() {
-        return beerShortText;
-    }
-
-    public void setBeerShortText(String beerShortText) {
-        this.beerShortText = beerShortText;
     }
 
     public String getBeerAvgBall() {
