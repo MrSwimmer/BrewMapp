@@ -28,7 +28,7 @@ interface AppComponent {
     fun inject(searchPresenter: SearchPresenter)
     fun inject(newsPresenter: NewsPresenter)
     fun inject(callbackFabric: CallbackFabric)
-    fun inject(settingsPresenter: SettingsPresenter)
+    fun inject(restoPresenter: RestoPresenter)
     fun inject(messagesPresenter: MessagesPresenter)
     fun inject(mapPresenter: MapPresenter)
     fun inject(friendsPresenter: FriendsPresenter)
@@ -39,4 +39,5 @@ interface AppComponent {
     fun inject(newsPositionalDataSource: NewsPositionalDataSource)
     fun inject(resultPositionalDataSource: ResultPositionalDataSource)
     fun inject(paramRepository: ParamRepository)
+    fun inject(settingsPresenter: SettingsPresenter)
 }

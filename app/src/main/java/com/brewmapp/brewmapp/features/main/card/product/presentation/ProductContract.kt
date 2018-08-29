@@ -2,8 +2,8 @@ package com.brewmapp.brewmapp.features.main.profile
 
 import com.brewmapp.brewmapp.core.presentation.base.BaseContract
 import com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model
-import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.Param
-import com.brewmapp.brewmapp.features.main.card.product.presentation.resto_recycler.Resto
+import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.param.Param
+import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.resto.Resto
 
 interface ProductContract {
     interface View : BaseContract.View {

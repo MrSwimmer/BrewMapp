@@ -32,8 +32,8 @@ class ApiProductService(private val api: ProductApi) {
                 })
     }
 
-    fun getReview(id: String, callback: ReviewCallback) {
-        api.getReview("beer", id)
+    fun getReview(id: String, modelName: String, callback: ReviewCallback) {
+        api.getReview(modelName, id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

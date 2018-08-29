@@ -8,8 +8,8 @@ import com.brewmapp.brewmapp.features.main.card.product.data.model.product.BeerA
 import com.brewmapp.brewmapp.features.main.card.product.data.model.product.Model
 import com.brewmapp.brewmapp.features.main.card.product.data.model.product.RestoMenu
 import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
-import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.Param
-import com.brewmapp.brewmapp.features.main.card.product.presentation.resto_recycler.Resto
+import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.param.Param
+import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.resto.Resto
 import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ParamRepository
 import javax.inject.Inject
 
@@ -63,7 +63,6 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
 
             override fun onError(it: Throwable) {
                 Log.i("code", it.message)
-                //view.showErrorMessage(it.message!!)
             }
         })
     }
@@ -84,7 +83,7 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
             override fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.product.data.model.resto.Model) {
                 val resto = model.resto[0]
                 val location = resto.location
-                val restofin = Resto(resto.name.get1(), title, "", avgBall, location.cityId.get1(), location.metro.name.get1(), resto.getThumb, thumb)
+                val restofin = Resto(resto.name.get1(), title, "", avgBall, location.cityId.get1(), location.metro.name.get1(), resto.getThumb, thumb, resto.id)
                 restoList.add(restofin)
                 Log.i("code", "resto size " + restoList.size)
                 Log.i("code", "resto amount " + restoAmount)
@@ -107,7 +106,7 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
     }
 
     fun getReview(id: String) {
-        apiService.getReview(id, object : ApiProductService.ReviewCallback {
+        apiService.getReview(id, "beer",object : ApiProductService.ReviewCallback {
             override fun onSuccess(models: MutableList<com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model>) {
                 reviewList = models
                 view.setReview(models)

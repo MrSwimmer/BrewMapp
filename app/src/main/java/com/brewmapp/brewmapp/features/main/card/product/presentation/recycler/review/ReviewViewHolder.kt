@@ -1,4 +1,4 @@
-package com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler
+package com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.param
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

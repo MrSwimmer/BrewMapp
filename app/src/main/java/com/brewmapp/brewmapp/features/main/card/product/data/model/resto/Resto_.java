@@ -121,6 +121,15 @@ public class Resto_ {
     @SerializedName("no_interested")
     @Expose
     private String noInterested;
+    private Text text;
+
+    public Text getText() {
+        return text;
+    }
+
+    public void setText(Text text) {
+        this.text = text;
+    }
 
     public String getId() {
         return id;

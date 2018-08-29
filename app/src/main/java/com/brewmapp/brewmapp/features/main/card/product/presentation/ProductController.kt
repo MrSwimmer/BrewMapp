@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
 import com.brewmapp.brewmapp.features.main.card.product.data.model.product.Model
-import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.Param
-import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.ParamAdapter
-import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.RestoAdapter
-import com.brewmapp.brewmapp.features.main.card.product.presentation.param_recycler.ReviewAdapter
-import com.brewmapp.brewmapp.features.main.card.product.presentation.resto_recycler.Resto
+import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.param.Param
+import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.param.ParamAdapter
+import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.param.RestoAdapter
+import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.param.ReviewAdapter
+import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.resto.Resto
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.controller_product.view.*
 import org.jsoup.Jsoup
@@ -81,8 +81,9 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
             view!!.noinresto.visibility = View.GONE
         if (restoList.size > 3) {
             view!!.showAllResto.visibility = View.VISIBLE
-        }
-        view!!.recyclerResto.adapter = RestoAdapter(restoList.subList(0, 2))
+            view!!.recyclerResto.adapter = RestoAdapter(restoList.subList(0, 3), router)
+        } else
+            view!!.recyclerResto.adapter = RestoAdapter(restoList, router)
     }
 
     override fun setReview(models: MutableList<com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model>) {
@@ -91,8 +92,10 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
             view!!.noreviews.visibility = View.GONE
         if (models.size > 1) {
             view!!.showAllReview.visibility = View.VISIBLE
-        }
-        view!!.recyclerReview.adapter = ReviewAdapter(models.subList(0, 1))
+            view!!.recyclerReview.adapter = ReviewAdapter(models.subList(0, 1))
+        } else
+            view!!.recyclerReview.adapter = ReviewAdapter(models)
+
     }
 
     fun showAllReview() {
@@ -107,11 +110,11 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
 
     fun showAllResto() {
         view!!.showAllRestoText.text = "Скрыть все заведения"
-        view!!.recyclerResto.adapter = RestoAdapter(restoList)
+        view!!.recyclerResto.adapter = RestoAdapter(restoList, router)
     }
 
     fun hideAllResto() {
         view!!.showAllRestoText.text = "Все заведения"
-        view!!.recyclerResto.adapter = RestoAdapter(restoList.subList(0, 2))
+        view!!.recyclerResto.adapter = RestoAdapter(restoList.subList(0, 3), router)
     }
 }

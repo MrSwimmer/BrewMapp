@@ -9,6 +9,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.profile.ProductController
+import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
 import com.brewmapp.brewmapp.features.main.search.result.domain.util.ResultDiffUtilCallback
@@ -45,7 +46,11 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: 
         if (model.text["1"] != null)
             holder.itemView.description.text = Jsoup.parse(model.text["1"]).text()
         holder.itemView.setOnClickListener({
-            router.pushController(RouterTransaction.with(ProductController(model.id)))
+            when (SearchController.mode) {
+                Mode.BEER -> router.pushController(RouterTransaction.with(ProductController(model.id)))
+                Mode.RESTO -> router.pushController(RouterTransaction.with(RestoController(model.id)))
+            }
+
         })
     }
 }
