@@ -6,6 +6,7 @@ import com.brewmapp.brewmapp.core.di.module.SharedPreferencesModule
 import com.brewmapp.brewmapp.features.auth.presentation.AuthActivity
 import com.brewmapp.brewmapp.features.auth.presentation.city.CityPresenter
 import com.brewmapp.brewmapp.features.main.MainActivity
+import com.brewmapp.brewmapp.features.main.card.brewery.presentation.BreweryPresenter
 import com.brewmapp.brewmapp.features.main.news.news.data.paging.NewsPositionalDataSource
 import com.brewmapp.brewmapp.features.main.news.news.data.paging.ResultPositionalDataSource
 import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
@@ -40,4 +41,5 @@ interface AppComponent {
     fun inject(resultPositionalDataSource: ResultPositionalDataSource)
     fun inject(paramRepository: ParamRepository)
     fun inject(settingsPresenter: SettingsPresenter)
+    fun inject(breweryPresenter: BreweryPresenter)
 }

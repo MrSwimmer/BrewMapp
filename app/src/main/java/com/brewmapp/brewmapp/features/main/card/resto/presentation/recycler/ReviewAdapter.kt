@@ -1,4 +1,4 @@
-package com.brewmapp.brewmapp.features.main.card.resto.presentation.recycler.review
+package com.brewmapp.brewmapp.features.main.card.resto.presentation.recycler
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

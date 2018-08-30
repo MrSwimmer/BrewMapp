@@ -2,6 +2,8 @@ package com.brewmapp.brewmapp.core.di.module
 
 import com.brewmapp.brewmapp.features.auth.data.AuthApi
 import com.brewmapp.brewmapp.features.auth.domain.ApiAuthService
+import com.brewmapp.brewmapp.features.main.card.brewery.data.BreweryApi
+import com.brewmapp.brewmapp.features.main.card.brewery.domain.ApiBreweryService
 import com.brewmapp.brewmapp.features.main.news.news.data.NewsApi
 import com.brewmapp.brewmapp.features.main.news.news.domain.interactor.ApiNewsService
 import com.brewmapp.brewmapp.features.main.card.product.data.ProductApi
@@ -62,5 +64,12 @@ class ApiModule {
     fun providesNewsService(retrofit: Retrofit): ApiNewsService {
         val newsApi = retrofit.create(NewsApi::class.java)
         return ApiNewsService(newsApi)
+    }
+
+    @Provides
+    @Singleton
+    fun providesBreweryService(retrofit: Retrofit): ApiBreweryService {
+        val breweryApi = retrofit.create(BreweryApi::class.java)
+        return ApiBreweryService(breweryApi)
     }
 }

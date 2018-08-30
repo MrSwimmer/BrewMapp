@@ -8,6 +8,7 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
+import com.brewmapp.brewmapp.features.main.card.brewery.presentation.BreweryController
 import com.brewmapp.brewmapp.features.main.profile.ProductController
 import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.brewmapp.brewmapp.features.main.profile.SearchController
@@ -37,7 +38,7 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: 
         url = if (SearchController.mode == Mode.BEER)
             model.getThumb
         else
-            "https://developer.brewmapp.com/${model.getThumb}"
+            "https://brewmapp.com/${model.getThumb}"
         Glide.with(holder.itemView)
                 .load(url)
                 .into(holder.itemView.image)
@@ -49,8 +50,8 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: 
             when (SearchController.mode) {
                 Mode.BEER -> router.pushController(RouterTransaction.with(ProductController(model.id)))
                 Mode.RESTO -> router.pushController(RouterTransaction.with(RestoController(model.id)))
+                Mode.BREWERY -> router.pushController(RouterTransaction.with(BreweryController(model.id)))
             }
-
         })
     }
 }

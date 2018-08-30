@@ -1,27 +1,24 @@
-package com.brewmapp.brewmapp.features.main.profile
+package com.brewmapp.brewmapp.features.main.card.brewery.presentation
 
+import android.content.Intent
+import android.net.Uri
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Html
 import android.text.method.LinkMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
-import com.brewmapp.brewmapp.features.main.card.product.data.model.resto.Model
 import com.brewmapp.brewmapp.features.main.card.resto.data.AdditionalData
+import com.brewmapp.brewmapp.features.main.card.resto.presentation.recycler.ReviewAdapter
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.controller_resto.view.*
+import kotlinx.android.synthetic.main.controller_brewery.view.*
 import org.jsoup.Jsoup
-import android.content.Intent
-import android.net.Uri
-import com.brewmapp.brewmapp.features.main.card.resto.presentation.recycler.ReviewAdapter
 import java.util.*
 
-
-class RestoController() : BaseController<RestoContract.View, RestoContract.Presenter>(), RestoContract.View {
+class BreweryController() : BaseController<BreweryContract.View, BreweryContract.Presenter>(), BreweryContract.View {
     lateinit var id: String
     var isAllReviewShowed = false
     var reviewList = mutableListOf<com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model>()
@@ -31,7 +28,7 @@ class RestoController() : BaseController<RestoContract.View, RestoContract.Prese
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-        val view = inflater.inflate(R.layout.controller_resto, container, false)
+        val view = inflater.inflate(R.layout.controller_brewery, container, false)
         view.recyclerReview.layoutManager = LinearLayoutManager(activity!!)
         view.showAllReview.setOnClickListener({
             if (isAllReviewShowed)
@@ -45,42 +42,42 @@ class RestoController() : BaseController<RestoContract.View, RestoContract.Prese
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-        presenter.getResto(id)
+        presenter.getBrewery(id)
     }
 
-    override fun createPresenter(): RestoContract.Presenter {
-        return RestoPresenter()
+    override fun createPresenter(): BreweryContract.Presenter {
+        return BreweryPresenter()
     }
 
-    override fun setResto(model: Model) {
-        val resto = model.resto[0]
+    override fun setBrewery(model: com.brewmapp.brewmapp.features.main.card.brewery.data.model.Model) {
         Glide.with(activity!!)
-                .load("https://brewmapp.com/${resto.getThumb}")
+                .load("https://brewmapp.com/${model.getThumb}")
                 .into(view!!.image)
-        view!!.likes.text = resto.like
-        view!!.dislikes.text = resto.disLike
-        view!!.text.text = Jsoup.parse(resto.text.get1()).text()
-        val metro = if (resto.location.metro == null)
-            "м. ${resto.location.metro.name.get1()}"
-        else
-            ""
-        val location = "г.${resto.location.cityId.get1()} $metro ${resto.location.location.street.get1()} ${resto.location.location.house.get1()}"
+        view!!.likes.text = model.like
+        view!!.dislikes.text = model.disLike
+        view!!.text.text = Jsoup.parse(model.text.get1()).text()
+
+        //location
+        val location = model.country.get1()
         view!!.location.text = location
         view!!.location.setOnClickListener({
             val uri = String.format(Locale.ENGLISH, "geo:0,0?q=$location")
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
             startActivity(intent)
         })
-        if (resto.site != "") {
-            view!!.site.movementMethod = LinkMovementMethod.getInstance()
-            val siteText = "<a href=${resto.site}> ${resto.site} </a>"
-            view!!.site.text = Html.fromHtml(siteText)
-        } else
-            view!!.site.text = "Не указан"
+
+        //add
         val gson = Gson()
-        Log.i("code", "addit ${resto.additionalData}")
-        val add = gson.fromJson(resto.additionalData, AdditionalData::class.java)
-        Log.i("code", "$id ${add.emails} ${add.phones} ${add.socials}")
+        val add = gson.fromJson(model.additionalData, AdditionalData::class.java)
+
+        //site
+        if (add.sites.isNotEmpty()) {
+            view!!.site.movementMethod = LinkMovementMethod.getInstance()
+            val siteText = "<a href=${add.sites[0]}> ${add.sites[0]} </a>"
+            view!!.site.text = Html.fromHtml(siteText)
+        }
+
+        //phone
         if (add.phones.isNotEmpty()) {
             view!!.phone.setOnClickListener({
                 val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:+${add.phones[0]}"))
@@ -88,6 +85,8 @@ class RestoController() : BaseController<RestoContract.View, RestoContract.Prese
             })
             view!!.phone.text = "+${add.phones[0]}"
         }
+
+        //socials
         if (add.socials.isNotEmpty()) {
             view!!.inSocialNetsLayout.visibility = View.VISIBLE
             add.socials.forEach {
@@ -115,9 +114,6 @@ class RestoController() : BaseController<RestoContract.View, RestoContract.Prese
                 }
             }
         }
-        view!!.price.text = "Средний счет: ${model.resto[0].lunchPrice}"
-        view!!.restoType.text = "Тип заведения: ${model.restoType[0].name.get1()}"
-        view!!.kitchen.text = "Кухня: ${model.restoKitchen[0].name.get1()}"
     }
 
     fun showAllReview() {
