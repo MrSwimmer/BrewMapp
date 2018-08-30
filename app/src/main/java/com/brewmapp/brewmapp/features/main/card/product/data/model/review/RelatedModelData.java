@@ -49,9 +49,6 @@ public class RelatedModelData {
     @SerializedName("text")
     @Expose
     private Text text;
-    @SerializedName("short_text")
-    @Expose
-    private List<Object> shortText = null;
     @SerializedName("avg_ball")
     @Expose
     private String avgBall;
@@ -217,14 +214,6 @@ public class RelatedModelData {
 
     public void setText(Text text) {
         this.text = text;
-    }
-
-    public List<Object> getShortText() {
-        return shortText;
-    }
-
-    public void setShortText(List<Object> shortText) {
-        this.shortText = shortText;
     }
 
     public String getAvgBall() {

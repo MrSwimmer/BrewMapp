@@ -26,7 +26,6 @@ class RestoPresenter : BasePresenter<RestoContract.View>(), RestoContract.Presen
             override fun onSuccess(model: Model) {
                 view.setResto(model)
                 getReview(id)
-                getParams(model)
             }
 
             override fun onError(it: Throwable) {
@@ -47,13 +46,5 @@ class RestoPresenter : BasePresenter<RestoContract.View>(), RestoContract.Presen
             }
 
         })
-    }
-
-    fun getParams(model: Model) {
-        val params = mutableListOf<Param>()
-        params.add(Param("Средний счет:", model.resto[0].lunchPrice, R.drawable.ic_search_price))
-        params.add(Param("Тип заведения:", model.restoType[0].name.get1(), R.drawable.ic_resto_type))
-        params.add(Param("Кухня:", model.restoKitchen[0].name.get1(), R.drawable.ic_kitchen))
-        view.setParams(params)
     }
 }

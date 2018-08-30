@@ -3,7 +3,6 @@ package com.brewmapp.brewmapp.features.main.card.product.data.model.product;
 
 import java.util.List;
 
-import com.brewmapp.brewmapp.features.main.card.product.data.model.oldmodel.AvgPrice;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
