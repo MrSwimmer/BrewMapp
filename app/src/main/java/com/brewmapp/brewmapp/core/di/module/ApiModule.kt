@@ -8,6 +8,10 @@ import com.brewmapp.brewmapp.features.main.news.news.data.NewsApi
 import com.brewmapp.brewmapp.features.main.news.news.domain.interactor.ApiNewsService
 import com.brewmapp.brewmapp.features.main.card.product.data.ProductApi
 import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
+import com.brewmapp.brewmapp.features.main.news.events.data.EventsApi
+import com.brewmapp.brewmapp.features.main.news.events.domain.util.interactor.ApiEventsService
+import com.brewmapp.brewmapp.features.main.news.review.data.ReviewsApi
+import com.brewmapp.brewmapp.features.main.news.review.domain.interactor.ApiReviewsService
 import com.brewmapp.brewmapp.features.main.search.param.data.ParamApi
 import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ApiParamService
 import com.brewmapp.brewmapp.features.main.search.result.data.ResultApi
@@ -71,5 +75,19 @@ class ApiModule {
     fun providesBreweryService(retrofit: Retrofit): ApiBreweryService {
         val breweryApi = retrofit.create(BreweryApi::class.java)
         return ApiBreweryService(breweryApi)
+    }
+
+    @Provides
+    @Singleton
+    fun providesReviewsService(retrofit: Retrofit): ApiReviewsService {
+        val reviewsApi = retrofit.create(ReviewsApi::class.java)
+        return ApiReviewsService(reviewsApi)
+    }
+
+    @Provides
+    @Singleton
+    fun providesEventsService(retrofit: Retrofit): ApiEventsService {
+        val eventsApi = retrofit.create(EventsApi::class.java)
+        return ApiEventsService(eventsApi)
     }
 }
