@@ -1,6 +1,7 @@
 
 package com.brewmapp.brewmapp.features.main.news.review.data.model;
 
+import java.util.HashMap;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -48,10 +49,7 @@ public class RelatedModelData {
     private String titleRu;
     @SerializedName("text")
     @Expose
-    private Text text;
-    @SerializedName("short_text")
-    @Expose
-    private List<Object> shortText = null;
+    private HashMap<String, String> text;
     @SerializedName("avg_ball")
     @Expose
     private String avgBall;
@@ -211,20 +209,12 @@ public class RelatedModelData {
         this.titleRu = titleRu;
     }
 
-    public Text getText() {
+    public HashMap<String, String> getText() {
         return text;
     }
 
-    public void setText(Text text) {
+    public void setText(HashMap<String, String> text) {
         this.text = text;
-    }
-
-    public List<Object> getShortText() {
-        return shortText;
-    }
-
-    public void setShortText(List<Object> shortText) {
-        this.shortText = shortText;
     }
 
     public String getAvgBall() {

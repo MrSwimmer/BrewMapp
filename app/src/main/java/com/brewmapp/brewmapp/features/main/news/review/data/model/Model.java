@@ -41,7 +41,7 @@ public class Model {
     private UserInfo userInfo;
     @SerializedName("user_getThumb")
     @Expose
-    private Object userGetThumb;
+    private UserGetThumb userGetThumb;
     @SerializedName("like")
     @Expose
     private String like;
@@ -146,11 +146,11 @@ public class Model {
         this.userInfo = userInfo;
     }
 
-    public Object getUserGetThumb() {
+    public UserGetThumb getUserGetThumb() {
         return userGetThumb;
     }
 
-    public void setUserGetThumb(Object userGetThumb) {
+    public void setUserGetThumb(UserGetThumb userGetThumb) {
         this.userGetThumb = userGetThumb;
     }
 

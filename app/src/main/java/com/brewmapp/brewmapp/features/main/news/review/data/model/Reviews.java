@@ -7,20 +7,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Reviews {
 
-    @SerializedName("total")
-    @Expose
-    private Integer total;
     @SerializedName("models")
     @Expose
     private List<Model> models = null;
-
-    public Integer getTotal() {
-        return total;
-    }
-
-    public void setTotal(Integer total) {
-        this.total = total;
-    }
 
     public List<Model> getModels() {
         return models;

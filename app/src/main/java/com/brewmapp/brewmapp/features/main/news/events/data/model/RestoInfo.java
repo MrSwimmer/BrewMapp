@@ -15,9 +15,6 @@ public class RestoInfo {
     @SerializedName("text")
     @Expose
     private Text_ text;
-    @SerializedName("short_text")
-    @Expose
-    private ShortText_ shortText;
     @SerializedName("disposition_id")
     @Expose
     private Object dispositionId;
@@ -127,13 +124,6 @@ public class RestoInfo {
         this.text = text;
     }
 
-    public ShortText_ getShortText() {
-        return shortText;
-    }
-
-    public void setShortText(ShortText_ shortText) {
-        this.shortText = shortText;
-    }
 
     public Object getDispositionId() {
         return dispositionId;

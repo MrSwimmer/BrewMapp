@@ -20,10 +20,9 @@ class ApiNewsService(private val newsApi: NewsApi) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     callback.onResult(it.models)
+                }, {
+                    Log.i("code", "error get range news ${it.message}")
                 })
-        /*Mode.REVIEWS -> setRangeReviewsCallback(newsApi.getReviews(params.startPosition, params.startPosition + params.loadSize, map), callback)
-        Mode.EVENTS -> setRangeCallback(newsApi.getEvents(params.startPosition, params.startPosition + params.loadSize, map), callback)
-    }*/
     }
 
     fun loadInit(params: PositionalDataSource.LoadInitialParams, callback: PositionalDataSource.LoadInitialCallback<Model>, map: HashMap<String, String>) {
@@ -34,9 +33,8 @@ class ApiNewsService(private val newsApi: NewsApi) {
                 .subscribe({
                     callback.onResult(it.models, 0)
                     EventBus.getDefault().post("hide")
+                }, {
+                    Log.i("code", "error get init news ${it.message}")
                 })
-        /*Mode.REVIEWS -> setInitialReviewsCallback(newsApi.getReviews(0, params.pageSize, map), callback)
-        Mode.EVENTS -> setInitialCallback(newsApi.getEvents(0, params.pageSize, map), callback)
-    }*/
     }
 }

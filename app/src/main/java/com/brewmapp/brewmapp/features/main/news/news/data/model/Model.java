@@ -1,6 +1,7 @@
 
 package com.brewmapp.brewmapp.features.main.news.news.data.model;
 
+import java.util.HashMap;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -21,7 +22,7 @@ public class Model {
     private Name name;
     @SerializedName("text")
     @Expose
-    private Text text;
+    private HashMap<String, String> text;
     @SerializedName("timestamp")
     @Expose
     private String timestamp;
@@ -136,11 +137,11 @@ public class Model {
         this.name = name;
     }
 
-    public Text getText() {
+    public HashMap<String, String> getText() {
         return text;
     }
 
-    public void setText(Text text) {
+    public void setText(HashMap<String, String> text) {
         this.text = text;
     }
 

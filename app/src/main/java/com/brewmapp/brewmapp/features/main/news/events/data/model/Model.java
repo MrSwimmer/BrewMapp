@@ -16,9 +16,6 @@ public class Model {
     @SerializedName("text")
     @Expose
     private Text text;
-    @SerializedName("short_text")
-    @Expose
-    private ShortText shortText;
     @SerializedName("user_id")
     @Expose
     private String userId;
@@ -128,13 +125,6 @@ public class Model {
         this.text = text;
     }
 
-    public ShortText getShortText() {
-        return shortText;
-    }
-
-    public void setShortText(ShortText shortText) {
-        this.shortText = shortText;
-    }
 
     public String getUserId() {
         return userId;

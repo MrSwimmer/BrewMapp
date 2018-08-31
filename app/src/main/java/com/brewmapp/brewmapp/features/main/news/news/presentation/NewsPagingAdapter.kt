@@ -23,10 +23,10 @@ class NewsPagingAdapter(diffUtilCallback: NewsDiffUtilCallback, val router: Rout
         val model = getItem(position)
         Log.i("code", "image ${model!!.getThumb}")
         Glide.with(holder.itemView)
-                .load("https://www.brewmapp.com/${model.getThumb}")
+                .load("https://www.brewmapp.com/${model.photo[0].url}")
                 .into(holder.itemView.image)
-        if (model.text.get1() != null)
-            holder.itemView.text.text = Jsoup.parse(model.text.get1()).text()
+        if (model.text["1"] != null)
+            holder.itemView.text.text = Jsoup.parse(model.text["1"]).text()
         holder.itemView.date.text = model.timestamp
         holder.itemView.like.text = model.like
     }
