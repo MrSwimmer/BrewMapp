@@ -1,10 +1,10 @@
-package com.brewmapp.brewmapp.features.main.news.news.domain.util
+package com.brewmapp.brewmapp.features.main.news.review.domain.util
 
 import android.support.v7.util.DiffUtil
-import com.brewmapp.brewmapp.features.main.news.news.data.model.Model
+import com.brewmapp.brewmapp.features.main.news.review.data.model.Model
 
 
-class NewsDiffUtilCallback : DiffUtil.ItemCallback<Model>() {
+class ReviewsDiffUtilCallback : DiffUtil.ItemCallback<Model>() {
     override fun areItemsTheSame(oldItem: Model, newItem: Model): Boolean {
         return oldItem.id == newItem.id
     }

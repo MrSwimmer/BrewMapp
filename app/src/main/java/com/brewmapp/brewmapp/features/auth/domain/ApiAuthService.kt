@@ -1,5 +1,6 @@
 package com.brewmapp.brewmapp.features.auth.domain
 
+import android.util.Log
 import com.brewmapp.brewmapp.features.auth.data.AuthApi
 import com.brewmapp.brewmapp.features.auth.data.model.res.UserData
 import rx.android.schedulers.AndroidSchedulers
@@ -10,6 +11,9 @@ class ApiAuthService(private val api: AuthApi) {
         api.signIn(email, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnError {
+                    callback.onError(it)
+                }
                 .subscribe(callback::onSuccess, callback::onError)
     }
 
@@ -17,6 +21,9 @@ class ApiAuthService(private val api: AuthApi) {
         api.signUp(email, first, last, dateString, password, email)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnError {
+                    callback.onError(it)
+                }
                 .subscribe(callback::onSuccess, callback::onError)
     }
 

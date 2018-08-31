@@ -7,9 +7,11 @@ import com.brewmapp.brewmapp.features.auth.presentation.AuthActivity
 import com.brewmapp.brewmapp.features.auth.presentation.city.CityPresenter
 import com.brewmapp.brewmapp.features.main.MainActivity
 import com.brewmapp.brewmapp.features.main.card.brewery.presentation.BreweryPresenter
-import com.brewmapp.brewmapp.features.main.news.news.data.paging.NewsPositionalDataSource
+import com.brewmapp.brewmapp.features.main.news.news.data.NewsPositionalDataSource
 import com.brewmapp.brewmapp.features.main.news.news.data.paging.ResultPositionalDataSource
 import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
+import com.brewmapp.brewmapp.features.main.news.events.data.EventsPositionalDataSource
+import com.brewmapp.brewmapp.features.main.news.review.data.ReviewsPositionalDataSource
 import com.brewmapp.brewmapp.features.main.profile.*
 import com.brewmapp.brewmapp.features.main.search.param.domain.CallbackFabric
 import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ParamRepository
@@ -42,4 +44,6 @@ interface AppComponent {
     fun inject(paramRepository: ParamRepository)
     fun inject(settingsPresenter: SettingsPresenter)
     fun inject(breweryPresenter: BreweryPresenter)
+    fun inject(reviewsPositionalDataSource: ReviewsPositionalDataSource)
+    fun inject(eventsPositionalDataSource: EventsPositionalDataSource)
 }

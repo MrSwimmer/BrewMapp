@@ -82,10 +82,10 @@ class MainActivity : BaseActivity() {
     private fun selectDrawerItem(itemId: Int) {
         when (itemId) {
             R.id.nav_news -> router.setRoot(RouterTransaction.with(NewsController()))
-            R.id.nav_friends -> router.setRoot(RouterTransaction.with(FriendsController()))
-            R.id.nav_message -> router.setRoot(RouterTransaction.with(MessagesController()))
+            //R.id.nav_friends -> router.setRoot(RouterTransaction.with(FriendsController()))
+            //R.id.nav_message -> router.setRoot(RouterTransaction.with(MessagesController()))
             R.id.nav_search -> router.setRoot(RouterTransaction.with(SearchController()))
-            R.id.nav_map -> router.setRoot(RouterTransaction.with(MapController()))
+            //R.id.nav_map -> router.setRoot(RouterTransaction.with(MapController()))
             R.id.nav_settings -> router.setRoot(RouterTransaction.with(SettingsController()))
         }
     }
