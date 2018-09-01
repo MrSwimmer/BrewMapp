@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
-import com.brewmapp.brewmapp.features.main.card.news.presentation.NewsCardController
+import com.brewmapp.brewmapp.features.main.card.news.NewsCardController
 import com.brewmapp.brewmapp.features.main.news.news.data.model.Model
 import com.brewmapp.brewmapp.features.main.news.news.domain.util.NewsDiffUtilCallback
 import com.brewmapp.brewmapp.features.main.news.core.presentation.recycler.BaseViewHolder

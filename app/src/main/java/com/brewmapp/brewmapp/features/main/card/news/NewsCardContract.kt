@@ -1,4 +1,4 @@
-package com.brewmapp.brewmapp.features.main.card.news.presentation
+package com.brewmapp.brewmapp.features.main.card.news
 
 import com.brewmapp.brewmapp.core.presentation.base.BaseContract
 import com.brewmapp.brewmapp.features.main.news.news.data.model.Model

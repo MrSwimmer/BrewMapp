@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bluelinelabs.conductor.Router
+import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
+import com.brewmapp.brewmapp.features.main.card.event.presentation.EventCardController
 import com.brewmapp.brewmapp.features.main.news.core.presentation.recycler.BaseViewHolder
 import com.brewmapp.brewmapp.features.main.news.events.data.model.Model
 import com.brewmapp.brewmapp.features.main.news.events.domain.util.util.EventsDiffUtilCallback
@@ -29,5 +31,8 @@ class EventsPagingAdapter(diffUtilCallback: EventsDiffUtilCallback, val router: 
             holder.itemView.text.text = Jsoup.parse(model.text.get1()).text()
         holder.itemView.date.text = model.timestamp
         holder.itemView.like.text = model.like
+        holder.itemView.setOnClickListener({
+            router.pushController(RouterTransaction.with(EventCardController(model.id)))
+        })
     }
 }

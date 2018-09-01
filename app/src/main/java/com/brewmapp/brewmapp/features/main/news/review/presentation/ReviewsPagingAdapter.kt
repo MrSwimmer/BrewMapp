@@ -46,9 +46,9 @@ class ReviewsPagingAdapter(diffUtilCallback: ReviewsDiffUtilCallback, val router
         holder.itemView.likes.text = model.like
         holder.itemView.dislikes.text = model.disLike
 
-        if (model.relatedModelData.userGetThumb != null && model.relatedModelData.userGetThumb.url != null) {
+        if (model.userGetThumb != null && model.userGetThumb.url != null) {
             Glide.with(holder.itemView)
-                    .load("https://www.brewmapp.com/${model.relatedModelData.userGetThumb.url}")
+                    .load("https://www.brewmapp.com/${model.userGetThumb.url}")
                     .into(holder.itemView.iconProd)
         }
 

@@ -1,5 +1,6 @@
-package com.brewmapp.brewmapp.features.main.card.news.presentation
+package com.brewmapp.brewmapp.features.main.card.news
 
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +44,7 @@ class NewsCardController(): BaseController<NewsCardContract.View, NewsCardContra
         }
 
         Glide.with(activity!!)
-                .load("https://www.brewmapp.com/${model.relatedModelData.getThumb}")
+                .load("https://www.brewmapp.com/${model.photo[0].url}")
                 .into(view!!.image)
     }
 }
