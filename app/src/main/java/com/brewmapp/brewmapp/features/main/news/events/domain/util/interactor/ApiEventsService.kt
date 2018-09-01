@@ -16,7 +16,7 @@ class ApiEventsService(private val eventsApi: EventsApi) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     callback.onResult(it.models)
-                })
+                }, {})
     }
 
     fun loadInit(params: PositionalDataSource.LoadInitialParams, callback: PositionalDataSource.LoadInitialCallback<Model>, map: HashMap<String, String>) {
@@ -26,6 +26,6 @@ class ApiEventsService(private val eventsApi: EventsApi) {
                 .subscribe({
                     callback.onResult(it.models, 0)
                     EventBus.getDefault().post("hide")
-                })
+                }, {})
     }
 }

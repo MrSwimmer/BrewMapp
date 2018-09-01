@@ -15,7 +15,7 @@ class ApiReviewsService(private val reviewsApi: ReviewsApi) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     callback.onResult(it.models)
-                })
+                }, {})
     }
 
     fun loadInit(params: PositionalDataSource.LoadInitialParams, callback: PositionalDataSource.LoadInitialCallback<Model>, map: HashMap<String, String>) {
@@ -25,6 +25,6 @@ class ApiReviewsService(private val reviewsApi: ReviewsApi) {
                 .subscribe({
                     callback.onResult(it.models, 0)
                     EventBus.getDefault().post("hide")
-                })
+                }, {})
     }
 }

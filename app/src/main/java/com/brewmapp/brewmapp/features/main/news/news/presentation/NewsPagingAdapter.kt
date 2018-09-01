@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bluelinelabs.conductor.Router
+import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
+import com.brewmapp.brewmapp.features.main.card.news.presentation.NewsCardController
 import com.brewmapp.brewmapp.features.main.news.news.data.model.Model
 import com.brewmapp.brewmapp.features.main.news.news.domain.util.NewsDiffUtilCallback
 import com.brewmapp.brewmapp.features.main.news.core.presentation.recycler.BaseViewHolder
@@ -29,5 +31,8 @@ class NewsPagingAdapter(diffUtilCallback: NewsDiffUtilCallback, val router: Rout
             holder.itemView.text.text = Jsoup.parse(model.text["1"]).text()
         holder.itemView.date.text = model.timestamp
         holder.itemView.like.text = model.like
+        holder.itemView.setOnClickListener({
+            router.pushController(RouterTransaction.with(NewsCardController(model.id)))
+        })
     }
 }

@@ -33,7 +33,15 @@ class ReviewsPagingAdapter(diffUtilCallback: ReviewsDiffUtilCallback, val router
         holder.itemView.taste.text = model.relatedModelData.evaluation[2].evaluationValue
         holder.itemView.aftertaste.text = model.relatedModelData.evaluation[3].evaluationValue
         holder.itemView.text.text = Html.fromHtml(model.text).toString()
-        holder.itemView.titleProd.text = "${model.userInfo.firstname} ${model.userInfo.lastname}"
+        val firstName = if(model.userInfo.firstname == null)
+            ""
+        else
+            model.userInfo.firstname
+        val lastName = if(model.userInfo.lastname == null)
+            ""
+        else
+            model.userInfo.lastname
+        holder.itemView.titleProd.text = "$firstName $lastName"
         holder.itemView.date.text = model.relatedModelData.evaluation[0].createdAt
         holder.itemView.likes.text = model.like
         holder.itemView.dislikes.text = model.disLike
