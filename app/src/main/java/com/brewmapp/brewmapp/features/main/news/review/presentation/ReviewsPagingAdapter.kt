@@ -40,12 +40,12 @@ class ReviewsPagingAdapter(diffUtilCallback: ReviewsDiffUtilCallback, val router
 
         if (model.relatedModelData.userGetThumb != null && model.relatedModelData.userGetThumb.url != null) {
             Glide.with(holder.itemView)
-                    .load(model.relatedModelData.userGetThumb.url)
+                    .load("https://www.brewmapp.com/${model.relatedModelData.userGetThumb.url}")
                     .into(holder.itemView.iconProd)
         }
 
         Glide.with(holder.itemView)
-                .load(model.relatedModelData.getThumb)
+                .load("https://www.brewmapp.com/${model.relatedModelData.getThumb}")
                 .into(holder.itemView.icon)
     }
 }
