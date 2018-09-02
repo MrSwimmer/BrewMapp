@@ -15,14 +15,8 @@ class ParamPresenter : MvpBasePresenter<ParamContract.View>(), ParamContract.Pre
     lateinit var paramRepository: ParamRepository
     init {
         App.component.inject(this)
-        paramRepository = ParamRepository(apiParamService, roomParamService)
+        paramRepository = ParamRepository()
     }
-
-    @Inject
-    lateinit var roomParamService: RoomParamService
-
-    @Inject
-    lateinit var apiParamService: ApiParamService
 
     override fun setRecyclerCity(city: String?) {
 

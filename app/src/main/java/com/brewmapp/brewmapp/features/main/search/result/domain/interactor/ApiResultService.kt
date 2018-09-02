@@ -45,7 +45,7 @@ class ApiResultService(private val api: ResultApi) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     callback.onResult(it.models)
-                })
+                }, {})
     }
 
     private fun setInitialCallback(api: Observable<Result>, callback: PositionalDataSource.LoadInitialCallback<Model>) {
@@ -54,6 +54,6 @@ class ApiResultService(private val api: ResultApi) {
                 .subscribe({
                     callback.onResult(it.models, 0)
                     EventBus.getDefault().post("hide")
-                })
+                }, {})
     }
 }

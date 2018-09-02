@@ -5,11 +5,9 @@ import android.util.Log
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
-import com.brewmapp.brewmapp.features.main.news.data.paging.NewsPositionalDataSource
-import com.brewmapp.brewmapp.features.main.news.data.paging.ResultPositionalDataSource
+import com.brewmapp.brewmapp.features.main.news.news.data.paging.ResultPositionalDataSource
 import com.brewmapp.brewmapp.features.main.profile.NewsPresenter
 import com.brewmapp.brewmapp.features.main.profile.SearchController
-import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Result
 import com.brewmapp.brewmapp.features.main.search.result.domain.interactor.ApiResultService
 import java.util.*
 import java.util.concurrent.Executors

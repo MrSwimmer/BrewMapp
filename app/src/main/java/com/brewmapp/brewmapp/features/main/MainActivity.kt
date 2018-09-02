@@ -11,8 +11,6 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.bluelinelabs.conductor.Conductor
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.toolbar.*
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
@@ -21,7 +19,9 @@ import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.domain.interactor.SettingsService
 import com.brewmapp.brewmapp.features.main.profile.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header.view.*
+import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 
@@ -82,10 +82,10 @@ class MainActivity : BaseActivity() {
     private fun selectDrawerItem(itemId: Int) {
         when (itemId) {
             R.id.nav_news -> router.setRoot(RouterTransaction.with(NewsController()))
-            R.id.nav_friends -> router.setRoot(RouterTransaction.with(FriendsController()))
-            R.id.nav_message -> router.setRoot(RouterTransaction.with(MessagesController()))
+            //R.id.nav_friends -> router.setRoot(RouterTransaction.with(FriendsController()))
+            //R.id.nav_message -> router.setRoot(RouterTransaction.with(MessagesController()))
             R.id.nav_search -> router.setRoot(RouterTransaction.with(SearchController()))
-            R.id.nav_map -> router.setRoot(RouterTransaction.with(MapController()))
+            //R.id.nav_map -> router.setRoot(RouterTransaction.with(MapController()))
             R.id.nav_settings -> router.setRoot(RouterTransaction.with(SettingsController()))
         }
     }

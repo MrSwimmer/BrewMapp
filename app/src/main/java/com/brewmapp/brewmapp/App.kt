@@ -10,8 +10,8 @@ class App : Application() {
 
     companion object {
         lateinit var component : AppComponent
-
     }
+
     override fun onCreate() {
         super.onCreate()
         component = DaggerAppComponent.builder()

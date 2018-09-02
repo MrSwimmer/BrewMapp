@@ -1,7 +1,6 @@
 package com.brewmapp.brewmapp.features.main.search.result.presentation.recycler
 
 import android.arch.paging.PagedListAdapter
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,8 +8,9 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
-import com.brewmapp.brewmapp.features.main.news.presentation.recycler.NewsViewHolder
+import com.brewmapp.brewmapp.features.main.card.brewery.presentation.BreweryController
 import com.brewmapp.brewmapp.features.main.profile.ProductController
+import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
 import com.brewmapp.brewmapp.features.main.search.result.domain.util.ResultDiffUtilCallback
@@ -38,7 +38,7 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: 
         url = if (SearchController.mode == Mode.BEER)
             model.getThumb
         else
-            "https://developer.brewmapp.com/${model.getThumb}"
+            "https://brewmapp.com/${model.getThumb}"
         Glide.with(holder.itemView)
                 .load(url)
                 .into(holder.itemView.image)
@@ -47,6 +47,11 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: 
         if (model.text["1"] != null)
             holder.itemView.description.text = Jsoup.parse(model.text["1"]).text()
         holder.itemView.setOnClickListener({
+            when (SearchController.mode) {
+                Mode.BEER -> router.pushController(RouterTransaction.with(ProductController(model.id)))
+                Mode.RESTO -> router.pushController(RouterTransaction.with(RestoController(model.id)))
+                Mode.BREWERY -> router.pushController(RouterTransaction.with(BreweryController(model.id)))
+            }
         })
     }
 }
