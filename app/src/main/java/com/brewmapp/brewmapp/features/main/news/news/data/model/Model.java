@@ -17,9 +17,6 @@ public class Model {
     @SerializedName("related_id")
     @Expose
     private String relatedId;
-    @SerializedName("name")
-    @Expose
-    private Name name;
     @SerializedName("text")
     @Expose
     private HashMap<String, String> text;
@@ -127,14 +124,6 @@ public class Model {
 
     public void setRelatedId(String relatedId) {
         this.relatedId = relatedId;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public void setName(Name name) {
-        this.name = name;
     }
 
     public HashMap<String, String> getText() {
@@ -361,4 +350,8 @@ public class Model {
         this.relatedModelData = relatedModelData;
     }
 
+    public Model(String id, String timestamp) {
+        this.id = id;
+        this.timestamp = timestamp;
+    }
 }

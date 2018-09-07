@@ -1,10 +1,11 @@
 package com.brewmapp.brewmapp.features.main.search.result.domain.interactor
 
 import android.arch.paging.PositionalDataSource
+import android.util.Log
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.search.result.data.ResultApi
-import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
-import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Result
+import com.brewmapp.brewmapp.features.main.search.result.data.model.Model
+import com.brewmapp.brewmapp.features.main.search.result.data.model.Result
 import org.greenrobot.eventbus.EventBus
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -45,7 +46,11 @@ class ApiResultService(private val api: ResultApi) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     callback.onResult(it.models)
-                }, {})
+                    Log.i("code", "success range")
+                }, {
+                    Log.i("code", "error range")
+                    EventBus.getDefault().post("error")
+                })
     }
 
     private fun setInitialCallback(api: Observable<Result>, callback: PositionalDataSource.LoadInitialCallback<Model>) {
@@ -53,7 +58,11 @@ class ApiResultService(private val api: ResultApi) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     callback.onResult(it.models, 0)
+                    Log.i("code", "success init")
                     EventBus.getDefault().post("hide")
-                }, {})
+                }, {
+                    Log.i("code", "error init ${it.message}")
+                    EventBus.getDefault().post("error")
+                })
     }
 }

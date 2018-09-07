@@ -48,9 +48,6 @@ abstract class BaseActivity : AppCompatActivity() {
     fun onMessageEvent(message: String) {
         Log.i("code", "eventbus message")
         hideProgress()
-        when (message) {
-            "error" -> Snackbar.make(getParentView(), "Ошибка загрузки", Snackbar.LENGTH_SHORT)
-        }
     }
 
 

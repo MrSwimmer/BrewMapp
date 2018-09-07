@@ -19,7 +19,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="font_main">main.ttf</string>
+    <string name="font_main">main.otf</string>
     <string name="choose_title_welcome">Добро пожаловать!</string>
     <string name="api_version">api-version: 1.04</string>
     <string name="url">https://developer.brewmapp.com/</string>

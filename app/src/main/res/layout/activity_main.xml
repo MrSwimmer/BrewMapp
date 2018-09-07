@@ -42,9 +42,9 @@
             android:background="@drawable/gradient"
             android:theme="@style/NavigationDrawerStyle"
             app:headerLayout="@layout/nav_header"
-            app:itemBackground="@color/transparent"
-            app:itemIconTint="@color/selector_drawer_icon_item"
-            app:itemTextColor="@color/selector_drawer_text_item"
+            app:itemBackground="@drawable/selector_drawer_item"
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
             app:menu="@menu/drawer_view" />
 
 

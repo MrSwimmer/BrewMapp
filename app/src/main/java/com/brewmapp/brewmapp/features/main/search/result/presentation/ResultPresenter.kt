@@ -32,6 +32,10 @@ class ResultPresenter : BasePresenter<ResultContract.View>(), ResultContract.Pre
         }
         if (SearchController.mode == Mode.BREWERY)
             map["Brewery[id]"] = ""
+        if(SearchController.mode == Mode.BEER) {
+            map["Beer[brand_id]"] = ""
+            map["Beer[type_id]"] = ""
+        }
         curMap.forEach {
             when (SearchController.mode) {
                 Mode.BEER -> map["Beer[${it.key}]"] = it.value.joinToString(separator = ",")

@@ -10,7 +10,7 @@ import com.brewmapp.brewmapp.features.main.news.news.data.model.Model
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.controller_card_news.view.*
 
-class NewsCardController(): BaseController<NewsCardContract.View, NewsCardContract.Presenter>(), NewsCardContract.View {
+class NewsCardController() : BaseController<NewsCardContract.View, NewsCardContract.Presenter>(), NewsCardContract.View {
     lateinit var id: String
 
     constructor(id: String) : this() {
@@ -44,7 +44,8 @@ class NewsCardController(): BaseController<NewsCardContract.View, NewsCardContra
         }
 
         Glide.with(activity!!)
-                .load("https://www.brewmapp.com/${model.photo[0].url}")
+                .load(model.photo[0].urlPreview)
                 .into(view!!.image)
+
     }
 }

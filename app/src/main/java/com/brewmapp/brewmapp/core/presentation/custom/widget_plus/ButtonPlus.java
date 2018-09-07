@@ -31,7 +31,7 @@ public class ButtonPlus extends android.support.v7.widget.AppCompatButton {
     }
 
     public boolean setCustomFont(Context ctx) {
-        String font = "main.ttf";
+        String font = "main.otf";
         Typeface CF = Typeface.createFromAsset(ctx.getAssets(), font);
         setTypeface(CF);
         return true;

@@ -6,6 +6,7 @@ class SettingsService(private val sharedPreferences: SharedPreferences) {
     val TOKEN = "token"
     val ERROR = "error"
     val FIRST = "first"
+    val URL = "url"
     val CITY_ID = "city id"
     val CITY_NAME = "city name"
 
@@ -21,6 +22,10 @@ class SettingsService(private val sharedPreferences: SharedPreferences) {
 
     fun getUsername(): String {
         return sharedPreferences.getString(FIRST, "Гость")
+    }
+
+    fun getUrl(): String {
+        return sharedPreferences.getString(URL, ERROR)
     }
 
     fun setUsername(first: String) {
@@ -41,5 +46,9 @@ class SettingsService(private val sharedPreferences: SharedPreferences) {
         editor.apply()
     }
 
-
+    fun setUrl(url: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(URL, url)
+        editor.apply()
+    }
 }

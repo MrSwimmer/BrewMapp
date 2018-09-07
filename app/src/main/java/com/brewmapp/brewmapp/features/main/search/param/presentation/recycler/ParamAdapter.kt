@@ -23,11 +23,9 @@ class ParamAdapter(private val models: MutableList<Model>, private val field: St
     }
 
     override fun onBindViewHolder(holder: ModelViewHolder, position: Int) {
-        Log.i("code", "bindviewholder models ${models.size}")
         val model = models[position]
+
         var map: HashMap<String, ArrayList<String>> = hashMapOf()
-        Log.i("code", SearchController.mode.toString())
-        Log.i("code", model.toString())
         when (SearchController.mode) {
             Mode.BEER -> map = SearchController.beerFieldMap
             Mode.BREWERY -> map = SearchController.breweryFieldMap
@@ -35,6 +33,7 @@ class ParamAdapter(private val models: MutableList<Model>, private val field: St
         }
         if (map[field] == null)
             map[field] = arrayListOf()
+
         if (map[field]!!.contains(model.id))
             holder.itemView.checkBox.isChecked = true
         holder.itemView.checkBox.setOnCheckedChangeListener({ _, isChecked ->
@@ -42,14 +41,9 @@ class ParamAdapter(private val models: MutableList<Model>, private val field: St
                 map[field]!!.add(model.id)
             else
                 map[field]!!.remove(model.id)
-            Log.i("code", "beer ${SearchController.beerFieldMap}")
-            Log.i("code", "brewery ${SearchController.breweryFieldMap}")
-            Log.i("code", "resto ${SearchController.restoFieldMap}")
         })
-        Log.i("code", "field $field")
 
         holder.itemView.title.text = model.name["1"]
-
         Glide.with(holder.itemView)
                 .load(model.getThumb)
                 .into(holder.itemView.image)

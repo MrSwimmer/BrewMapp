@@ -1,7 +1,7 @@
 package com.brewmapp.brewmapp.features.main.search.result.domain.util
 
 import android.support.v7.util.DiffUtil
-import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
+import com.brewmapp.brewmapp.features.main.search.result.data.model.Model
 
 class ResultDiffUtilCallback : DiffUtil.ItemCallback<Model>() {
     override fun areItemsTheSame(oldItem: Model, newItem: Model): Boolean {

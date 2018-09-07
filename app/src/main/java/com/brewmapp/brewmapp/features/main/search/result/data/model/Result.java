@@ -1,5 +1,5 @@
 
-package com.brewmapp.brewmapp.features.main.search.result.data.model.beer;
+package com.brewmapp.brewmapp.features.main.search.result.data.model;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

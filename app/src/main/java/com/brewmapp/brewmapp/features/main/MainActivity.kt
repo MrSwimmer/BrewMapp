@@ -1,7 +1,9 @@
 package com.brewmapp.brewmapp.features.main
 
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.ActionBarDrawerToggle
@@ -19,10 +21,16 @@ import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.domain.interactor.SettingsService
 import com.brewmapp.brewmapp.features.main.profile.*
+import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+
+
 
 
 @Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
@@ -50,7 +58,21 @@ class MainActivity : BaseActivity() {
         Log.i("code", (supportActionBar == null).toString())
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val header = navView.getHeaderView(0)
-        header.username.text = settingsService.getUsername()
+        if (settingsService.getToken() != settingsService.ERROR) {
+            header.username.text = settingsService.getUsername()
+            val options = RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_person)
+                    .error(R.drawable.ic_person)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .priority(Priority.HIGH)
+                    .circleCrop()
+            Glide.with(this)
+                    .load(settingsService.getUrl())
+                    .apply(options)
+                    .into(header.image)
+        }
+
         drawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close)
         drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
@@ -67,7 +89,6 @@ class MainActivity : BaseActivity() {
                     if (j == 1 || j == 2 || j == 4) {
                         subMenuItem.isCheckable = false
                         subMenuItem.isEnabled = false
-                        //subMenuItem.isEnabled = false
                     }
                     applyFontToMenuItem(subMenuItem)
                 }
@@ -82,10 +103,10 @@ class MainActivity : BaseActivity() {
     private fun selectDrawerItem(itemId: Int) {
         when (itemId) {
             R.id.nav_news -> router.setRoot(RouterTransaction.with(NewsController()))
-            //R.id.nav_friends -> router.setRoot(RouterTransaction.with(FriendsController()))
-            //R.id.nav_message -> router.setRoot(RouterTransaction.with(MessagesController()))
+        //R.id.nav_friends -> router.setRoot(RouterTransaction.with(FriendsController()))
+        //R.id.nav_message -> router.setRoot(RouterTransaction.with(MessagesController()))
             R.id.nav_search -> router.setRoot(RouterTransaction.with(SearchController()))
-            //R.id.nav_map -> router.setRoot(RouterTransaction.with(MapController()))
+        //R.id.nav_map -> router.setRoot(RouterTransaction.with(MapController()))
             R.id.nav_settings -> router.setRoot(RouterTransaction.with(SettingsController()))
         }
     }
@@ -107,7 +128,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun applyFontToMenuItem(mi: MenuItem) {
-        val font = Typeface.createFromAsset(assets, "main.ttf")
+        val font = Typeface.createFromAsset(assets, "main.otf")
         val title = SpannableString(mi.title)
         title.setSpan(CustomTypefaceSpan("", font), 0, title.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
         mi.title = title

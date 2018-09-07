@@ -12,10 +12,15 @@ import com.brewmapp.brewmapp.features.main.card.brewery.presentation.BreweryCont
 import com.brewmapp.brewmapp.features.main.profile.ProductController
 import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.brewmapp.brewmapp.features.main.profile.SearchController
-import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
+import com.brewmapp.brewmapp.features.main.search.result.data.model.Model
+import com.brewmapp.brewmapp.features.main.search.result.data.model.Text
 import com.brewmapp.brewmapp.features.main.search.result.domain.util.ResultDiffUtilCallback
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
+import com.google.gson.JsonParser
+import com.google.gson.internal.LinkedTreeMap
 import kotlinx.android.synthetic.main.item_result.view.*
+import org.json.JSONObject
 import org.jsoup.Jsoup
 
 class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: Router) : PagedListAdapter<Model, ResultViewHolder>(diffUtilCallback) {
@@ -28,24 +33,38 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: 
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
         val model = getItem(position)
 
-        if (model!!.title == null) {
-            holder.itemView.title.text = model.name["1"]
-        } else
-            holder.itemView.title.text = model.title["1"]
-        Log.i("code", "text ${model.text["1"]}")
+        if (model!!.title != null)
+            if (model.title.get1() != null)
+                holder.itemView.title.text = model.title.get1()
 
-        val url: String
-        url = if (SearchController.mode == Mode.BEER)
-            model.getThumb
-        else
-            "https://brewmapp.com/${model.getThumb}"
-        Glide.with(holder.itemView)
-                .load(url)
-                .into(holder.itemView.image)
+        if (model.getThumb.urlPreview != null)
+            Glide.with(holder.itemView)
+                    .load(model.getThumb.urlPreview)
+                    .into(holder.itemView.image)
 
-        holder.itemView.mark.text = model.avgBall
-        if (model.text["1"] != null)
-            holder.itemView.description.text = Jsoup.parse(model.text["1"]).text()
+        if (model.avgBall != null)
+            holder.itemView.mark.text = model.avgBall
+
+        val gson = Gson()
+        Log.i("code", "jsonTextHtml ${model.text}")
+
+        val jsonText = Jsoup.parse(model.text.toString()).text()
+        Log.i("code", "jsonText $jsonText")
+        var text = jsonText
+        try {
+            //val jsonObject = gson.toJson(model.text.toString(), Text::class.java)
+            val newjson = JsonParser().parse(model.text.toString())
+            Log.i("code", "new json isarray ${newjson.isJsonArray} is obj ${newjson.isJsonObject}")
+            //text = ""
+            //text = jsonObject
+            Log.i("code", "text $text")
+        } catch (e: Exception) {
+            text = ""
+            Log.i("code", "error ${e.message}")
+        }
+
+        holder.itemView.description.text = text
+
         holder.itemView.setOnClickListener({
             when (SearchController.mode) {
                 Mode.BEER -> router.pushController(RouterTransaction.with(ProductController(model.id)))

@@ -30,6 +30,7 @@ class ApiModule {
     fun providesRetrofit(): Retrofit {
         return Retrofit.Builder()
                 .baseUrl("https://brewmapp.com/api/")
+                //.addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()

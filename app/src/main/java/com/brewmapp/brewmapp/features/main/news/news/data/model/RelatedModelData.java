@@ -114,9 +114,6 @@ public class RelatedModelData {
     @SerializedName("advertising")
     @Expose
     private String advertising;
-    @SerializedName("getThumb")
-    @Expose
-    private String getThumb;
     @SerializedName("like")
     @Expose
     private String like;
@@ -419,14 +416,6 @@ public class RelatedModelData {
 
     public void setAdvertising(String advertising) {
         this.advertising = advertising;
-    }
-
-    public String getGetThumb() {
-        return getThumb;
-    }
-
-    public void setGetThumb(String getThumb) {
-        this.getThumb = getThumb;
     }
 
     public String getLike() {

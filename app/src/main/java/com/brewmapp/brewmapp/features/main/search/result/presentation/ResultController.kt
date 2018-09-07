@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
-import com.brewmapp.brewmapp.features.main.search.result.data.model.beer.Model
+import com.brewmapp.brewmapp.features.main.search.result.data.model.Model
 import com.brewmapp.brewmapp.features.main.search.result.domain.util.ResultDiffUtilCallback
 import com.brewmapp.brewmapp.features.main.search.result.presentation.recycler.ResultPagingAdapter
 import kotlinx.android.synthetic.main.controller_result.view.*

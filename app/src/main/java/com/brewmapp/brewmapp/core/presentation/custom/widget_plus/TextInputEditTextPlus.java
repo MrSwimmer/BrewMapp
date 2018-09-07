@@ -33,7 +33,7 @@ public class TextInputEditTextPlus extends TextInputEditText {
     }
 
     public boolean setCustomFont(Context ctx) {
-        String font = "main.ttf";
+        String font = "main.otf";
         Typeface CF = Typeface.createFromAsset(ctx.getAssets(), font);
         setTypeface(CF);
         getBackground().mutate().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
