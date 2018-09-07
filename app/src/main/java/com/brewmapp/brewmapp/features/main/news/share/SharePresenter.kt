@@ -1,4 +1,7 @@
 package com.brewmapp.brewmapp.features.main.news.share
 
-class SharePresenter {
+import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
+
+class SharePresenter: BasePresenter<ShareContract.View>(), ShareContract.Presenter {
+
 }

@@ -350,4 +350,8 @@ public class Model {
         this.invited = invited;
     }
 
+    public Model(String id, String timestamp) {
+        this.id = id;
+        this.timestamp = timestamp;
+    }
 }

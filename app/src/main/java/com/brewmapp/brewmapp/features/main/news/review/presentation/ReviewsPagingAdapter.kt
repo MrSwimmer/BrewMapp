@@ -33,11 +33,11 @@ class ReviewsPagingAdapter(diffUtilCallback: ReviewsDiffUtilCallback, val router
         holder.itemView.taste.text = model.relatedModelData.evaluation[2].evaluationValue
         holder.itemView.aftertaste.text = model.relatedModelData.evaluation[3].evaluationValue
         holder.itemView.text.text = Html.fromHtml(model.text).toString()
-        val firstName = if(model.userInfo.firstname == null)
+        val firstName = if (model.userInfo.firstname == null)
             ""
         else
             model.userInfo.firstname
-        val lastName = if(model.userInfo.lastname == null)
+        val lastName = if (model.userInfo.lastname == null)
             ""
         else
             model.userInfo.lastname
@@ -46,14 +46,16 @@ class ReviewsPagingAdapter(diffUtilCallback: ReviewsDiffUtilCallback, val router
         holder.itemView.likes.text = model.like
         holder.itemView.dislikes.text = model.disLike
 
-        if (model.userGetThumb != null && model.userGetThumb.url != null) {
-            Glide.with(holder.itemView)
-                    .load("https://www.brewmapp.com/${model.userGetThumb.url}")
-                    .into(holder.itemView.iconProd)
-        }
+        if (model.userGetThumb != null)
+            if (model.userGetThumb.url != null) {
+                Glide.with(holder.itemView)
+                        .load(model.userGetThumb.urlPreview)
+                        .into(holder.itemView.iconProd)
+            }
 
-        Glide.with(holder.itemView)
-                .load("https://www.brewmapp.com/${model.relatedModelData.getThumb}")
-                .into(holder.itemView.icon)
+        if (model.relatedModelData.getThumb != null)
+            Glide.with(holder.itemView)
+                    .load(model.relatedModelData.getThumb.urlPreview)
+                    .into(holder.itemView.icon)
     }
 }

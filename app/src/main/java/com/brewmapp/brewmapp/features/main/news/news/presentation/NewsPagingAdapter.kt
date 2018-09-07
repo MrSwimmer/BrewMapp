@@ -11,6 +11,7 @@ import com.brewmapp.brewmapp.features.main.card.news.NewsCardController
 import com.brewmapp.brewmapp.features.main.news.news.data.model.Model
 import com.brewmapp.brewmapp.features.main.news.news.domain.util.NewsDiffUtilCallback
 import com.brewmapp.brewmapp.features.main.news.core.presentation.recycler.BaseViewHolder
+import com.brewmapp.brewmapp.features.main.news.share.ShareController
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_date.view.*
 import kotlinx.android.synthetic.main.item_news.view.*
@@ -53,9 +54,9 @@ class NewsPagingAdapter(diffUtilCallback: NewsDiffUtilCallback, val router: Rout
             holder.itemView.setOnClickListener({
                 router.pushController(RouterTransaction.with(NewsCardController(model.id)))
             })
-            holder.itemView.share.setOnClickListener({
+            /*holder.itemView.share.setOnClickListener({
                 router.pushController(RouterTransaction.with(ShareController(model.id)))
-            })
+            })*/
         }
     }
 

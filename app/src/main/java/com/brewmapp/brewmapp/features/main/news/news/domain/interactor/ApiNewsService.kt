@@ -19,7 +19,7 @@ class ApiNewsService(private val newsApi: NewsApi) {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    callback.onResult(getModlesWithDates(it))
+                    callback.onResult(getModelsWithDates(it))
                 }, {
                     Log.i("code", "error get range news ${it.message}")
                 })
@@ -31,14 +31,14 @@ class ApiNewsService(private val newsApi: NewsApi) {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    callback.onResult(getModlesWithDates(it), 0)
+                    callback.onResult(getModelsWithDates(it), 0)
                     EventBus.getDefault().post("hide")
                 }, {
                     Log.i("code", "error get init news ${it.message}")
                 })
     }
 
-    private fun getModlesWithDates(it: News): MutableList<Model> {
+    private fun getModelsWithDates(it: News): MutableList<Model> {
         val newmodels = arrayListOf<Model>()
         var prev = df.parse(it.models[0].timestamp)
         it.models.forEach {

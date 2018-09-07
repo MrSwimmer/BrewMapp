@@ -28,8 +28,9 @@
         app:layout_constraintStart_toEndOf="@+id/dateDelim"
         app:layout_constraintTop_toTopOf="@+id/dateDelim" />
 
-    <TextView
+    <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
         android:id="@+id/dateDelim"
+        app:customFont="@string/font_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

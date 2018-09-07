@@ -46,7 +46,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(message: String) {
-        Log.i("code", "eventbus message")
+        Log.i("code", "eventbus message $message")
         hideProgress()
     }
 

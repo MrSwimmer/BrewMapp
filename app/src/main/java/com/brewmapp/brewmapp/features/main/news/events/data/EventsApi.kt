@@ -8,7 +8,7 @@ import rx.Observable
 interface EventsApi {
     @FormUrlEncoded
     @Headers("api-version: 1.04")
-    @POST("event")
+    @POST("event?width=550&height=320&isAspect=1")
     fun getEvents(@Query("limit_start") start: Int, @Query("limit_end") end: Int, @FieldMap fields: Map<String, String>) : Observable<Events>
 
 }

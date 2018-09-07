@@ -82,7 +82,7 @@ public class RelatedModelData {
     private String image;
     @SerializedName("getThumb")
     @Expose
-    private String getThumb;
+    private GetThumb getThumb;
     @SerializedName("user_info")
     @Expose
     private UserInfo_ userInfo;
@@ -297,11 +297,11 @@ public class RelatedModelData {
         this.image = image;
     }
 
-    public String getGetThumb() {
+    public GetThumb getGetThumb() {
         return getThumb;
     }
 
-    public void setGetThumb(String getThumb) {
+    public void setGetThumb(GetThumb getThumb) {
         this.getThumb = getThumb;
     }
 
