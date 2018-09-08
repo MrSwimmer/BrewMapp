@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
@@ -63,14 +63,365 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/frame_grey"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="16dp"
+            app:srcCompat="@drawable/ic_filter" />
+
+        <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+            app:customFont="@string/font_main"
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Фильтры"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/filterNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/empty_empty_grey"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+        <LinearLayout
+            android:id="@+id/newsAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/frame_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/newsCheckAll"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="16dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_check_black_24dp" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Все новости"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newsMy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/frame_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/newsCheckMy"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="16dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_check_black_24dp" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Мои новости"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newsSubs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/frame_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/newsCheckSubs"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="16dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_check_black_24dp" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Мои подписки"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newsCity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/frame_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="62dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="Город:"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="..."
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/filterEvents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/empty_empty_grey"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+        <LinearLayout
+            android:id="@+id/newsAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/frame_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/newsCheckAll"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="16dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_check_black_24dp" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Все события"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newsMy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/frame_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/newsCheckMy"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="16dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_check_black_24dp" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Я пойду"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newsSubs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/frame_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/newsCheckSubs"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="16dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_check_black_24dp" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Мои подписки"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newsCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/frame_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="62dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="Город:"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="..."
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/filterReviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/empty_empty_grey"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+        <LinearLayout
+            android:id="@+id/newsAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/frame_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/newsCheckAll"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="16dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_check_black_24dp" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Все отзывы"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newsSubs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/frame_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/newsCheckSubs"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="16dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_check_black_24dp" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Мои отзывы"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newsCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/frame_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="62dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="Город:"
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+
+            <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="..."
+                android:textSize="18sp"
+                app:customFont="@string/font_main" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

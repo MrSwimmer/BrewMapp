@@ -27,10 +27,11 @@
 
     <color name="item_green">#D4E800</color>
 
-    <color name="empty_grey">#8f898989</color>
+    <color name="empty_grey">#639d9d9d</color>
     <color name="empty_text">#c5ffffff</color>
 
     <color name="trans_back">#7f898989</color>
     <color name="green_transparent">#4841c466</color>
     <color name="red_transparent">#43dd6567</color>
+    <color name="empty_empty_grey">#42b1b1b1</color>
 </resources>

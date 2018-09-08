@@ -21,6 +21,7 @@ class SignInPresenter : BasePresenter<SignInContract.View>(), SignInContract.Pre
                 Log.i("code", "success sign in ${user.user.token}")
                 settingsService.setToken(user.user.token)
                 settingsService.setUsername(user.user.firstname as String)
+                settingsService.setUserId(user.user.id)
                 view.hideProgress()
                 view.gotoMain()
             }

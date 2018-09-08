@@ -22,6 +22,7 @@ class SignUpPresenter : BasePresenter<SignUpContract.View>(), SignUpContract.Pre
                 settingsService.setUsername(data.user.firstname as String)
                 settingsService.setCityId(SignUpController.cityId)
                 settingsService.setCityName(SignUpController.cityName)
+                settingsService.setUserId(data.user.id)
                 view.hideProgress()
                 view.gotoMain()
             }
