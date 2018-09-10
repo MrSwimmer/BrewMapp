@@ -16,6 +16,7 @@ import com.brewmapp.brewmapp.features.main.search.result.data.model.Model
 import com.brewmapp.brewmapp.features.main.search.result.data.model.Text
 import com.brewmapp.brewmapp.features.main.search.result.domain.util.ResultDiffUtilCallback
 import com.bumptech.glide.Glide
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.google.gson.internal.LinkedTreeMap
@@ -45,22 +46,10 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: 
         if (model.avgBall != null)
             holder.itemView.mark.text = model.avgBall
 
-        val gson = Gson()
-        Log.i("code", "jsonTextHtml ${model.text}")
-
-        val jsonText = Jsoup.parse(model.text.toString()).text()
-        Log.i("code", "jsonText $jsonText")
-        var text = jsonText
-        try {
-            //val jsonObject = gson.toJson(model.text.toString(), Text::class.java)
-            val newjson = JsonParser().parse(model.text.toString())
-            Log.i("code", "new json isarray ${newjson.isJsonArray} is obj ${newjson.isJsonObject}")
-            //text = ""
-            //text = jsonObject
-            Log.i("code", "text $text")
+        val text = try {
+            model.text.get1()
         } catch (e: Exception) {
-            text = ""
-            Log.i("code", "error ${e.message}")
+            ""
         }
 
         holder.itemView.description.text = text

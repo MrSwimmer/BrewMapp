@@ -1,10 +1,11 @@
 package com.brewmapp.brewmapp.features.main.profile
 
 import android.arch.paging.PagedList
-import android.arch.paging.PositionalDataSource
 import android.os.Handler
 import android.os.Looper
+import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.data.Mode
+import com.brewmapp.brewmapp.core.domain.interactor.SettingsService
 import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
 import com.brewmapp.brewmapp.features.main.news.events.data.EventsPositionalDataSource
 import com.brewmapp.brewmapp.features.main.news.news.data.NewsPositionalDataSource
@@ -14,13 +15,20 @@ import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 class NewsPresenter : BasePresenter<NewsContract.View>(), NewsContract.Presenter {
+    var id = "error"
 
-    override fun setRecyclerData(mode: Mode) {
+    init {
+        App.component.inject(this)
+    }
+
+    lateinit var settingsService: SettingsService
+
+    override fun setRecyclerData(mode: Mode, map: HashMap<String, String>) {
         val positionalDataSource = when (mode) {
-            Mode.NEWS -> NewsPositionalDataSource(hashMapOf(), mode)
-            Mode.REVIEWS -> ReviewsPositionalDataSource(hashMapOf(), mode)
-            Mode.EVENTS -> EventsPositionalDataSource(hashMapOf(), mode)
-            else -> EventsPositionalDataSource(hashMapOf(), mode)
+            Mode.NEWS -> NewsPositionalDataSource(map, mode)
+            Mode.REVIEWS -> ReviewsPositionalDataSource(map, mode)
+            Mode.EVENTS -> EventsPositionalDataSource(map, mode)
+            else -> EventsPositionalDataSource(map, mode)
         }
 
         val config = PagedList.Config.Builder()
@@ -44,4 +52,12 @@ class NewsPresenter : BasePresenter<NewsContract.View>(), NewsContract.Presenter
         }
     }
 
+    override fun getUserId(): String {
+        return if(id != "error")
+            id
+        else {
+            id = settingsService.getUserId()
+            id
+        }
+    }
 }
