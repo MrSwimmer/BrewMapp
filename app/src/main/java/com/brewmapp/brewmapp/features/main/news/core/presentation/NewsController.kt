@@ -103,17 +103,23 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
             }
         })
         view.reviewsAll.setOnClickListener({
-            if(filterReviews != Filter.REVIEWS_ALL) {
+            if (filterReviews != Filter.REVIEWS_ALL) {
                 filterReviews = Filter.REVIEWS_ALL
                 setReviewsFilter(view)
             }
         })
-
         return view
     }
 
     override fun onAttach(view: View) {
         super.onAttach(view)
+        if (getUserId() == "") {
+            view.newsSubs.visibility = View.GONE
+            view.newsMy.visibility = View.GONE
+            view.eventsIgo.visibility = View.GONE
+            view.eventsSubs.visibility = View.GONE
+            view.reviewsMy.visibility = View.GONE
+        }
         presenter.setRecyclerData(mode, mapNews)
         showProgress()
     }
@@ -168,8 +174,18 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
 
     private fun setReviewsFilter(view: View) {
         view.reviewsCheckAll.setImageResource(R.color.transparent)
-        view.reviewsCheckSubs.setImageResource(R.color.transparent)
-
+        view.reviewsCheckMy.setImageResource(R.color.transparent)
+        when (filterReviews) {
+            Filter.REVIEWS_ALL -> {
+                view.reviewsCheckAll.setImageResource(R.drawable.ic_check_black_24dp)
+                mapReviews["Reviews[user_id]"] = ""
+            }
+            Filter.REVIEWS_MY -> {
+                view.reviewsCheckMy.setImageResource(R.drawable.ic_check_black_24dp)
+                mapReviews["Reviews[user_id]"] = getUserId()
+            }
+        }
+        presenter.setRecyclerData(mode, mapReviews)
     }
 
     private fun setTabs(view: View) {
@@ -219,11 +235,10 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
     }
 
     fun getUserId(): String {
-        return if (userID == "")
-            presenter.getUserId()
-        else if (userID == "error")
-            ""
-        else
-            userID
+        return when (userID) {
+            "" -> presenter.getUserId()
+            "error" -> ""
+            else -> userID
+        }
     }
 }

@@ -17,7 +17,7 @@ import org.jsoup.Jsoup
 import java.text.SimpleDateFormat
 
 class EventsPagingAdapter(diffUtilCallback: EventsDiffUtilCallback, val router: Router) : PagedListAdapter<Model, BaseViewHolder>(diffUtilCallback) {
-    val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    val df = SimpleDateFormat("yyyy-MM-dd")
     val dfTime = SimpleDateFormat("yyyy.MM.dd")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_event, parent, false)
