@@ -1,4 +1,4 @@
-package com.brewmapp.brewmapp.features.main.news.events.domain.util.util
+package com.brewmapp.brewmapp.features.main.news.events.domain.util
 
 import android.support.v7.util.DiffUtil
 import com.brewmapp.brewmapp.features.main.news.events.data.model.Model

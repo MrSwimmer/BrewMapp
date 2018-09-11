@@ -1,14 +1,12 @@
-package com.brewmapp.brewmapp.features.main.news.events.domain.util.interactor
+package com.brewmapp.brewmapp.features.main.news.events.domain.interactor
 
 import android.arch.paging.PositionalDataSource
 import android.util.Log
 import com.brewmapp.brewmapp.features.main.news.events.data.EventsApi
-import com.brewmapp.brewmapp.features.main.news.events.data.model.Events
 import com.brewmapp.brewmapp.features.main.news.events.data.model.Model
 import org.greenrobot.eventbus.EventBus
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import java.text.SimpleDateFormat
 
 class ApiEventsService(private val eventsApi: EventsApi) {
     fun loadRange(params: PositionalDataSource.LoadRangeParams, callback: PositionalDataSource.LoadRangeCallback<Model>, map: HashMap<String, String>) {

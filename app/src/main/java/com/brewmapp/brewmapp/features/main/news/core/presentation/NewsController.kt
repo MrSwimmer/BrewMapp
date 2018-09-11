@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
-import com.brewmapp.brewmapp.features.main.news.events.domain.util.util.EventsDiffUtilCallback
+import com.brewmapp.brewmapp.features.main.news.core.data.Filter
+import com.brewmapp.brewmapp.features.main.news.events.domain.util.EventsDiffUtilCallback
 import com.brewmapp.brewmapp.features.main.news.events.presentation.EventsPagingAdapter
 import com.brewmapp.brewmapp.features.main.news.news.data.model.Model
 import com.brewmapp.brewmapp.features.main.news.news.domain.util.NewsDiffUtilCallback
@@ -18,12 +19,15 @@ import com.brewmapp.brewmapp.features.main.news.review.presentation.ReviewsPagin
 import kotlinx.android.synthetic.main.controller_news.view.*
 
 class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>(), NewsContract.View {
-    val NEWS_ALL = "news all"
-    val NEWS_SUBSCRIPTIONS = "news subs"
-    val NEWS_MY = "news my"
 
-    var filterNews = NEWS_ALL
+    var userID = ""
+
+    var filterNews = Filter.NEWS_ALL
+    var filterEvents = Filter.EVENTS_ALL
+    var filterReviews = Filter.REVIEWS_ALL
     var cityNews = ""
+    var cityEvents = ""
+    var cityReviews = ""
 
     companion object {
         var mode = Mode.NEWS
@@ -31,29 +35,6 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
         var mapNews = hashMapOf(Pair("News[subscription]", ""), Pair("News[user_friends]", ""), Pair("News[city_id]", ""))
         var mapEvents = hashMapOf<String, String>()
         var mapReviews = hashMapOf<String, String>()
-    }
-
-    fun setNewsFilter(view: View) {
-        view.newsCheckAll.setImageResource(R.color.transparent)
-        view.newsCheckMy.setImageResource(R.color.transparent)
-        view.newsCheckSubs.setImageResource(R.color.transparent)
-        when (filterNews) {
-            NEWS_ALL -> {
-                view.newsCheckAll.setImageResource(R.drawable.ic_check_black_24dp)
-                mapNews["News[subscription]"] = ""
-                mapNews["News[user_friends]"] = ""
-            }
-            NEWS_SUBSCRIPTIONS -> {
-                view.newsCheckSubs.setImageResource(R.drawable.ic_check_black_24dp)
-                mapNews["News[subscription]"] = presenter.getUserId()
-
-            }
-            NEWS_MY -> {
-                view.newsCheckMy.setImageResource(R.drawable.ic_check_black_24dp)
-                mapNews["News[user_friends]"] = presenter.getUserId()
-            }
-        }
-        presenter.setRecyclerData(mode, mapNews)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -85,6 +66,49 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
             isFilterShowed = !isFilterShowed
             setFilter(view)
         })
+        view.newsAll.setOnClickListener({
+            if (filterNews != Filter.NEWS_ALL) {
+                filterNews = Filter.NEWS_ALL
+                setNewsFilter(view)
+            }
+        })
+        view.newsSubs.setOnClickListener({
+            if (filterNews != Filter.NEWS_SUBSCRIPTIONS) {
+                filterNews = Filter.NEWS_SUBSCRIPTIONS
+                setNewsFilter(view)
+            }
+        })
+        view.newsMy.setOnClickListener({
+            if (filterNews != Filter.NEWS_MY) {
+                filterNews = Filter.NEWS_MY
+                setNewsFilter(view)
+            }
+        })
+        view.eventsAll.setOnClickListener({
+            if (filterEvents != Filter.EVENTS_ALL) {
+                filterEvents = Filter.EVENTS_ALL
+                setEventsFilter(view)
+            }
+        })
+        view.eventsIgo.setOnClickListener({
+            if (filterEvents != Filter.EVENTS_I_WILL_GO) {
+                filterEvents = Filter.EVENTS_I_WILL_GO
+                setEventsFilter(view)
+            }
+        })
+        view.eventsSubs.setOnClickListener({
+            if (filterEvents != Filter.EVENTS_SUBSCRIPTIONS) {
+                filterEvents = Filter.EVENTS_SUBSCRIPTIONS
+                setEventsFilter(view)
+            }
+        })
+        view.reviewsAll.setOnClickListener({
+            if(filterReviews != Filter.REVIEWS_ALL) {
+                filterReviews = Filter.REVIEWS_ALL
+                setReviewsFilter(view)
+            }
+        })
+
         return view
     }
 
@@ -98,6 +122,56 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
         return NewsPresenter()
     }
 
+    private fun setNewsFilter(view: View) {
+        view.newsCheckAll.setImageResource(R.color.transparent)
+        view.newsCheckMy.setImageResource(R.color.transparent)
+        view.newsCheckSubs.setImageResource(R.color.transparent)
+        when (filterNews) {
+            Filter.NEWS_ALL -> {
+                view.newsCheckAll.setImageResource(R.drawable.ic_check_black_24dp)
+                mapNews["News[subscription]"] = ""
+                mapNews["News[user_friends]"] = ""
+            }
+            Filter.NEWS_SUBSCRIPTIONS -> {
+                view.newsCheckSubs.setImageResource(R.drawable.ic_check_black_24dp)
+                mapNews["News[subscription]"] = presenter.getUserId()
+            }
+            Filter.NEWS_MY -> {
+                view.newsCheckMy.setImageResource(R.drawable.ic_check_black_24dp)
+                mapNews["News[user_friends]"] = presenter.getUserId()
+            }
+        }
+        presenter.setRecyclerData(mode, mapNews)
+    }
+
+    private fun setEventsFilter(view: View) {
+        view.eventsCheckAll.setImageResource(R.color.transparent)
+        view.eventsCheckSubs.setImageResource(R.color.transparent)
+        view.eventsCheckIgo.setImageResource(R.color.transparent)
+        when (filterEvents) {
+            Filter.EVENTS_ALL -> {
+                view.eventsCheckAll.setImageResource(R.drawable.ic_check_black_24dp)
+                mapEvents["Event[user_subscription]"] = ""
+                mapEvents["Event[user_id]"] = ""
+            }
+            Filter.EVENTS_SUBSCRIPTIONS -> {
+                view.eventsCheckSubs.setImageResource(R.drawable.ic_check_black_24dp)
+                mapEvents["Event[user_subscription]"] = presenter.getUserId()
+            }
+            Filter.EVENTS_I_WILL_GO -> {
+                view.eventsCheckIgo.setImageResource(R.drawable.ic_check_black_24dp)
+                mapEvents["Event[user_subscription]"] = presenter.getUserId()
+            }
+        }
+        presenter.setRecyclerData(mode, mapEvents)
+    }
+
+    private fun setReviewsFilter(view: View) {
+        view.reviewsCheckAll.setImageResource(R.color.transparent)
+        view.reviewsCheckSubs.setImageResource(R.color.transparent)
+
+    }
+
     private fun setTabs(view: View) {
         view.news.background = resources!!.getDrawable(R.color.transparent)
         view.events.background = resources!!.getDrawable(R.color.transparent)
@@ -107,6 +181,9 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
             Mode.EVENTS -> view.events.background = resources!!.getDrawable(R.drawable.tab_background_red)
             Mode.REVIEWS -> view.reviews.background = resources!!.getDrawable(R.drawable.tab_background_red)
         }
+        view.filterNews.visibility = View.GONE
+        view.filterReviews.visibility = View.GONE
+        view.filterEvents.visibility = View.GONE
     }
 
     private fun setFilter(view: View) {
@@ -117,11 +194,9 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
                 Mode.EVENTS -> view.filterEvents.visibility = View.VISIBLE
             }
         } else {
-            when (mode) {
-                Mode.NEWS -> view.filterNews.visibility = View.GONE
-                Mode.REVIEWS -> view.filterReviews.visibility = View.GONE
-                Mode.EVENTS -> view.filterEvents.visibility = View.GONE
-            }
+            view.filterNews.visibility = View.GONE
+            view.filterReviews.visibility = View.GONE
+            view.filterEvents.visibility = View.GONE
         }
     }
 
@@ -141,5 +216,14 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
         val adapter = EventsPagingAdapter(EventsDiffUtilCallback(), router)
         adapter.submitList(pagedList)
         view!!.recycler.adapter = adapter
+    }
+
+    fun getUserId(): String {
+        return if (userID == "")
+            presenter.getUserId()
+        else if (userID == "error")
+            ""
+        else
+            userID
     }
 }

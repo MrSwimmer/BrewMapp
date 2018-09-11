@@ -3,7 +3,7 @@ package com.brewmapp.brewmapp.features.main.card.event.presentation
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
 import com.brewmapp.brewmapp.features.main.news.events.data.model.Model
-import com.brewmapp.brewmapp.features.main.news.events.domain.util.interactor.ApiEventsService
+import com.brewmapp.brewmapp.features.main.news.events.domain.interactor.ApiEventsService
 import javax.inject.Inject
 
 class EventCardPresenter : BasePresenter<EventCardContract.View>(), EventCardContract.Presenter {

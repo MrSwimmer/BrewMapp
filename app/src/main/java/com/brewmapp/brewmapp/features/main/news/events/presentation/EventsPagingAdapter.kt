@@ -10,7 +10,7 @@ import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.features.main.card.event.presentation.EventCardController
 import com.brewmapp.brewmapp.features.main.news.core.presentation.recycler.BaseViewHolder
 import com.brewmapp.brewmapp.features.main.news.events.data.model.Model
-import com.brewmapp.brewmapp.features.main.news.events.domain.util.util.EventsDiffUtilCallback
+import com.brewmapp.brewmapp.features.main.news.events.domain.util.EventsDiffUtilCallback
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_event.view.*
 import org.jsoup.Jsoup

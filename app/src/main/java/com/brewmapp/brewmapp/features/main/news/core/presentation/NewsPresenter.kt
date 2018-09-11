@@ -13,6 +13,7 @@ import com.brewmapp.brewmapp.features.main.news.news.data.model.Model
 import com.brewmapp.brewmapp.features.main.news.review.data.ReviewsPositionalDataSource
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+import javax.inject.Inject
 
 class NewsPresenter : BasePresenter<NewsContract.View>(), NewsContract.Presenter {
     var id = "error"
@@ -21,6 +22,7 @@ class NewsPresenter : BasePresenter<NewsContract.View>(), NewsContract.Presenter
         App.component.inject(this)
     }
 
+    @Inject
     lateinit var settingsService: SettingsService
 
     override fun setRecyclerData(mode: Mode, map: HashMap<String, String>) {

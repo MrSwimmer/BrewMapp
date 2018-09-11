@@ -16,7 +16,6 @@ import com.brewmapp.brewmapp.features.main.search.result.data.model.Model
 import com.brewmapp.brewmapp.features.main.search.result.data.model.Text
 import com.brewmapp.brewmapp.features.main.search.result.domain.util.ResultDiffUtilCallback
 import com.bumptech.glide.Glide
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.google.gson.internal.LinkedTreeMap

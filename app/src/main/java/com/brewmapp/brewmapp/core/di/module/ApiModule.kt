@@ -9,7 +9,7 @@ import com.brewmapp.brewmapp.features.main.news.news.domain.interactor.ApiNewsSe
 import com.brewmapp.brewmapp.features.main.card.product.data.ProductApi
 import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
 import com.brewmapp.brewmapp.features.main.news.events.data.EventsApi
-import com.brewmapp.brewmapp.features.main.news.events.domain.util.interactor.ApiEventsService
+import com.brewmapp.brewmapp.features.main.news.events.domain.interactor.ApiEventsService
 import com.brewmapp.brewmapp.features.main.news.review.data.ReviewsApi
 import com.brewmapp.brewmapp.features.main.news.review.domain.interactor.ApiReviewsService
 import com.brewmapp.brewmapp.features.main.search.param.data.ParamApi
@@ -30,7 +30,6 @@ class ApiModule {
     fun providesRetrofit(): Retrofit {
         return Retrofit.Builder()
                 .baseUrl("https://brewmapp.com/api/")
-                //.addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()

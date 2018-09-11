@@ -4,7 +4,7 @@ import android.arch.paging.PositionalDataSource
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.news.events.data.model.Model
-import com.brewmapp.brewmapp.features.main.news.events.domain.util.interactor.ApiEventsService
+import com.brewmapp.brewmapp.features.main.news.events.domain.interactor.ApiEventsService
 import javax.inject.Inject
 
 class EventsPositionalDataSource(val map: HashMap<String, String>, val mode: Mode) : PositionalDataSource<Model>() {

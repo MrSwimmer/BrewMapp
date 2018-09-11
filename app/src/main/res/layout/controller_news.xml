@@ -96,7 +96,7 @@
         android:layout_height="wrap_content"
         android:background="@color/empty_empty_grey"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/newsAll"
@@ -136,8 +136,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_margin="8dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/ic_check_black_24dp" />
+                android:visibility="visible" />
 
             <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
                 android:id="@+id/textView12"
@@ -161,8 +160,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_margin="8dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/ic_check_black_24dp" />
+                android:visibility="visible" />
 
             <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
                 android:id="@+id/textView12"
@@ -210,11 +208,10 @@
         android:layout_height="wrap_content"
         android:background="@color/empty_empty_grey"
         android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+        android:visibility="gone">
 
         <LinearLayout
-            android:id="@+id/newsAll"
+            android:id="@+id/eventsAll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/frame_grey"
@@ -223,14 +220,13 @@
 
             <ImageView
                 android:id="@+id/eventsCheckAll"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="16dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="8dp"
                 android:visibility="visible"
                 app:srcCompat="@drawable/ic_check_black_24dp" />
 
             <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
-                android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Все события"
@@ -239,7 +235,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/newsMy"
+            android:id="@+id/eventsIgo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/frame_grey"
@@ -247,15 +243,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/eventsCheckMy"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="16dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/ic_check_black_24dp" />
+                android:id="@+id/eventsCheckIgo"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="8dp"
+                android:visibility="visible" />
 
             <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
-                android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Я пойду"
@@ -264,7 +258,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/newsSubs"
+            android:id="@+id/eventsSubs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/frame_grey"
@@ -273,14 +267,12 @@
 
             <ImageView
                 android:id="@+id/eventsCheckSubs"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="16dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/ic_check_black_24dp" />
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="8dp"
+                android:visibility="visible" />
 
             <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
-                android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Мои подписки"
@@ -289,7 +281,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/newsCity"
+            android:id="@+id/eventsCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/frame_grey"
@@ -297,12 +289,11 @@
             android:orientation="horizontal">
 
             <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
-                android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="62dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:text="Город:"
                 android:textSize="18sp"
                 app:customFont="@string/font_main" />
@@ -311,9 +302,7 @@
                 android:id="@+id/eventsCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:padding="8dp"
                 android:text="..."
                 android:textSize="18sp"
                 app:customFont="@string/font_main" />
@@ -330,7 +319,7 @@
         android:visibility="gone">
 
         <LinearLayout
-            android:id="@+id/newsAll"
+            android:id="@+id/reviewsAll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/frame_grey"
@@ -339,9 +328,9 @@
 
             <ImageView
                 android:id="@+id/reviewsCheckAll"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="16dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="8dp"
                 android:visibility="visible"
                 app:srcCompat="@drawable/ic_check_black_24dp" />
 
@@ -355,7 +344,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/newsSubs"
+            android:id="@+id/reviewsMy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/frame_grey"
@@ -364,11 +353,10 @@
 
             <ImageView
                 android:id="@+id/reviewsCheckSubs"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="16dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/ic_check_black_24dp" />
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="8dp"
+                android:visibility="visible" />
 
             <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
                 android:id="@+id/textView12"
@@ -380,7 +368,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/newsCity"
+            android:id="@+id/reviewsCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/frame_grey"
@@ -391,9 +379,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="62dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:layout_marginLeft="40dp"
                 android:text="Город:"
                 android:textSize="18sp"
                 app:customFont="@string/font_main" />
@@ -402,9 +388,7 @@
                 android:id="@+id/reviewsCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:padding="10dp"
                 android:text="..."
                 android:textSize="18sp"
                 app:customFont="@string/font_main" />
