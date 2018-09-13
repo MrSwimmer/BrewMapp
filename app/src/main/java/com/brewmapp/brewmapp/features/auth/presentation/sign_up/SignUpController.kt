@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
-import com.brewmapp.brewmapp.features.auth.presentation.city.CityActivity
+import com.brewmapp.brewmapp.features.core.city.CityActivity
+import com.brewmapp.brewmapp.features.core.city.data.TypeCity
 import com.brewmapp.brewmapp.features.main.MainActivity
-import com.hannesdorfmann.mosby3.mvp.conductor.MvpController
 import kotlinx.android.synthetic.main.controller_sign_up.view.*
 
 
@@ -38,7 +38,9 @@ class SignUpController : BaseController<SignUpContract.View, SignUpContract.Pres
         view.chooseDate.setOnClickListener({onDateClick()})
         view.registration.setOnClickListener({onRegClick()})
         view.cityButton.setOnClickListener({
-            startActivity(Intent(activity, CityActivity::class.java))
+            val intent = Intent(activity, CityActivity::class.java)
+            intent.putExtra("type", TypeCity.SIGN_UP.name)
+            startActivity(intent)
         })
         return view
     }
@@ -69,7 +71,6 @@ class SignUpController : BaseController<SignUpContract.View, SignUpContract.Pres
     }
 
     fun onDateClick() {
-        //DatePickerDialog(activity, dateCallback, 2018, 1, 1)
         isDatePick = true
         DatePickerDialog(activity, date, year, month, day).show()
     }

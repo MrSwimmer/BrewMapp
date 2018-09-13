@@ -16,7 +16,6 @@ import java.util.concurrent.Executors
 import javax.inject.Inject
 
 class NewsPresenter : BasePresenter<NewsContract.View>(), NewsContract.Presenter {
-    var id = "error"
 
     init {
         App.component.inject(this)
@@ -55,11 +54,25 @@ class NewsPresenter : BasePresenter<NewsContract.View>(), NewsContract.Presenter
     }
 
     override fun getUserId(): String {
-        return if(id != "error")
+        val id = settingsService.getUserId()
+        return if (id == settingsService.ERROR)
+            "" else
             id
-        else {
-            id = settingsService.getUserId()
+    }
+
+    override fun getCityId(): String {
+        val id = settingsService.getCityId()
+        return if (id == settingsService.ERROR)
+            ""
+        else
             id
-        }
+    }
+
+    override fun getCityName(): String {
+        val name = settingsService.getCityName()
+        return if (name == settingsService.ERROR)
+            ""
+        else
+            name
     }
 }

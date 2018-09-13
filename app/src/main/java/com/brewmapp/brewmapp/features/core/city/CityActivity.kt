@@ -1,4 +1,4 @@
-package com.brewmapp.brewmapp.features.auth.presentation.city
+package com.brewmapp.brewmapp.features.core.city
 
 import android.app.SearchManager
 import android.content.Context
@@ -7,20 +7,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
-import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
-import com.brewmapp.brewmapp.core.presentation.base.BaseController
 import com.brewmapp.brewmapp.core.presentation.base.BaseMvpActivity
-import com.brewmapp.brewmapp.features.auth.presentation.city.recycler.CityAdapter
-import com.brewmapp.brewmapp.features.main.profile.ParamActivity
-import com.brewmapp.brewmapp.features.main.profile.SignInContract
+import com.brewmapp.brewmapp.features.core.city.data.TypeCity
+import com.brewmapp.brewmapp.features.core.city.recycler.CityAdapter
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
-import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ParamAdapter
 import kotlinx.android.synthetic.main.activity_param.*
-import kotlinx.android.synthetic.main.controller_sign_in.view.*
 
 class CityActivity : BaseMvpActivity<CityContract.View, CityContract.Presenter>(), CityContract.View {
     override fun getView(): View {
@@ -29,6 +23,7 @@ class CityActivity : BaseMvpActivity<CityContract.View, CityContract.Presenter>(
 
     companion object {
         var curText = ""
+        var type = ""
     }
     lateinit var params: MutableList<Model>
 
@@ -39,11 +34,10 @@ class CityActivity : BaseMvpActivity<CityContract.View, CityContract.Presenter>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_param)
+        type = intent.getStringExtra("type")
         setSupportActionBar(toolbar as Toolbar?)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         recycler.layoutManager = LinearLayoutManager(this)
-        /*presenter.setRecyclerData()
-        showProgress()*/
     }
 
     override fun initAdapter(models: MutableList<Model>) {

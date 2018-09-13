@@ -1,13 +1,13 @@
-package com.brewmapp.brewmapp.features.auth.presentation.city.recycler
+package com.brewmapp.brewmapp.features.core.city.recycler
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
-import com.brewmapp.brewmapp.core.data.Mode
-import com.brewmapp.brewmapp.features.main.profile.SearchController
+import com.brewmapp.brewmapp.features.core.city.CityActivity
+import com.brewmapp.brewmapp.features.core.city.data.TypeCity
+import com.brewmapp.brewmapp.features.main.profile.NewsController
 import com.brewmapp.brewmapp.features.main.profile.SignUpController
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
 import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ModelViewHolder
@@ -28,8 +28,24 @@ class CityAdapter(private val models: MutableList<Model>, val activity: Activity
     override fun onBindViewHolder(holder: ModelViewHolder, position: Int) {
         val model = models[position]
         holder.itemView.setOnClickListener({
-            SignUpController.cityId = model.id
-            SignUpController.cityName = model.name["1"]!!
+            when (CityActivity.type) {
+                TypeCity.SIGN_UP.name -> {
+                    SignUpController.cityId = model.id
+                    SignUpController.cityName = model.name["1"]!!
+                }
+                TypeCity.NEWS.name -> {
+                    NewsController.cityNewsId = model.id
+                    NewsController.cityNewsName = model.name["1"]!!
+                }
+                TypeCity.EVENTS.name -> {
+                    NewsController.cityEventsId = model.id
+                    NewsController.cityEventsName = model.name["1"]!!
+                }
+                TypeCity.REVIEWS.name -> {
+                    NewsController.cityReviewsId = model.id
+                    NewsController.cityReviewsName = model.name["1"]!!
+                }
+            }
             activity.finish()
         })
         holder.itemView.title.text = model.name["1"]

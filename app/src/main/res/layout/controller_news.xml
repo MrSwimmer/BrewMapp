@@ -191,7 +191,7 @@
                 app:customFont="@string/font_main" />
 
             <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
-                android:id="@+id/newsCity"
+                android:id="@+id/newsCityText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -299,7 +299,7 @@
                 app:customFont="@string/font_main" />
 
             <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
-                android:id="@+id/eventsCity"
+                android:id="@+id/eventsCityText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
@@ -385,7 +385,7 @@
                 app:customFont="@string/font_main" />
 
             <com.brewmapp.brewmapp.core.presentation.custom.widget_plus.TextViewPlus
-                android:id="@+id/reviewsCity"
+                android:id="@+id/reviewsCityText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"

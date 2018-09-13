@@ -4,7 +4,7 @@ import com.brewmapp.brewmapp.core.di.module.ApiModule
 import com.brewmapp.brewmapp.core.di.module.RoomModule
 import com.brewmapp.brewmapp.core.di.module.SharedPreferencesModule
 import com.brewmapp.brewmapp.features.auth.presentation.AuthActivity
-import com.brewmapp.brewmapp.features.auth.presentation.city.CityPresenter
+import com.brewmapp.brewmapp.features.core.city.CityPresenter
 import com.brewmapp.brewmapp.features.main.MainActivity
 import com.brewmapp.brewmapp.features.main.card.brewery.presentation.BreweryPresenter
 import com.brewmapp.brewmapp.features.main.card.event.presentation.EventCardPresenter
@@ -39,7 +39,6 @@ interface AppComponent {
     fun inject(friendsPresenter: FriendsPresenter)
     fun inject(mainActivity: MainActivity)
     fun inject(resultPresenter: ResultPresenter)
-    fun inject(cityPresenter: CityPresenter)
     fun inject(apiProductService: ApiProductService)
     fun inject(newsPositionalDataSource: NewsPositionalDataSource)
     fun inject(resultPositionalDataSource: ResultPositionalDataSource)
@@ -51,4 +50,5 @@ interface AppComponent {
     fun inject(newsCardPresenter: NewsCardPresenter)
     fun inject(eventCardPresenter: EventCardPresenter)
     fun inject(settingsController: SettingsController)
+    fun inject(cityPresenter: CityPresenter)
 }

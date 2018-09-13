@@ -15,5 +15,7 @@ interface NewsContract {
     interface Presenter: BaseContract.Presenter<View> {
         fun setRecyclerData(mode: Mode, map: HashMap<String, String>)
         fun getUserId(): String
+        fun getCityId(): String
+        fun getCityName(): String
     }
 }

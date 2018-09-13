@@ -1,7 +1,6 @@
-package com.brewmapp.brewmapp.features.auth.presentation.city
+package com.brewmapp.brewmapp.features.core.city
 
 import com.brewmapp.brewmapp.App
-import com.brewmapp.brewmapp.core.data.TypeSearch
 import com.brewmapp.brewmapp.features.main.profile.ParamActivity
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
 import com.brewmapp.brewmapp.features.main.search.param.domain.interactor.ApiParamService

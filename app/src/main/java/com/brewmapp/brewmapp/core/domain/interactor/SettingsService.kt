@@ -62,4 +62,12 @@ class SettingsService(private val sharedPreferences: SharedPreferences) {
         editor.putString(USER_ID, id)
         editor.apply()
     }
+
+    fun getCityId(): String {
+        return sharedPreferences.getString(CITY_ID, ERROR)
+    }
+
+    fun getCityName(): String {
+        return sharedPreferences.getString(CITY_NAME, ERROR)
+    }
 }

@@ -1,6 +1,7 @@
 package com.brewmapp.brewmapp.features.main.profile
 
 import android.arch.paging.PagedList
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
+import com.brewmapp.brewmapp.features.core.city.CityActivity
+import com.brewmapp.brewmapp.features.core.city.data.TypeCity
 import com.brewmapp.brewmapp.features.main.news.core.data.Filter
 import com.brewmapp.brewmapp.features.main.news.events.domain.util.EventsDiffUtilCallback
 import com.brewmapp.brewmapp.features.main.news.events.presentation.EventsPagingAdapter
@@ -20,21 +23,22 @@ import kotlinx.android.synthetic.main.controller_news.view.*
 
 class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>(), NewsContract.View {
 
-    var userID = ""
-
     var filterNews = Filter.NEWS_ALL
     var filterEvents = Filter.EVENTS_ALL
     var filterReviews = Filter.REVIEWS_ALL
-    var cityNews = ""
-    var cityEvents = ""
-    var cityReviews = ""
 
     companion object {
         var mode = Mode.NEWS
         var isFilterShowed = false
-        var mapNews = hashMapOf(Pair("News[subscription]", ""), Pair("News[user_friends]", ""), Pair("News[city_id]", ""))
+        var mapNews = hashMapOf<String, String>()
         var mapEvents = hashMapOf<String, String>()
         var mapReviews = hashMapOf<String, String>()
+        var cityNewsName = ""
+        var cityNewsId = ""
+        var cityEventsName = ""
+        var cityEventsId = ""
+        var cityReviewsName = ""
+        var cityReviewsId = ""
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -42,12 +46,27 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
         view.recycler.layoutManager = LinearLayoutManager(activity)
         setTabs(view)
         setFilter(view)
+
+        view.newsCity.setOnClickListener({
+            val intent = Intent(activity, CityActivity::class.java)
+            intent.putExtra("type", TypeCity.NEWS.name)
+            startActivity(intent)
+        })
+        view.eventsCity.setOnClickListener({
+            val intent = Intent(activity, CityActivity::class.java)
+            intent.putExtra("type", TypeCity.EVENTS.name)
+            startActivity(intent)
+        })
+        view.reviewsCity.setOnClickListener({
+            val intent = Intent(activity, CityActivity::class.java)
+            intent.putExtra("type", TypeCity.REVIEWS.name)
+            startActivity(intent)
+        })
         view.news.setOnClickListener({
             mode = Mode.NEWS
             setTabs(view)
             presenter.setRecyclerData(mode, mapNews)
             showProgress()
-
         })
         view.events.setOnClickListener({
             mode = Mode.EVENTS
@@ -113,13 +132,14 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-        if (getUserId() == "") {
+        if (presenter.getUserId() == "") {
             view.newsSubs.visibility = View.GONE
             view.newsMy.visibility = View.GONE
             view.eventsIgo.visibility = View.GONE
             view.eventsSubs.visibility = View.GONE
             view.reviewsMy.visibility = View.GONE
         }
+        setCity(view)
         presenter.setRecyclerData(mode, mapNews)
         showProgress()
     }
@@ -182,7 +202,7 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
             }
             Filter.REVIEWS_MY -> {
                 view.reviewsCheckMy.setImageResource(R.drawable.ic_check_black_24dp)
-                mapReviews["Reviews[user_id]"] = getUserId()
+                mapReviews["Reviews[user_id]"] = presenter.getUserId()
             }
         }
         presenter.setRecyclerData(mode, mapReviews)
@@ -234,11 +254,43 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
         view!!.recycler.adapter = adapter
     }
 
-    fun getUserId(): String {
-        return when (userID) {
-            "" -> presenter.getUserId()
-            "error" -> ""
-            else -> userID
+    private fun setCity(view: View) {
+        val homeCityId = presenter.getCityId()
+        val homeCityName = presenter.getCityName()
+        when (mode) {
+            Mode.NEWS -> {
+                if(cityNewsId == "") {
+                    if(homeCityId != "") {
+                        cityNewsId = homeCityId
+                        cityNewsName = homeCityName
+                        view.newsCityText.text = cityNewsName
+                    }
+                } else {
+                    view.newsCityText.text = cityNewsName
+                }
+            }
+            Mode.EVENTS -> {
+                if(cityEventsId == "") {
+                    if(homeCityId != "") {
+                        cityEventsId = homeCityId
+                        cityEventsName = homeCityName
+                        view.eventsCityText.text = cityEventsName
+                    }
+                } else {
+                    view.eventsCityText.text = cityEventsName
+                }
+            }
+            Mode.REVIEWS -> {
+                if(cityReviewsName == "") {
+                    if(homeCityId != "") {
+                        cityReviewsId = homeCityId
+                        cityReviewsName = homeCityName
+                        view.reviewsCityText.text = cityReviewsName
+                    }
+                } else {
+                    view.reviewsCityText.text = cityReviewsName
+                }
+            }
         }
     }
 }

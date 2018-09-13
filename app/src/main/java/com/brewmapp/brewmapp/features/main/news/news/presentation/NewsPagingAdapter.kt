@@ -42,9 +42,10 @@ class NewsPagingAdapter(diffUtilCallback: NewsDiffUtilCallback, val router: Rout
             holder.itemView.dateDelim.text = model!!.timestamp
         } else {
             Log.i("code", "image ${model!!.getThumb}")
-            Glide.with(holder.itemView)
-                    .load(model.photo[0].urlPreview)
-                    .into(holder.itemView.image)
+            if (model.photo != null)
+                Glide.with(holder.itemView)
+                        .load(model.photo[0].urlPreview)
+                        .into(holder.itemView.image)
             if (model.text["1"] != null)
                 holder.itemView.text.text = Jsoup.parse(model.text["1"]).text()
             val date = df.parse(model.timestamp)
