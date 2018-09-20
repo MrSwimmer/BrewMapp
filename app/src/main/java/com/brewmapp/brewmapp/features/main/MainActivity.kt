@@ -30,9 +30,6 @@ import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-
-
-
 @Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
 class MainActivity : BaseActivity() {
 

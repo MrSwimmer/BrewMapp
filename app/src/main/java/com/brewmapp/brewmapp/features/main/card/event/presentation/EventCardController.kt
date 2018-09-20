@@ -48,7 +48,7 @@ class EventCardController(): BaseController<EventCardContract.View, EventCardCon
         view!!.willGo.text = model.iWillCo
 
         Glide.with(activity!!)
-                .load("https://brewmapp.com/${model.photo[0].url}")
+                .load(model.photo[0].urlPreview)
                 .into(view!!.image)
     }
 }

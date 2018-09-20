@@ -6,6 +6,7 @@ import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
 import com.brewmapp.brewmapp.features.main.card.product.data.model.product.BeerAveragePrice
 import com.brewmapp.brewmapp.features.main.card.product.data.model.product.Model
+import com.brewmapp.brewmapp.features.main.card.product.data.model.product.Relations
 import com.brewmapp.brewmapp.features.main.card.product.data.model.product.RestoMenu
 import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
 import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.param.Param
@@ -28,6 +29,7 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
     var paramsList = mutableListOf<Param>()
     var restoList = mutableListOf<Resto>()
     var reviewList = mutableListOf<com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model>()
+    lateinit var relations: Relations
 
     var restoAmount = 0
 
@@ -35,11 +37,20 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
         apiService.getProduct(id, object : ApiProductService.ProductCallback {
             override fun onSuccess(model: Model) {
                 view.setProduct(model)
-
+                relations = model.relations
                 paramsList.clear()
-                paramsList.add(Param("Средняя цена:", "${getAveragePrice(model.relations.beerAveragePrice)} руб.", R.drawable.ic_search_price))
-                paramsList.add(Param("Страна производитель:", model.relations.country.name.get1(), R.drawable.ic_search_country))
-                paramsList.add(Param("Бренд:", model.relations.beerBrand.name.get1(), R.drawable.ic_search_brand))
+                paramsList.add(Param("Средняя цена:", "${getAveragePrice(relations.beerAveragePrice)} руб.", R.drawable.ic_search_price))
+                paramsList.add(Param("Страна производитель:", relations.country.name.get1(), R.drawable.ic_search_country))
+                paramsList.add(Param("Бренд:", relations.beerBrand.name.get1(), R.drawable.ic_search_brand))
+                paramsList.add(Param("Пивоварня", relations.brewery.name.get1(), R.drawable.ic_search_brewery))
+                paramsList.add(Param("Тип", relations.beerType.name.get1(), R.drawable.ic_search_type))
+                paramsList.add(Param("Крепость", relations.beerStrength.name, R.drawable.ic_search_strength))
+                //paramsList.add(Param("Плотность", relations.productDensity.name, R.drawable.))
+                //paramsList.add(Param("IBU", , R.drawable.ic_search_ibu))
+                paramsList.add(Param("Цвет", relations.beerColor[0].name.get1(), R.drawable.ic_search_color))
+                paramsList.add(Param("Аромат", relations.beerFragrance[0].name.get1(), R.drawable.ic_search_scent))
+                paramsList.add(Param("Вкус", relations.beerTaste[0].name.get1(), R.drawable.ic_search_taste))
+                paramsList.add(Param("Послевкусие", relations.beerAftertaste[0].name.get1(), R.drawable.ic_search_aftertaste))
                 view.setParams(paramsList)
 
                 restoList.clear()

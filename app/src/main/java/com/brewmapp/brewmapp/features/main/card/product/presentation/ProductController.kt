@@ -26,9 +26,11 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
 
     var isAllReviewShowed = false
     var isAllRestoShowed = false
+    var isAllParamsShowed = false
 
     var restoList = mutableListOf<Resto>()
     var reviewList = mutableListOf<com.brewmapp.brewmapp.features.main.card.product.data.model.review.Model>()
+    var paramsList = mutableListOf<Param>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_product, container, false)
@@ -49,6 +51,13 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
                 showAllReview()
             isAllReviewShowed = !isAllReviewShowed
         })
+        view.showAllParams.setOnClickListener({
+            if (isAllParamsShowed)
+                hideAllParams()
+            else
+                showAllParams()
+            isAllParamsShowed = !isAllParamsShowed
+        })
         return view
     }
 
@@ -59,10 +68,6 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
     override fun onAttach(view: View) {
         super.onAttach(view)
         presenter.getProduct(id)
-    }
-
-    override fun setParams(paramsList: MutableList<Param>) {
-        view!!.paramRecycler.adapter = ParamAdapter(paramsList)
     }
 
     override fun setProduct(model: Model) {
@@ -98,6 +103,11 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
 
     }
 
+    override fun setParams(paramsList: MutableList<Param>) {
+        this.paramsList = paramsList
+        view!!.paramRecycler.adapter = ParamAdapter(paramsList.subList(0, 3))
+    }
+
     fun showAllReview() {
         view!!.showAllReviewText.text = "Скрыть все отзывы"
         view!!.recyclerReview.adapter = ReviewAdapter(reviewList)
@@ -116,5 +126,15 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
     fun hideAllResto() {
         view!!.showAllRestoText.text = "Все заведения"
         view!!.recyclerResto.adapter = RestoAdapter(restoList.subList(0, 3), router)
+    }
+
+    private fun showAllParams() {
+        view!!.showAllParams.setImageResource(R.drawable.ic_arrow_up)
+        view!!.paramRecycler.adapter = ParamAdapter(paramsList)
+    }
+
+    private fun hideAllParams() {
+        view!!.showAllParams.setImageResource(R.drawable.ic_arrow_down)
+        view!!.paramRecycler.adapter = ParamAdapter(paramsList.subList(0, 3))
     }
 }

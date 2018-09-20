@@ -46,7 +46,7 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: 
             holder.itemView.mark.text = model.avgBall
 
         val text = try {
-            model.text.get1()
+            model.text.toString()
         } catch (e: Exception) {
             ""
         }

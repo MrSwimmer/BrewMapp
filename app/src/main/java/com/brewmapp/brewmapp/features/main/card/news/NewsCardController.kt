@@ -37,12 +37,12 @@ class NewsCardController() : BaseController<NewsCardContract.View, NewsCardContr
         view!!.date.text = model.timestamp
         view!!.like.text = model.like
 
-        if (model.userGetThumb != null && model.userGetThumb.url != null) {
+        if (model.userGetThumb != null) {
             Glide.with(activity!!)
-                    .load("https://www.brewmapp.com/${model.userGetThumb.url}")
+                    .load("https://www.brewmapp.com/${model.userGetThumb.urlPreview}")
                     .into(view!!.imageUser)
         }
-
+        if (model.photo != null)
         Glide.with(activity!!)
                 .load(model.photo[0].urlPreview)
                 .into(view!!.image)

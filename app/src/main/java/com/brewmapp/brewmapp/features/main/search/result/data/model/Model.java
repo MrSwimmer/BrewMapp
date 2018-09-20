@@ -14,7 +14,7 @@ public class Model {
     private Title title;
     @SerializedName("text")
     @Expose
-    private Text text;
+    private Object text;
     @SerializedName("avg_ball")
     @Expose
     private String avgBall;
@@ -38,11 +38,11 @@ public class Model {
         this.title = title;
     }
 
-    public Text getText() {
+    public Object getText() {
         return text;
     }
 
-    public void setText(Text text) {
+    public void setText(Object text) {
         this.text = text;
     }
 
