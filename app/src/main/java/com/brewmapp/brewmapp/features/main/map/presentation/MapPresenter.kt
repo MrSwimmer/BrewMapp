@@ -7,4 +7,6 @@ class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
     init {
         App.component.inject(this)
     }
+
+
 }

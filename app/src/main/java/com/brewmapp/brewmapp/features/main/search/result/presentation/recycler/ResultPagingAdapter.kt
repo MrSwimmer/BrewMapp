@@ -37,7 +37,7 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: 
             if (model.title.get1() != null)
                 holder.itemView.title.text = model.title.get1()
 
-        if (model.getThumb.urlPreview != null)
+        if (model.getThumb != null)
             Glide.with(holder.itemView)
                     .load(model.getThumb.urlPreview)
                     .into(holder.itemView.image)

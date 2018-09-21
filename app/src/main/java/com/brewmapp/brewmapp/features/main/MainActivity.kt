@@ -1,11 +1,11 @@
 package com.brewmapp.brewmapp.features.main
 
+import android.content.Intent
 import android.content.res.Configuration
-import android.content.res.Resources
 import android.graphics.Typeface
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.support.v4.app.FragmentManager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.text.Spannable
 import android.text.SpannableString
@@ -20,6 +20,7 @@ import com.brewmapp.brewmapp.core.domain.CustomTypefaceSpan
 import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.domain.interactor.SettingsService
+import com.brewmapp.brewmapp.features.main.map.presentation.MapsController
 import com.brewmapp.brewmapp.features.main.profile.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
@@ -103,7 +104,7 @@ class MainActivity : BaseActivity() {
         //R.id.nav_friends -> router.setRoot(RouterTransaction.with(FriendsController()))
         //R.id.nav_message -> router.setRoot(RouterTransaction.with(MessagesController()))
             R.id.nav_search -> router.setRoot(RouterTransaction.with(SearchController()))
-        //R.id.nav_map -> router.setRoot(RouterTransaction.with(MapController()))
+            R.id.nav_map -> router.setRoot(RouterTransaction.with(MapsController()))
             R.id.nav_settings -> router.setRoot(RouterTransaction.with(SettingsController()))
         }
     }
@@ -139,5 +140,9 @@ class MainActivity : BaseActivity() {
 
     override fun getParentView(): View {
         return parentLayout
+    }
+
+    fun supportFragmentManager(): FragmentManager? {
+        return supportFragmentManager
     }
 }

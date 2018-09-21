@@ -23,4 +23,8 @@
     <string name="choose_title_welcome">Добро пожаловать!</string>
     <string name="api_version">api-version: 1.04</string>
     <string name="url">https://developer.brewmapp.com/</string>
+
+    <string name="test">Test</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key">AIzaSyBfZon3i0vhf2o3qmJxpY-igNonTYALyFk</string>
 </resources>
