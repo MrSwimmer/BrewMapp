@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.text.Spannable
 import android.text.SpannableString
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.bluelinelabs.conductor.Conductor

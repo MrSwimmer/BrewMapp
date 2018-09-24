@@ -3,9 +3,7 @@ package com.brewmapp.brewmapp.features.main.map.presentation
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
 import com.brewmapp.brewmapp.features.main.MainActivity
@@ -31,6 +29,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         val activity = activity as MainActivity
         val mapFragment = activity.supportFragmentManager()!!.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        setHasOptionsMenu(true)
         v.button.setOnClickListener({
             map.addMarker(MarkerOptions().position(begin).title("begin"))
             map.addMarker(MarkerOptions().position(end).title("end"))
@@ -47,7 +46,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         map = googleMap
         clusterManager = ClusterManager(activity, map)
         map.setOnCameraIdleListener(clusterManager)
-        /*map.setOnCameraMoveListener {
+        map.setOnCameraMoveListener {
             val left = map.projection.visibleRegion.farLeft
             val right = map.projection.visibleRegion.farRight
             val pos = map.cameraPosition.target
@@ -57,7 +56,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
             Log.i(TAG, "end $end")
             Log.i(TAG, "pos $pos")
             presenter.getMarkers(begin, end)
-        }*/
+        }
         for (i in 0..9) {
             val latLng = LatLng((-34 + i).toDouble(), (151 + i).toDouble())
             clusterManager.addItem(StringClusterItem("Marker #" + (i + 1), latLng))
@@ -80,5 +79,10 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
             val pos = LatLng(lat.toDouble(), lng.toDouble())
             map.addMarker(MarkerOptions().position(pos))
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.map_search_params, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }

@@ -44,6 +44,4 @@ abstract class BaseController<V : BaseContract.View, P : BaseContract.Presenter<
         super.onAttach(view)
         hideProgress()
     }
-
-
 }
