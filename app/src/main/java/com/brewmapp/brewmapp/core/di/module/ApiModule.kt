@@ -8,6 +8,8 @@ import com.brewmapp.brewmapp.features.main.news.news.data.NewsApi
 import com.brewmapp.brewmapp.features.main.news.news.domain.interactor.ApiNewsService
 import com.brewmapp.brewmapp.features.main.card.product.data.ProductApi
 import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
+import com.brewmapp.brewmapp.features.main.map.data.MapApi
+import com.brewmapp.brewmapp.features.main.map.domain.ApiMapService
 import com.brewmapp.brewmapp.features.main.news.events.data.EventsApi
 import com.brewmapp.brewmapp.features.main.news.events.domain.interactor.ApiEventsService
 import com.brewmapp.brewmapp.features.main.news.review.data.ReviewsApi
@@ -89,5 +91,12 @@ class ApiModule {
     fun providesEventsService(retrofit: Retrofit): ApiEventsService {
         val eventsApi = retrofit.create(EventsApi::class.java)
         return ApiEventsService(eventsApi)
+    }
+
+    @Provides
+    @Singleton
+    fun providesMapService(retrofit: Retrofit): ApiMapService {
+        val mapApi = retrofit.create(MapApi::class.java)
+        return ApiMapService(mapApi)
     }
 }

@@ -45,7 +45,7 @@ class ApiProductService(private val api: ProductApi) {
     }
 
     interface RestoCallback {
-        fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.product.data.model.resto.Model)
+        fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.resto.data.model.Model)
         fun onError(it: Throwable)
     }
 

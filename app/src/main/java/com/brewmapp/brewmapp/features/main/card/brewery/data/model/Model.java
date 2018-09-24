@@ -1,9 +1,7 @@
 
 package com.brewmapp.brewmapp.features.main.card.brewery.data.model;
 
-import java.util.List;
-
-import com.brewmapp.brewmapp.features.main.card.product.data.model.resto.Text;
+import com.brewmapp.brewmapp.features.main.card.resto.data.model.Text;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

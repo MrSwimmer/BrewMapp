@@ -91,7 +91,7 @@ class ProductPresenter : BasePresenter<ProductContract.View>(), ProductContract.
 
     fun getResto(restoMenu: RestoMenu, title: String, thumb: String, avgBall: String) {
         apiService.getResto(restoMenu.id, object : ApiProductService.RestoCallback {
-            override fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.product.data.model.resto.Model) {
+            override fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.resto.data.model.Model) {
                 val resto = model.resto[0]
                 val location = resto.location
                 val restofin = Resto(resto.name.get1(), title, "", avgBall, location.cityId.get1(), location.metro.name.get1(), resto.getThumb, thumb, resto.id)

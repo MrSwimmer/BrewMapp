@@ -2,14 +2,9 @@ package com.brewmapp.brewmapp.features.main.profile
 
 import android.util.Log
 import com.brewmapp.brewmapp.App
-import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
-import com.brewmapp.brewmapp.features.main.card.product.data.model.product.RestoMenu
-import com.brewmapp.brewmapp.features.main.card.product.data.model.resto.Model
+import com.brewmapp.brewmapp.features.main.card.resto.data.model.Model
 import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
-import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.param.Param
-import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.resto.Resto
-import com.brewmapp.brewmapp.features.main.search.main.presentation.recycler.Search
 import javax.inject.Inject
 
 class RestoPresenter : BasePresenter<RestoContract.View>(), RestoContract.Presenter {

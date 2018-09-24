@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
-import com.brewmapp.brewmapp.features.main.card.resto.data.AdditionalData
+import com.brewmapp.brewmapp.features.main.card.resto.data.model.AdditionalData
 import com.brewmapp.brewmapp.features.main.card.resto.presentation.recycler.ReviewAdapter
 import com.bumptech.glide.Glide
 import com.google.gson.Gson

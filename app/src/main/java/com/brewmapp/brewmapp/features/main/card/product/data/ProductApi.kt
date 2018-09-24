@@ -1,7 +1,7 @@
 package com.brewmapp.brewmapp.features.main.card.product.data
 
 import com.brewmapp.brewmapp.features.main.card.product.data.model.product.Product
-import com.brewmapp.brewmapp.features.main.card.product.data.model.resto.Resto
+import com.brewmapp.brewmapp.features.main.card.resto.data.model.Resto
 import com.brewmapp.brewmapp.features.main.card.product.data.model.review.Review
 import retrofit2.http.*
 import rx.Observable

@@ -9,15 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
-import com.brewmapp.brewmapp.features.main.card.product.data.model.resto.Model
-import com.brewmapp.brewmapp.features.main.card.resto.data.AdditionalData
+import com.brewmapp.brewmapp.features.main.card.resto.data.model.Model
+import com.brewmapp.brewmapp.features.main.card.resto.data.model.AdditionalData
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.controller_resto.view.*
 import org.jsoup.Jsoup
 import android.content.Intent
 import android.net.Uri
 import com.brewmapp.brewmapp.features.main.card.resto.presentation.recycler.ReviewAdapter
+import kotlinx.android.synthetic.main.controller_resto.view.*
 import java.util.*
 
 

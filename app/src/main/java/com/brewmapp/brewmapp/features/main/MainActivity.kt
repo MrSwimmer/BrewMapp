@@ -1,6 +1,5 @@
 package com.brewmapp.brewmapp.features.main
 
-import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Typeface
 import android.os.Bundle
@@ -20,16 +19,16 @@ import com.brewmapp.brewmapp.core.domain.CustomTypefaceSpan
 import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.domain.interactor.SettingsService
-import com.brewmapp.brewmapp.features.main.map.presentation.MapsController
+import com.brewmapp.brewmapp.features.main.map.presentation.MapController
 import com.brewmapp.brewmapp.features.main.profile.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.request.RequestOptions
+import javax.inject.Inject
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 import kotlinx.android.synthetic.main.toolbar.*
-import javax.inject.Inject
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 @Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
 class MainActivity : BaseActivity() {
@@ -104,7 +103,7 @@ class MainActivity : BaseActivity() {
         //R.id.nav_friends -> router.setRoot(RouterTransaction.with(FriendsController()))
         //R.id.nav_message -> router.setRoot(RouterTransaction.with(MessagesController()))
             R.id.nav_search -> router.setRoot(RouterTransaction.with(SearchController()))
-            R.id.nav_map -> router.setRoot(RouterTransaction.with(MapsController()))
+            R.id.nav_map -> router.setRoot(RouterTransaction.with(MapController()))
             R.id.nav_settings -> router.setRoot(RouterTransaction.with(SettingsController()))
         }
     }
