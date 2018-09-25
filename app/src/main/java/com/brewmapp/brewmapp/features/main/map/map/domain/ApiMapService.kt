@@ -1,8 +1,7 @@
-package com.brewmapp.brewmapp.features.main.map.domain
+package com.brewmapp.brewmapp.features.main.map.map.domain
 
-import com.brewmapp.brewmapp.features.main.map.data.MapApi
-import com.brewmapp.brewmapp.features.main.map.data.model.Coordinates
-import com.brewmapp.brewmapp.features.main.map.data.model.Model
+import com.brewmapp.brewmapp.features.main.map.map.data.MapApi
+import com.brewmapp.brewmapp.features.main.map.map.data.model.Model
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 

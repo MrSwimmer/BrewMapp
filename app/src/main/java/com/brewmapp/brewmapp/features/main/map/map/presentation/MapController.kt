@@ -1,21 +1,25 @@
-package com.brewmapp.brewmapp.features.main.map.presentation
+package com.brewmapp.brewmapp.features.main.map.map.presentation
 
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.util.Log
 import android.view.*
+import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
 import com.brewmapp.brewmapp.features.main.MainActivity
-import com.brewmapp.brewmapp.features.main.map.data.model.Model
+import com.brewmapp.brewmapp.features.main.map.map.data.model.Model
 import com.brewmapp.brewmapp.features.main.profile.MapContract
 import com.brewmapp.brewmapp.features.main.profile.MapPresenter
-import com.google.android.gms.maps.*
+import kotlinx.android.synthetic.main.activity_map.view.*
+import com.brewmapp.brewmapp.features.main.map.map.presentation.clustering.StringClusterItem
+import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.android.synthetic.main.activity_map.view.*
 import com.google.maps.android.clustering.ClusterManager
-import com.brewmapp.brewmapp.features.main.map.presentation.clustering.StringClusterItem
 
 class MapController : BaseController<MapContract.View, MapContract.Presenter>(), OnMapReadyCallback, MapContract.View {
     lateinit var map: GoogleMap
@@ -30,10 +34,10 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         val mapFragment = activity.supportFragmentManager()!!.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         setHasOptionsMenu(true)
-        v.button.setOnClickListener({
+        v.button.setOnClickListener {
             map.addMarker(MarkerOptions().position(begin).title("begin"))
             map.addMarker(MarkerOptions().position(end).title("end"))
-        })
+        }
         return v
     }
 
@@ -84,5 +88,12 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.map_search_params, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_map_search -> router.pushController(RouterTransaction.with(ParamsMapController()))
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

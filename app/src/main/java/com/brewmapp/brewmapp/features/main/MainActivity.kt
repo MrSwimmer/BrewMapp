@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.text.Spannable
 import android.text.SpannableString
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.bluelinelabs.conductor.Conductor
@@ -20,7 +19,7 @@ import com.brewmapp.brewmapp.core.domain.CustomTypefaceSpan
 import com.brewmapp.brewmapp.core.presentation.base.BaseActivity
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.domain.interactor.SettingsService
-import com.brewmapp.brewmapp.features.main.map.presentation.MapController
+import com.brewmapp.brewmapp.features.main.map.map.presentation.MapController
 import com.brewmapp.brewmapp.features.main.profile.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority

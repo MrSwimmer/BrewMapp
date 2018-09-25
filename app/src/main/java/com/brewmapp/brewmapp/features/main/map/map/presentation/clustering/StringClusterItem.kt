@@ -1,4 +1,4 @@
-package com.brewmapp.brewmapp.features.main.map.presentation.clustering
+package com.brewmapp.brewmapp.features.main.map.map.presentation.clustering
 
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.clustering.ClusterItem

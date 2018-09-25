@@ -3,8 +3,8 @@ package com.brewmapp.brewmapp.features.main.profile
 import android.util.Log
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
-import com.brewmapp.brewmapp.features.main.map.data.model.Model
-import com.brewmapp.brewmapp.features.main.map.domain.ApiMapService
+import com.brewmapp.brewmapp.features.main.map.map.data.model.Model
+import com.brewmapp.brewmapp.features.main.map.map.domain.ApiMapService
 import com.google.android.gms.maps.model.LatLng
 import javax.inject.Inject
 

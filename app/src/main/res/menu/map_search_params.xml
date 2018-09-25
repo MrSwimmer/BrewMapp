@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/action_map_search"
         android:icon="@drawable/ic_filter"
-        android:title="Параметры поиска" />
+        android:title="Параметры поиска"
+        app:showAsAction="ifRoom" />
 </menu>

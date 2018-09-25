@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
+import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
+import com.brewmapp.brewmapp.features.main.profile.ParamActivity
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
 import com.bumptech.glide.Glide
@@ -26,22 +28,36 @@ class ParamAdapter(private val models: MutableList<Model>, private val field: St
         val model = models[position]
 
         var map: HashMap<String, ArrayList<String>> = hashMapOf()
-        when (SearchController.mode) {
-            Mode.BEER -> map = SearchController.beerFieldMap
-            Mode.BREWERY -> map = SearchController.breweryFieldMap
-            Mode.RESTO -> map = SearchController.restoFieldMap
+
+        when (ParamActivity.screen) {
+            "search" -> {
+                when (SearchController.mode) {
+                    Mode.BEER -> map = SearchController.beerFieldMap
+                    Mode.BREWERY -> map = SearchController.breweryFieldMap
+                    Mode.RESTO -> map = SearchController.restoFieldMap
+                }
+            }
+            "map" -> {
+                when (ParamsMapController.mode) {
+                    Mode.BEER -> map = ParamsMapController.beerFieldMap
+                    Mode.RESTO -> map = ParamsMapController.restoFieldMap
+                }
+            }
         }
+
+
+
         if (map[field] == null)
             map[field] = arrayListOf()
 
         if (map[field]!!.contains(model.id))
             holder.itemView.checkBox.isChecked = true
-        holder.itemView.checkBox.setOnCheckedChangeListener({ _, isChecked ->
+        holder.itemView.checkBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 map[field]!!.add(model.id)
             else
                 map[field]!!.remove(model.id)
-        })
+        }
 
         holder.itemView.title.text = model.name["1"]
         Glide.with(holder.itemView)

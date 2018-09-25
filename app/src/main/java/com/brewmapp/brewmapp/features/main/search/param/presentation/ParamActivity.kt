@@ -16,6 +16,7 @@ import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import com.brewmapp.brewmapp.core.data.TypeSearch
+import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
 import com.brewmapp.brewmapp.features.main.search.param.presentation.recycler.ParamAdapter
 
 
@@ -27,7 +28,10 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
 
     companion object {
         var cutText = ""
+        lateinit var screen: String
     }
+
+    lateinit var curField: TypeSearch
 
     lateinit var params: MutableList<Model>
 
@@ -37,10 +41,22 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         setSupportActionBar(toolbar as Toolbar?)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         recycler.layoutManager = LinearLayoutManager(this)
-        if (SearchController.field != TypeSearch.CITY) {
-            presenter.setRecyclerData(SearchController.field)
-            showProgress()
+        screen = intent.getStringExtra("screen")
+        when (screen) {
+            "search" -> {
+                //if (SearchController.field != TypeSearch.CITY) {
+                curField = SearchController.field
+                presenter.setRecyclerData(curField)
+                showProgress()
+
+            }
+            "map" -> {
+                curField = ParamsMapController.field
+                presenter.setRecyclerData(curField)
+                showProgress()
+            }
         }
+
     }
 
     override fun createPresenter(): ParamContract.Presenter {
@@ -52,7 +68,7 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         params = models
         hideProgress()
         Log.i("code", "hide in initad")
-        recycler.adapter = ParamAdapter(models, SearchController.field.field)
+        recycler.adapter = ParamAdapter(models, curField.field)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -67,9 +83,7 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         if (searchItem != null) {
             searchView = searchItem.actionView as SearchView
         }
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        }
+        searchView?.setSearchableInfo(searchManager.getSearchableInfo(componentName))
 
         searchView!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -79,7 +93,7 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 Log.i("code", "search new $newText")
-                if (SearchController.field == TypeSearch.CITY) {
+                if (curField == TypeSearch.CITY) {
                     if (newText != "") {
                         cutText = newText!!
                         presenter.setRecyclerCity(newText)
@@ -100,7 +114,7 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
             if (it.name["1"]!!.contains(newText))
                 newParams.add(it)
         }
-        recycler.adapter = ParamAdapter(newParams, SearchController.field.field)
+        recycler.adapter = ParamAdapter(newParams, curField.field)
     }
 
     override fun onSupportNavigateUp(): Boolean {

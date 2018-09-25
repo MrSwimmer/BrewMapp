@@ -1,6 +1,6 @@
-package com.brewmapp.brewmapp.features.main.map.data
+package com.brewmapp.brewmapp.features.main.map.map.data
 
-import com.brewmapp.brewmapp.features.main.map.data.model.Coordinates
+import com.brewmapp.brewmapp.features.main.map.map.data.model.Coordinates
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.Headers
