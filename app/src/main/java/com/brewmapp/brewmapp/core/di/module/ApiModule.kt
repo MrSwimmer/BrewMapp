@@ -31,7 +31,7 @@ class ApiModule {
     @Singleton
     fun providesRetrofit(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("https://brewmapp.com/api/")
+                .baseUrl("https://www.brewmapp.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()

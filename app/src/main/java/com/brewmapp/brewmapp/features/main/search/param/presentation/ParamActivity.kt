@@ -42,6 +42,7 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         recycler.layoutManager = LinearLayoutManager(this)
         screen = intent.getStringExtra("screen")
+        Log.i("code", "screen $screen")
         when (screen) {
             "search" -> {
                 //if (SearchController.field != TypeSearch.CITY) {

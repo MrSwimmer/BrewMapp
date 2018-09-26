@@ -45,8 +45,6 @@ class ParamAdapter(private val models: MutableList<Model>, private val field: St
             }
         }
 
-
-
         if (map[field] == null)
             map[field] = arrayListOf()
 

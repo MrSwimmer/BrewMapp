@@ -1,5 +1,6 @@
 package com.brewmapp.brewmapp.features.main
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Typeface
 import android.os.Bundle

@@ -9,6 +9,7 @@ import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.core.data.TypeSearch
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
+import com.brewmapp.brewmapp.features.main.map.params.presentation.recycler.ParamsMapAdapter
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import com.brewmapp.brewmapp.features.main.search.main.presentation.recycler.Search
 import com.brewmapp.brewmapp.features.main.search.main.presentation.recycler.SearchAdapter
@@ -43,6 +44,9 @@ class ParamsMapController: BaseController<ParamsMapContract.View, ParamsMapContr
             setTabs(view)
             presenter.setRecyclerData(SearchController.mode)
         }
+        view.searchButton.setOnClickListener {
+            router.handleBack()
+        }
         return view
     }
 
@@ -61,6 +65,6 @@ class ParamsMapController: BaseController<ParamsMapContract.View, ParamsMapContr
     }
 
     override fun initAdapter(searches: ArrayList<Search>) {
-        view!!.recycler.adapter = SearchAdapter(searches, activity)
+        view!!.recycler.adapter = ParamsMapAdapter(searches, activity)
     }
 }

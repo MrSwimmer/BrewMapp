@@ -1,14 +1,15 @@
 package com.brewmapp.brewmapp.features.main.map.map.domain
 
 import com.brewmapp.brewmapp.features.main.map.map.data.MapApi
-import com.brewmapp.brewmapp.features.main.map.map.data.model.Model
+import com.brewmapp.brewmapp.features.main.map.map.data.model.req.Coords
+import com.brewmapp.brewmapp.features.main.map.map.data.model.res.Model
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 class ApiMapService(var api: MapApi) {
 
-    fun getMarkers(begin: String, end: String, callback: mapCallback) {
-        api.getMarkers(begin, end)
+    fun getMarkers(map: HashMap<String, String>, callback: MapCallback) {
+        api.getMarkers(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -18,7 +19,7 @@ class ApiMapService(var api: MapApi) {
                 })
     }
 
-    interface mapCallback {
+    interface MapCallback {
         fun onSuccess(models: MutableList<Model>)
         fun onError(it: Throwable)
     }

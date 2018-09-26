@@ -3,6 +3,7 @@ package com.brewmapp.brewmapp.features.main.map.params.presentation.recycler
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import com.brewmapp.brewmapp.R
@@ -36,6 +37,7 @@ class ParamsMapAdapter(private val searches: MutableList<Search>, val activity: 
         holder.itemView.setOnClickListener {
             val intent = Intent(activity, ParamActivity::class.java)
             intent.putExtra("screen", "map")
+            Log.i("code", "extra ${intent.getStringExtra("screen")}")
             ParamsMapController.field = search.typeSearch
             //intent.putExtra("field", search.typeSearch.field)
             activity!!.startActivity(intent)

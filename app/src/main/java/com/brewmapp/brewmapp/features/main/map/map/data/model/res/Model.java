@@ -1,5 +1,5 @@
 
-package com.brewmapp.brewmapp.features.main.map.map.data.model;
+package com.brewmapp.brewmapp.features.main.map.map.data.model.res;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
