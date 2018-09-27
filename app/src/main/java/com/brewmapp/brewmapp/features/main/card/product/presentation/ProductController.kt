@@ -37,27 +37,27 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
         view.paramRecycler.layoutManager = LinearLayoutManager(activity!!)
         view.recyclerResto.layoutManager = LinearLayoutManager(activity!!)
         view.recyclerReview.layoutManager = LinearLayoutManager(activity!!)
-        view.showAllResto.setOnClickListener({
+        view.showAllResto.setOnClickListener {
             if (isAllRestoShowed)
                 hideAllResto()
             else
                 showAllResto()
             isAllRestoShowed = !isAllRestoShowed
-        })
-        view.showAllReview.setOnClickListener({
+        }
+        view.showAllReview.setOnClickListener {
             if (isAllReviewShowed)
                 hideAllReview()
             else
                 showAllReview()
             isAllReviewShowed = !isAllReviewShowed
-        })
-        view.showAllParams.setOnClickListener({
+        }
+        view.showAllParams.setOnClickListener {
             if (isAllParamsShowed)
                 hideAllParams()
             else
                 showAllParams()
             isAllParamsShowed = !isAllParamsShowed
-        })
+        }
         return view
     }
 

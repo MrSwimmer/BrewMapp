@@ -4,12 +4,14 @@ import android.util.Log
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
+import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
 import com.brewmapp.brewmapp.features.main.map.map.data.model.req.Coords
 import com.brewmapp.brewmapp.features.main.map.map.data.model.res.Model
 import com.brewmapp.brewmapp.features.main.map.map.domain.ApiMapService
 import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
 import com.google.android.gms.maps.model.LatLng
 import javax.inject.Inject
+import javax.security.auth.callback.Callback
 
 class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
     init {
@@ -18,6 +20,9 @@ class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
 
     @Inject
     lateinit var apiMapService: ApiMapService
+
+    @Inject
+    lateinit var apiProductService: ApiProductService
 
     override fun getMarkers(begin: LatLng, end: LatLng) {
         val beginStr = "${begin.latitude}|${begin.longitude}"
@@ -47,7 +52,7 @@ class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
         })
     }
 
-    override fun getResto(curRestoId: String) {
-
+    override fun getResto(curRestoId: String, callback: ApiProductService.RestoCallback) {
+        apiProductService.getResto(curRestoId, callback)
     }
 }
