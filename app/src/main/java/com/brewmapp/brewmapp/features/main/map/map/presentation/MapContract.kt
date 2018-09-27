@@ -11,5 +11,6 @@ interface MapContract {
 
     interface Presenter: BaseContract.Presenter<View> {
         fun getMarkers(begin: LatLng, end: LatLng)
+        fun getResto(curRestoId: String)
     }
 }

@@ -28,9 +28,6 @@ class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
             Mode.RESTO -> curMap = ParamsMapController.restoFieldMap
         }
         val map = hashMapOf<String, String>()
-        Log.i("code", "curMap $curMap")
-        /*Log.i("code", "beer ${ParamsMapController.beerFieldMap}")
-        Log.i("code", "resto ${ParamsMapController.restoFieldMap}")*/
         curMap.forEach {
             map[it.key] = it.value.joinToString(separator = ",")
         }
@@ -48,5 +45,9 @@ class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
                 Log.i("code", "error map ${it.message}")
             }
         })
+    }
+
+    override fun getResto(curRestoId: String) {
+
     }
 }
