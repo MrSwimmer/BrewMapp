@@ -22,6 +22,13 @@ import com.google.android.gms.maps.model.Marker
 import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.info_title.view.*
+import android.graphics.Bitmap
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener
+
+
 
 class MapController : BaseController<MapContract.View, MapContract.Presenter>(), OnMapReadyCallback, MapContract.View {
     lateinit var map: GoogleMap
@@ -45,18 +52,23 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        Log.i(TAG, "onMapReday")
         map = googleMap
         clusterManager = ClusterManager(activity, map)
+
         map.setOnCameraIdleListener(clusterManager)
         map.setOnMarkerClickListener(clusterManager)
+        map.setOnInfoWindowClickListener(clusterManager)
         map.setOnCameraMoveListener {
             //callMarkers()
         }
-        /*for (i in 0..9) {
-            clusterManager.addItem(StringClusterItem(i.toString(), LatLng(i.toDouble(), i.toDouble())))
-        }*/
-        clusterManager.addItem(StringClusterItem("6", LatLng(0.toDouble(), 0.toDouble())))
+        //callMarkers()
+        clusterManager.setOnClusterItemInfoWindowClickListener {
+            Log.i("code", "click")
+            //router.pushController(RouterTransaction.with(RestoController(curRestoId)))
+        }
+
+        test()
+
         clusterManager.setOnClusterItemClickListener(object : ClusterManager.OnClusterClickListener<StringClusterItem>, ClusterManager.OnClusterItemClickListener<StringClusterItem> {
             override fun onClusterClick(p0: Cluster<StringClusterItem>): Boolean {
                 Log.i("code", "onClusterClick $p0")
@@ -70,7 +82,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
             }
 
         })
-        clusterManager.cluster()
+
         map.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
             override fun getInfoContents(p0: Marker): View? {
                 val v = activity!!.layoutInflater.inflate(R.layout.info_title, null)
@@ -78,44 +90,19 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
                 if (curResto != null) {
                     Log.i("code", "curResto != null")
                     if (curRestoId == curResto!!.resto[0].id) {
-                        Log.i("code", "second if")
-                        val resto = curResto!!.resto[0]
-                        val loc = resto.location
-                        v.title.text = resto.name.get1()
-                        v.mark.text = resto.avgBall
-                        v.city.text = loc.cityId.get1()
-                        if (loc.metro != null)
-                            v.metro.text = loc.metro.name.get1()
-                        Glide.with(activity!!)
-                                .load(resto.getThumb)
-                                .into(v.icon)
-                        v.setOnClickListener {
-                            router.pushController(RouterTransaction.with(RestoController(resto.id)))
-                        }
+                        drawWindow(v, p0)
                         return v
                     }
                 }
-                presenter.getResto(curRestoId, object : ApiProductService.RestoCallback {
-                    override fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.resto.data.model.Model) {
-                        curResto = model
-                        p0.showInfoWindow()
-                    }
-
-                    override fun onError(it: Throwable) {
-                        Log.i("code", "eror resto ${it.message}")
-                    }
-
-                })
-
+                loadResto(p0)
                 return v
             }
 
             override fun getInfoWindow(p0: Marker?): View? {
                 return null
             }
-
         })
-        //callMarkers()
+
         if (ActivityCompat.checkSelfPermission(activity!!,
                         android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -124,6 +111,54 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         }
         map.isMyLocationEnabled = true
         map.uiSettings.isMyLocationButtonEnabled = true
+    }
+
+    private fun test() {
+        clusterManager.addItem(StringClusterItem("6", LatLng(0.toDouble(), 0.toDouble())))
+        clusterManager.cluster()
+    }
+
+    private fun loadResto(p0: Marker) {
+        presenter.getResto(curRestoId, object : ApiProductService.RestoCallback {
+            override fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.resto.data.model.Model) {
+                curResto = model
+                p0.showInfoWindow()
+            }
+
+            override fun onError(it: Throwable) {
+                Log.i("code", "eror resto ${it.message}")
+            }
+        })
+    }
+
+    private fun drawWindow(v: View, p0: Marker) {
+        Log.i("code", "second if")
+        val resto = curResto!!.resto[0]
+        val loc = resto.location
+        v.title.text = resto.name.get1()
+        v.mark.text = resto.avgBall
+        v.city.text = loc.cityId.get1()
+        if (loc.metro != null)
+            v.metro.text = loc.metro.name.get1()
+        val url = resto.getThumb
+        drawImage(url, p0, v)
+    }
+
+    private fun drawImage(url: String, p0: Marker, v: View) {
+        Glide.with(activity!!)
+                .asBitmap()
+                .load("https://www.brewmapp.com/$url")
+                .listener(object : RequestListener<Bitmap> {
+                    override fun onResourceReady(resource: Bitmap?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        return false
+                    }
+
+                    override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+                        if (isFirstResource) p0.showInfoWindow()
+                        return false
+                    }
+                })
+                .into(v.icon)
     }
 
     private fun callMarkers() {

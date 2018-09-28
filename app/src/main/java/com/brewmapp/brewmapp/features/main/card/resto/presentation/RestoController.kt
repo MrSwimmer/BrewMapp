@@ -32,6 +32,7 @@ class RestoController() : BaseController<RestoContract.View, RestoContract.Prese
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_resto, container, false)
+        Log.i("code", "resto")
         view.recyclerReview.layoutManager = LinearLayoutManager(activity!!)
         view.showAllReview.setOnClickListener {
             if (isAllReviewShowed)
@@ -66,11 +67,11 @@ class RestoController() : BaseController<RestoContract.View, RestoContract.Prese
             ""
         val location = "г.${resto.location.cityId.get1()} $metro ${resto.location.location.street.get1()} ${resto.location.location.house.get1()}"
         view!!.location.text = location
-        view!!.location.setOnClickListener({
+        view!!.location.setOnClickListener {
             val uri = String.format(Locale.ENGLISH, "geo:0,0?q=$location")
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
             startActivity(intent)
-        })
+        }
         if (resto.site != "") {
             view!!.site.movementMethod = LinkMovementMethod.getInstance()
             val siteText = "<a href=${resto.site}> ${resto.site} </a>"
@@ -82,10 +83,10 @@ class RestoController() : BaseController<RestoContract.View, RestoContract.Prese
         val add = gson.fromJson(resto.additionalData, AdditionalData::class.java)
         Log.i("code", "$id ${add.emails} ${add.phones} ${add.socials}")
         if (add.phones.isNotEmpty()) {
-            view!!.phone.setOnClickListener({
+            view!!.phone.setOnClickListener {
                 val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:+${add.phones[0]}"))
                 startActivity(intent)
-            })
+            }
             view!!.phone.text = "+${add.phones[0]}"
         }
         if (add.socials.isNotEmpty()) {
@@ -94,24 +95,24 @@ class RestoController() : BaseController<RestoContract.View, RestoContract.Prese
                 val url = it
                 if (it.contains("vk.com")) {
                     view!!.vk.visibility = View.VISIBLE
-                    view!!.vk.setOnClickListener({
+                    view!!.vk.setOnClickListener {
                         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                         startActivity(browserIntent)
-                    })
+                    }
                 }
                 if (it.contains("facebook.com")) {
                     view!!.facebook.visibility = View.VISIBLE
-                    view!!.facebook.setOnClickListener({
+                    view!!.facebook.setOnClickListener {
                         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                         startActivity(browserIntent)
-                    })
+                    }
                 }
                 if (it.contains("instagram.com")) {
                     view!!.instagram.visibility = View.VISIBLE
-                    view!!.instagram.setOnClickListener({
+                    view!!.instagram.setOnClickListener {
                         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                         startActivity(browserIntent)
-                    })
+                    }
                 }
             }
         }
