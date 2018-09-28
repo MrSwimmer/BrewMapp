@@ -14,6 +14,7 @@ import com.brewmapp.brewmapp.features.main.profile.MapContract
 import com.brewmapp.brewmapp.features.main.profile.MapPresenter
 import com.brewmapp.brewmapp.features.main.map.map.presentation.clustering.StringClusterItem
 import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
+import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
@@ -28,6 +29,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
     private val TAG = "code"
 
     lateinit var curRestoId: String
+    var curResto: com.brewmapp.brewmapp.features.main.card.resto.data.model.Model? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val v = inflater.inflate(R.layout.activity_map, container, false)
@@ -51,9 +53,10 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         map.setOnCameraMoveListener {
             //callMarkers()
         }
-        for (i in 0..9) {
+        /*for (i in 0..9) {
             clusterManager.addItem(StringClusterItem(i.toString(), LatLng(i.toDouble(), i.toDouble())))
-        }
+        }*/
+        clusterManager.addItem(StringClusterItem("6", LatLng(0.toDouble(), 0.toDouble())))
         clusterManager.setOnClusterItemClickListener(object : ClusterManager.OnClusterClickListener<StringClusterItem>, ClusterManager.OnClusterItemClickListener<StringClusterItem> {
             override fun onClusterClick(p0: Cluster<StringClusterItem>): Boolean {
                 Log.i("code", "onClusterClick $p0")
@@ -71,14 +74,14 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         map.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
             override fun getInfoContents(p0: Marker): View? {
                 val v = activity!!.layoutInflater.inflate(R.layout.info_title, null)
-                Log.i("code", "onInfoWindow adapter")
-                presenter.getResto(curRestoId, object : ApiProductService.RestoCallback {
-                    override fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.resto.data.model.Model) {
-                        val resto = model.resto[0]
+                Log.i("code", "get content")
+                if (curResto != null) {
+                    Log.i("code", "curResto != null")
+                    if (curRestoId == curResto!!.resto[0].id) {
+                        Log.i("code", "second if")
+                        val resto = curResto!!.resto[0]
                         val loc = resto.location
-                        Log.i("code", "success resto ${resto.id}")
                         v.title.text = resto.name.get1()
-                        Log.i("code", "success resto text ${v.title.text}")
                         v.mark.text = resto.avgBall
                         v.city.text = loc.cityId.get1()
                         if (loc.metro != null)
@@ -86,6 +89,16 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
                         Glide.with(activity!!)
                                 .load(resto.getThumb)
                                 .into(v.icon)
+                        v.setOnClickListener {
+                            router.pushController(RouterTransaction.with(RestoController(resto.id)))
+                        }
+                        return v
+                    }
+                }
+                presenter.getResto(curRestoId, object : ApiProductService.RestoCallback {
+                    override fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.resto.data.model.Model) {
+                        curResto = model
+                        p0.showInfoWindow()
                     }
 
                     override fun onError(it: Throwable) {
@@ -93,7 +106,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
                     }
 
                 })
-                Log.i("code", "onInfoWindow adapter return")
+
                 return v
             }
 
