@@ -13,7 +13,6 @@ import com.brewmapp.brewmapp.features.main.map.map.data.model.res.Model
 import com.brewmapp.brewmapp.features.main.profile.MapContract
 import com.brewmapp.brewmapp.features.main.profile.MapPresenter
 import com.brewmapp.brewmapp.features.main.map.map.presentation.clustering.StringClusterItem
-import com.brewmapp.brewmapp.features.main.map.map.presentation.dialog.RestoDialog
 import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.*
@@ -64,15 +63,13 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
             override fun onClusterItemClick(p0: StringClusterItem?): Boolean {
                 Log.i("code", "onClusterItemClick ${p0!!.id}")
                 curRestoId = p0.id
-                val restoDialog = RestoDialog()
-                restoDialog.show()
                 return false
             }
 
         })
         clusterManager.cluster()
-        /*map.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
-            override fun getInfoContents(p0: Marker): View {
+        map.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
+            override fun getInfoContents(p0: Marker): View? {
                 val v = activity!!.layoutInflater.inflate(R.layout.info_title, null)
                 Log.i("code", "onInfoWindow adapter")
                 presenter.getResto(curRestoId, object : ApiProductService.RestoCallback {
@@ -81,6 +78,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
                         val loc = resto.location
                         Log.i("code", "success resto ${resto.id}")
                         v.title.text = resto.name.get1()
+                        Log.i("code", "success resto text ${v.title.text}")
                         v.mark.text = resto.avgBall
                         v.city.text = loc.cityId.get1()
                         if (loc.metro != null)
@@ -95,6 +93,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
                     }
 
                 })
+                Log.i("code", "onInfoWindow adapter return")
                 return v
             }
 
@@ -102,7 +101,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
                 return null
             }
 
-        })*/
+        })
         //callMarkers()
         if (ActivityCompat.checkSelfPermission(activity!!,
                         android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED

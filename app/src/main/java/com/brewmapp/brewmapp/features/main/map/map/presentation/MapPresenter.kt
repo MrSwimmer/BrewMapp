@@ -11,7 +11,6 @@ import com.brewmapp.brewmapp.features.main.map.map.domain.ApiMapService
 import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
 import com.google.android.gms.maps.model.LatLng
 import javax.inject.Inject
-import javax.security.auth.callback.Callback
 
 class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
     init {

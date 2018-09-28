@@ -33,13 +33,13 @@ class RestoController() : BaseController<RestoContract.View, RestoContract.Prese
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_resto, container, false)
         view.recyclerReview.layoutManager = LinearLayoutManager(activity!!)
-        view.showAllReview.setOnClickListener({
+        view.showAllReview.setOnClickListener {
             if (isAllReviewShowed)
                 hideAllReview()
             else
                 showAllReview()
             isAllReviewShowed = !isAllReviewShowed
-        })
+        }
         return view
     }
 
