@@ -8,13 +8,11 @@ import rx.Observable
 
 interface MapApi {
 
-    @FormUrlEncoded
     @Headers("api-version: 1.04")
     @POST("resto/getcoordinates?limit_start=0&limit_end=30")
-    fun getMarkers(@FieldMap map: HashMap<String, String>): Observable<Coordinates>
+    fun getResto(@Body coord: Coords): Observable<Coordinates>
 
-    /*@FormUrlEncoded
     @Headers("api-version: 1.04")
-    @POST("resto/getcoordinates?limit_start=0&limit_end=30")
-    fun getResto(@Field("id") id: String): Observable<Resto>*/
+    @POST("beer/getcoordinates?limit_start=0&limit_end=30")
+    fun getBeer(@Body coord: Coords): Observable<Coordinates>
 }

@@ -12,9 +12,8 @@ import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
 import com.brewmapp.brewmapp.features.main.map.map.data.model.res.Model
 import com.brewmapp.brewmapp.features.main.profile.MapContract
 import com.brewmapp.brewmapp.features.main.profile.MapPresenter
-import com.brewmapp.brewmapp.features.main.map.map.presentation.clustering.StringClusterItem
+import com.brewmapp.brewmapp.features.main.map.map.domain.cluster.StringClusterItem
 import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
-import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
@@ -26,25 +25,31 @@ import android.graphics.Bitmap
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
-import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener
-
 
 
 class MapController : BaseController<MapContract.View, MapContract.Presenter>(), OnMapReadyCallback, MapContract.View {
     lateinit var map: GoogleMap
     private lateinit var clusterManager: ClusterManager<StringClusterItem>
+    companion object {
+        lateinit var saveView: View
+    }
     private val TAG = "code"
 
     lateinit var curRestoId: String
     var curResto: com.brewmapp.brewmapp.features.main.card.resto.data.model.Model? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-        val v = inflater.inflate(R.layout.activity_map, container, false)
-        val activity = activity as MainActivity
-        val mapFragment = activity.supportFragmentManager()!!.findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-        setHasOptionsMenu(true)
-        return v
+        return try {
+            val v = inflater.inflate(R.layout.activity_map, container, false)
+            val activity = activity as MainActivity
+            val mapFragment = activity.supportFragmentManager()!!.findFragmentById(R.id.map) as SupportMapFragment
+            mapFragment.getMapAsync(this)
+            setHasOptionsMenu(true)
+            saveView = v
+            v
+        } catch (e: Exception) {
+            saveView
+        }
     }
 
     override fun createPresenter(): MapContract.Presenter {
@@ -59,15 +64,13 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         map.setOnMarkerClickListener(clusterManager)
         map.setOnInfoWindowClickListener(clusterManager)
         map.setOnCameraMoveListener {
-            //callMarkers()
+            callMarkers()
         }
-        //callMarkers()
+        callMarkers()
         clusterManager.setOnClusterItemInfoWindowClickListener {
             Log.i("code", "click")
             //router.pushController(RouterTransaction.with(RestoController(curRestoId)))
         }
-
-        test()
 
         clusterManager.setOnClusterItemClickListener(object : ClusterManager.OnClusterClickListener<StringClusterItem>, ClusterManager.OnClusterItemClickListener<StringClusterItem> {
             override fun onClusterClick(p0: Cluster<StringClusterItem>): Boolean {
@@ -86,9 +89,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         map.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
             override fun getInfoContents(p0: Marker): View? {
                 val v = activity!!.layoutInflater.inflate(R.layout.info_title, null)
-                Log.i("code", "get content")
                 if (curResto != null) {
-                    Log.i("code", "curResto != null")
                     if (curRestoId == curResto!!.resto[0].id) {
                         drawWindow(v, p0)
                         return v
@@ -113,11 +114,6 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         map.uiSettings.isMyLocationButtonEnabled = true
     }
 
-    private fun test() {
-        clusterManager.addItem(StringClusterItem("6", LatLng(0.toDouble(), 0.toDouble())))
-        clusterManager.cluster()
-    }
-
     private fun loadResto(p0: Marker) {
         presenter.getResto(curRestoId, object : ApiProductService.RestoCallback {
             override fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.resto.data.model.Model) {
@@ -132,7 +128,6 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
     }
 
     private fun drawWindow(v: View, p0: Marker) {
-        Log.i("code", "second if")
         val resto = curResto!!.resto[0]
         val loc = resto.location
         v.title.text = resto.name.get1()
@@ -167,11 +162,15 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         val pos = map.cameraPosition.target
         val begin = LatLng(left.latitude, left.longitude)
         val end = LatLng(pos.latitude - (right.latitude - pos.latitude), right.longitude)
+        Log.i("code", "begin $begin")
+        Log.i("code", "end $end")
         presenter.getMarkers(begin, end)
     }
 
     override fun setMarkers(models: MutableList<Model>) {
         clusterManager.clearItems()
+        Log.i("code", "setmarkers ${models.size}")
+        Log.i("code", "setmarkers $models")
         models.forEach {
             val lat = it.locationLat
             val lng = it.locationLon

@@ -7,10 +7,12 @@ import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
 import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
 import com.brewmapp.brewmapp.features.main.map.map.data.model.req.Coords
 import com.brewmapp.brewmapp.features.main.map.map.data.model.res.Model
-import com.brewmapp.brewmapp.features.main.map.map.domain.ApiMapService
+import com.brewmapp.brewmapp.features.main.map.map.domain.interactor.ApiMapService
 import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
 import com.google.android.gms.maps.model.LatLng
 import javax.inject.Inject
+import kotlin.math.max
+import kotlin.math.min
 
 class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
     init {
@@ -24,8 +26,12 @@ class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
     lateinit var apiProductService: ApiProductService
 
     override fun getMarkers(begin: LatLng, end: LatLng) {
-        val beginStr = "${begin.latitude}|${begin.longitude}"
-        val endStr = "${end.latitude}|${end.longitude}"
+        val minLat = min(begin.latitude, end.latitude)
+        val minLng = min(begin.longitude, end.longitude)
+        val maxLat = max(begin.latitude, end.latitude)
+        val maxLng = max(begin.longitude, end.longitude)
+        val beginStr = "$minLat|$minLng"
+        val endStr = "$maxLat|$maxLng"
         var curMap = hashMapOf<String, ArrayList<String>>()
         when (ParamsMapController.mode) {
             Mode.BEER -> curMap = ParamsMapController.beerFieldMap
@@ -39,7 +45,7 @@ class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
         map["coordEnd"] = endStr
         val coords = Coords(beginStr, endStr)
         Log.i("code", "map $map")
-        apiMapService.getMarkers(map, object : ApiMapService.MapCallback {
+        apiMapService.getMarkers(coords, object : ApiMapService.MapCallback {
             override fun onSuccess(models: MutableList<Model>) {
                 Log.i("code", "success map ${models.size}")
                 view.setMarkers(models)
