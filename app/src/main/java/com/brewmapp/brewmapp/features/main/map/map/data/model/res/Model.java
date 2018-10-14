@@ -73,4 +73,8 @@ public class Model {
         this.advertising = advertising;
     }
 
+    @Override
+    public String toString() {
+        return locationLat + " " + locationLon;
+    }
 }

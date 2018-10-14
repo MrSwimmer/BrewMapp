@@ -7,7 +7,7 @@ import com.google.android.gms.maps.model.LatLng
 
 interface MapContract {
     interface View : BaseContract.View {
-        fun setMarkers(models: MutableList<Model>)
+        fun setMarkers(models: MutableList<Model>, begin: LatLng)
     }
 
     interface Presenter: BaseContract.Presenter<View> {

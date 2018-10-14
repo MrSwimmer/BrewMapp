@@ -45,10 +45,10 @@ class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
         map["coordEnd"] = endStr
         val coords = Coords(beginStr, endStr)
         Log.i("code", "map $map")
-        apiMapService.getMarkers(coords, object : ApiMapService.MapCallback {
+        apiMapService.getMarkers(map, object : ApiMapService.MapCallback {
             override fun onSuccess(models: MutableList<Model>) {
                 Log.i("code", "success map ${models.size}")
-                view.setMarkers(models)
+                view.setMarkers(models, begin)
             }
 
             override fun onError(it: Throwable) {

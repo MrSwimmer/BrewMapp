@@ -22,6 +22,7 @@ import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.info_title.view.*
 import android.graphics.Bitmap
+import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -30,9 +31,11 @@ import com.bumptech.glide.load.engine.GlideException
 class MapController : BaseController<MapContract.View, MapContract.Presenter>(), OnMapReadyCallback, MapContract.View {
     lateinit var map: GoogleMap
     private lateinit var clusterManager: ClusterManager<StringClusterItem>
+
     companion object {
         lateinit var saveView: View
     }
+
     private val TAG = "code"
 
     lateinit var curRestoId: String
@@ -69,7 +72,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         callMarkers()
         clusterManager.setOnClusterItemInfoWindowClickListener {
             Log.i("code", "click")
-            //router.pushController(RouterTransaction.with(RestoController(curRestoId)))
+            router.pushController(RouterTransaction.with(RestoController(curRestoId)))
         }
 
         clusterManager.setOnClusterItemClickListener(object : ClusterManager.OnClusterClickListener<StringClusterItem>, ClusterManager.OnClusterItemClickListener<StringClusterItem> {
@@ -115,16 +118,20 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
     }
 
     private fun loadResto(p0: Marker) {
-        presenter.getResto(curRestoId, object : ApiProductService.RestoCallback {
-            override fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.resto.data.model.Model) {
-                curResto = model
-                p0.showInfoWindow()
-            }
+        try {
+            presenter.getResto(curRestoId, object : ApiProductService.RestoCallback {
+                override fun onSuccess(model: com.brewmapp.brewmapp.features.main.card.resto.data.model.Model) {
+                    curResto = model
+                    p0.showInfoWindow()
+                }
 
-            override fun onError(it: Throwable) {
-                Log.i("code", "eror resto ${it.message}")
-            }
-        })
+                override fun onError(it: Throwable) {
+                    Log.i("code", "eror resto ${it.message}")
+                }
+            })
+        } catch (e: Exception) {
+
+        }
     }
 
     private fun drawWindow(v: View, p0: Marker) {
@@ -136,7 +143,8 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         if (loc.metro != null)
             v.metro.text = loc.metro.name.get1()
         val url = resto.getThumb
-        drawImage(url, p0, v)
+        if (url != null)
+            drawImage(url, p0, v)
     }
 
     private fun drawImage(url: String, p0: Marker, v: View) {
@@ -161,23 +169,26 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         val right = map.projection.visibleRegion.farRight
         val pos = map.cameraPosition.target
         val begin = LatLng(left.latitude, left.longitude)
+        this.begin = begin
         val end = LatLng(pos.latitude - (right.latitude - pos.latitude), right.longitude)
         Log.i("code", "begin $begin")
         Log.i("code", "end $end")
         presenter.getMarkers(begin, end)
     }
 
-    override fun setMarkers(models: MutableList<Model>) {
-        clusterManager.clearItems()
-        Log.i("code", "setmarkers ${models.size}")
-        Log.i("code", "setmarkers $models")
-        models.forEach {
-            val lat = it.locationLat
-            val lng = it.locationLon
-            val pos = LatLng(lat.toDouble(), lng.toDouble())
-            clusterManager.addItem(StringClusterItem(it.restoId, pos))
+    override fun setMarkers(models: MutableList<Model>, begin: LatLng) {
+        if (begin == this.begin) {
+            Log.i("code", "begin sss")
+            clusterManager.clearItems()
+            Log.i("code", "setmarkers ${models.size}")
+            models.forEach {
+                val lat = it.locationLat
+                val lng = it.locationLon
+                val pos = LatLng(lat.toDouble(), lng.toDouble())
+                clusterManager.addItem(StringClusterItem(it.restoId, pos))
+            }
+            clusterManager.cluster()
         }
-        clusterManager.cluster()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -200,4 +211,6 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         if (f != null)
             activity.supportFragmentManager()!!.beginTransaction().remove(f).commit()
     }
+
+    lateinit var begin: LatLng
 }

@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.controller_map_params.view.*
 class ParamsMapController: BaseController<ParamsMapContract.View, ParamsMapContract.Presenter>(), ParamsMapContract.View {
 
     companion object {
-        var mode = Mode.BEER
+        var mode = Mode.RESTO
         var field = TypeSearch.BRAND
         val beerFieldMap: HashMap<String, ArrayList<String>> = hashMapOf()
         val restoFieldMap: HashMap<String, ArrayList<String>> = hashMapOf()
