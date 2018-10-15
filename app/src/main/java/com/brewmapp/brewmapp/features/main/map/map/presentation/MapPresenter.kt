@@ -5,7 +5,6 @@ import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.core.presentation.base.BasePresenter
 import com.brewmapp.brewmapp.features.main.card.product.domain.ApiProductService
-import com.brewmapp.brewmapp.features.main.map.map.data.model.req.Coords
 import com.brewmapp.brewmapp.features.main.map.map.data.model.res.Model
 import com.brewmapp.brewmapp.features.main.map.map.domain.interactor.ApiMapService
 import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
@@ -43,7 +42,6 @@ class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
         }
         map["coordStart"] = beginStr
         map["coordEnd"] = endStr
-        val coords = Coords(beginStr, endStr)
         Log.i("code", "map $map")
         apiMapService.getMarkers(map, object : ApiMapService.MapCallback {
             override fun onSuccess(models: MutableList<Model>) {

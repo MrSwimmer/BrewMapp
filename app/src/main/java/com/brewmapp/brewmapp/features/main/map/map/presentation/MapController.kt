@@ -1,5 +1,6 @@
 package com.brewmapp.brewmapp.features.main.map.map.presentation
 
+import android.Manifest
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.util.Log
@@ -22,6 +23,7 @@ import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.info_title.view.*
 import android.graphics.Bitmap
+import android.support.v4.content.ContextCompat
 import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.load.DataSource
@@ -31,6 +33,7 @@ import com.bumptech.glide.load.engine.GlideException
 class MapController : BaseController<MapContract.View, MapContract.Presenter>(), OnMapReadyCallback, MapContract.View {
     lateinit var map: GoogleMap
     private lateinit var clusterManager: ClusterManager<StringClusterItem>
+    val MY_LOC_CODE = 1
 
     companion object {
         lateinit var saveView: View
@@ -61,15 +64,18 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
+        map.animateCamera(CameraUpdateFactory.zoomTo(8.0f))
         clusterManager = ClusterManager(activity, map)
 
         map.setOnCameraIdleListener(clusterManager)
         map.setOnMarkerClickListener(clusterManager)
         map.setOnInfoWindowClickListener(clusterManager)
         map.setOnCameraMoveListener {
-            callMarkers()
+            getMarkers()
         }
-        callMarkers()
+
+        getMarkers()
+
         clusterManager.setOnClusterItemInfoWindowClickListener {
             Log.i("code", "click")
             router.pushController(RouterTransaction.with(RestoController(curRestoId)))
@@ -77,13 +83,11 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
 
         clusterManager.setOnClusterItemClickListener(object : ClusterManager.OnClusterClickListener<StringClusterItem>, ClusterManager.OnClusterItemClickListener<StringClusterItem> {
             override fun onClusterClick(p0: Cluster<StringClusterItem>): Boolean {
-                Log.i("code", "onClusterClick $p0")
                 return false
             }
 
             override fun onClusterItemClick(p0: StringClusterItem?): Boolean {
-                Log.i("code", "onClusterItemClick ${p0!!.id}")
-                curRestoId = p0.id
+                curRestoId = p0!!.id
                 return false
             }
 
@@ -107,14 +111,15 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
             }
         })
 
-        if (ActivityCompat.checkSelfPermission(activity!!,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(activity!!, android.Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            return
+        val permissionStatusFineLoc = ContextCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_FINE_LOCATION)
+
+        if (permissionStatusFineLoc == PackageManager.PERMISSION_GRANTED) {
+            map.uiSettings.isMyLocationButtonEnabled = true
+            map.isMyLocationEnabled = true
+        } else {
+            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), MY_LOC_CODE)
         }
-        map.isMyLocationEnabled = true
-        map.uiSettings.isMyLocationButtonEnabled = true
+
     }
 
     private fun loadResto(p0: Marker) {
@@ -164,7 +169,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
                 .into(v.icon)
     }
 
-    private fun callMarkers() {
+    private fun getMarkers() {
         val left = map.projection.visibleRegion.farLeft
         val right = map.projection.visibleRegion.farRight
         val pos = map.cameraPosition.target

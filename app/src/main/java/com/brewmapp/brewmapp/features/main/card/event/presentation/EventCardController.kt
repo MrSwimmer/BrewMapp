@@ -4,8 +4,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
+import com.brewmapp.brewmapp.features.main.map.map.presentation.MapController
 import com.brewmapp.brewmapp.features.main.news.events.data.model.Model
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.controller_card_event.view.*
@@ -43,6 +45,9 @@ class EventCardController(): BaseController<EventCardContract.View, EventCardCon
             ""
         val location = "г.${model.location.cityId.get1()} $metro ${model.location.location.street.get1()} ${model.location.location.house.get1()}"
         view!!.location.text = location
+        /*view!!.location.setOnClickListener {
+            router.pushController(RouterTransaction.with(MapController(model.locationId)))
+        }*/
         view!!.interested.text = model.interested
         view!!.invited.text = model.invited
         view!!.willGo.text = model.iWillCo
