@@ -45,20 +45,16 @@ class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: 
         if (model.avgBall != null)
             holder.itemView.mark.text = model.avgBall
 
-        val text = try {
-            model.text.toString()
-        } catch (e: Exception) {
-            ""
+        if(model.text != null) {
+            holder.itemView.description.text = Jsoup.parse(model.text.get1()).text()
         }
 
-        holder.itemView.description.text = text
-
-        holder.itemView.setOnClickListener({
+        holder.itemView.setOnClickListener {
             when (SearchController.mode) {
                 Mode.BEER -> router.pushController(RouterTransaction.with(ProductController(model.id)))
                 Mode.RESTO -> router.pushController(RouterTransaction.with(RestoController(model.id)))
                 Mode.BREWERY -> router.pushController(RouterTransaction.with(BreweryController(model.id)))
             }
-        })
+        }
     }
 }
