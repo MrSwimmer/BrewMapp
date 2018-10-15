@@ -10,7 +10,6 @@ import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.core.data.TypeSearch
 import com.brewmapp.brewmapp.core.presentation.base.BaseController
 import com.brewmapp.brewmapp.features.main.map.params.presentation.recycler.ParamsMapAdapter
-import com.brewmapp.brewmapp.features.main.profile.SearchController
 import com.brewmapp.brewmapp.features.main.search.main.presentation.recycler.Search
 import com.brewmapp.brewmapp.features.main.search.main.presentation.recycler.SearchAdapter
 import com.brewmapp.brewmapp.features.main.search.result.presentation.ResultController
@@ -35,14 +34,14 @@ class ParamsMapController: BaseController<ParamsMapContract.View, ParamsMapContr
         view.searchButton.setOnClickListener { router.pushController(RouterTransaction.with(ResultController())) }
         setTabs(view)
         view.beer.setOnClickListener {
-            SearchController.mode = Mode.BEER
+            mode = Mode.BEER
             setTabs(view)
-            presenter.setRecyclerData(SearchController.mode)
+            presenter.setRecyclerData(mode)
         }
         view.restaurants.setOnClickListener {
-            SearchController.mode = Mode.RESTO
+            mode = Mode.RESTO
             setTabs(view)
-            presenter.setRecyclerData(SearchController.mode)
+            presenter.setRecyclerData(mode)
         }
         view.searchButton.setOnClickListener {
             router.handleBack()
@@ -53,7 +52,7 @@ class ParamsMapController: BaseController<ParamsMapContract.View, ParamsMapContr
     private fun setTabs(view: View) {
         view.beer.background = resources!!.getDrawable(R.color.transparent)
         view.restaurants.background = resources!!.getDrawable(R.color.transparent)
-        when (SearchController.mode) {
+        when (mode) {
             Mode.BEER -> view.beer.background = resources!!.getDrawable(R.drawable.tab_background_red)
             Mode.RESTO -> view.restaurants.background = resources!!.getDrawable(R.drawable.tab_background_red)
         }

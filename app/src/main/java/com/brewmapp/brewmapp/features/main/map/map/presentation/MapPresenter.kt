@@ -48,7 +48,20 @@ class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
         apiMapService.getMarkers(map, object : ApiMapService.MapCallback {
             override fun onSuccess(models: MutableList<Model>) {
                 Log.i("code", "success map ${models.size}")
-                view.setMarkers(models, begin)
+                val newModels = mutableListOf<Model>()
+                models.forEach {
+                    val model = it
+                    Log.i("code", "model ${model.locationId}")
+                    var find = false
+                    newModels.forEach {
+                        if (it.locationLon == model.locationLon)
+                            find = true
+                    }
+                    if (!find)
+                        newModels.add(model)
+                }
+                Log.i("code", "newSize ${newModels.size}")
+                view.setMarkers(newModels.toMutableList(), begin)
             }
 
             override fun onError(it: Throwable) {

@@ -2,8 +2,12 @@ package com.brewmapp.brewmapp.features.main.map.map.domain.interactor
 
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.map.map.data.MapApi
+import com.brewmapp.brewmapp.features.main.map.map.data.model.res.Coordinates
 import com.brewmapp.brewmapp.features.main.map.map.data.model.res.Model
 import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
