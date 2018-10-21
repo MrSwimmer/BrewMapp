@@ -9,7 +9,10 @@ import android.view.LayoutInflater
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.core.data.TypeSearch
+import com.brewmapp.brewmapp.features.core.city.CityActivity
+import com.brewmapp.brewmapp.features.core.city.data.TypeCity
 import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
+import com.brewmapp.brewmapp.features.main.profile.NewsController
 import com.brewmapp.brewmapp.features.main.profile.ParamActivity
 import com.brewmapp.brewmapp.features.main.search.main.presentation.recycler.Search
 import com.brewmapp.brewmapp.features.main.search.main.presentation.recycler.SearchViewHolder
@@ -35,12 +38,18 @@ class ParamsMapAdapter(private val searches: MutableList<Search>, val activity: 
         if (search.select)
             holder.itemView.background = activity!!.resources.getDrawable(R.color.green_transparent)
         holder.itemView.setOnClickListener {
-            val intent = Intent(activity, ParamActivity::class.java)
-            intent.putExtra("screen", "map")
-            Log.i("code", "extra ${intent.getStringExtra("screen")}")
-            ParamsMapController.field = search.typeSearch
-            //intent.putExtra("field", search.typeSearch.field)
-            activity!!.startActivity(intent)
+            if (search.typeSearch == TypeSearch.MAP_RESTO_CITY) {
+                val intent = Intent(activity, CityActivity::class.java)
+                intent.putExtra("type", TypeCity.MAP.name)
+                activity!!.startActivity(intent)
+            } else {
+                val intent = Intent(activity, ParamActivity::class.java)
+                intent.putExtra("screen", "map")
+                Log.i("code", "extra ${intent.getStringExtra("screen")}")
+                ParamsMapController.field = search.typeSearch
+                //intent.putExtra("field", search.typeSearch.field)
+                activity!!.startActivity(intent)
+            }
         }
     }
 

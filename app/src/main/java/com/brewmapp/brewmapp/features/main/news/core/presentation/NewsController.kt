@@ -47,86 +47,86 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
         setTabs(view)
         setFilter(view)
 
-        view.newsCity.setOnClickListener({
+        view.newsCity.setOnClickListener {
             val intent = Intent(activity, CityActivity::class.java)
             intent.putExtra("type", TypeCity.NEWS.name)
             startActivity(intent)
-        })
-        view.eventsCity.setOnClickListener({
+        }
+        view.eventsCity.setOnClickListener {
             val intent = Intent(activity, CityActivity::class.java)
             intent.putExtra("type", TypeCity.EVENTS.name)
             startActivity(intent)
-        })
-        view.reviewsCity.setOnClickListener({
+        }
+        view.reviewsCity.setOnClickListener {
             val intent = Intent(activity, CityActivity::class.java)
             intent.putExtra("type", TypeCity.REVIEWS.name)
             startActivity(intent)
-        })
-        view.news.setOnClickListener({
+        }
+        view.news.setOnClickListener {
             mode = Mode.NEWS
             setTabs(view)
             presenter.setRecyclerData(mode, mapNews)
             showProgress()
-        })
-        view.events.setOnClickListener({
+        }
+        view.events.setOnClickListener {
             mode = Mode.EVENTS
             setTabs(view)
             presenter.setRecyclerData(mode, mapEvents)
             showProgress()
 
-        })
-        view.reviews.setOnClickListener({
+        }
+        view.reviews.setOnClickListener {
             mode = Mode.REVIEWS
             setTabs(view)
             presenter.setRecyclerData(mode, mapReviews)
             showProgress()
-        })
-        view.showFilter.setOnClickListener({
+        }
+        view.showFilter.setOnClickListener {
             isFilterShowed = !isFilterShowed
             setFilter(view)
-        })
-        view.newsAll.setOnClickListener({
+        }
+        view.newsAll.setOnClickListener {
             if (filterNews != Filter.NEWS_ALL) {
                 filterNews = Filter.NEWS_ALL
                 setNewsFilter(view)
             }
-        })
-        view.newsSubs.setOnClickListener({
+        }
+        view.newsSubs.setOnClickListener {
             if (filterNews != Filter.NEWS_SUBSCRIPTIONS) {
                 filterNews = Filter.NEWS_SUBSCRIPTIONS
                 setNewsFilter(view)
             }
-        })
-        view.newsMy.setOnClickListener({
+        }
+        view.newsMy.setOnClickListener {
             if (filterNews != Filter.NEWS_MY) {
                 filterNews = Filter.NEWS_MY
                 setNewsFilter(view)
             }
-        })
-        view.eventsAll.setOnClickListener({
+        }
+        view.eventsAll.setOnClickListener {
             if (filterEvents != Filter.EVENTS_ALL) {
                 filterEvents = Filter.EVENTS_ALL
                 setEventsFilter(view)
             }
-        })
-        view.eventsIgo.setOnClickListener({
+        }
+        view.eventsIgo.setOnClickListener {
             if (filterEvents != Filter.EVENTS_I_WILL_GO) {
                 filterEvents = Filter.EVENTS_I_WILL_GO
                 setEventsFilter(view)
             }
-        })
-        view.eventsSubs.setOnClickListener({
+        }
+        view.eventsSubs.setOnClickListener {
             if (filterEvents != Filter.EVENTS_SUBSCRIPTIONS) {
                 filterEvents = Filter.EVENTS_SUBSCRIPTIONS
                 setEventsFilter(view)
             }
-        })
-        view.reviewsAll.setOnClickListener({
+        }
+        view.reviewsAll.setOnClickListener {
             if (filterReviews != Filter.REVIEWS_ALL) {
                 filterReviews = Filter.REVIEWS_ALL
                 setReviewsFilter(view)
             }
-        })
+        }
         return view
     }
 

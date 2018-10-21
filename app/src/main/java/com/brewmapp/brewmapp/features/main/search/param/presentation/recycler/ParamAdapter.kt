@@ -50,6 +50,7 @@ class ParamAdapter(private val models: MutableList<Model>, private val field: St
 
         if (map[field]!!.contains(model.id))
             holder.itemView.checkBox.isChecked = true
+
         holder.itemView.checkBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 map[field]!!.add(model.id)
@@ -58,8 +59,10 @@ class ParamAdapter(private val models: MutableList<Model>, private val field: St
         }
 
         holder.itemView.title.text = model.name["1"]
-        Glide.with(holder.itemView)
-                .load(model.getThumb)
-                .into(holder.itemView.image)
+
+        if (model.getThumb != null)
+            Glide.with(holder.itemView)
+                    .load(model.getThumb)
+                    .into(holder.itemView.image)
     }
 }

@@ -24,5 +24,10 @@ enum class TypeSearch(val type: String, val field: String) {
 
     BREWERY_BRAND("brand", "beer_brand_id"),
     BREWERY_TYPE("type", "beer_type_id"),
-    RESTO_BEER_TYPE("type", "beerTypeID")
+    RESTO_BEER_TYPE("type", "beerTypeID"),
+
+    MAP_RESTO_TYPE("resto_type", "restoTypes"),
+    MAP_RESTO_KITCHEN("kitchen", "restoKitchens"),
+    MAP_RESTO_CITY("city", "restoCity"),
+    MAP_RESTO_BEER_TYPE("type", "beerTypeID")
 }

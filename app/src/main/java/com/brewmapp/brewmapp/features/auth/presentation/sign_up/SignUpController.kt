@@ -37,11 +37,11 @@ class SignUpController : BaseController<SignUpContract.View, SignUpContract.Pres
         val view = inflater.inflate(R.layout.controller_sign_up, container, false)
         view.chooseDate.setOnClickListener({onDateClick()})
         view.registration.setOnClickListener({onRegClick()})
-        view.cityButton.setOnClickListener({
+        view.cityButton.setOnClickListener {
             val intent = Intent(activity, CityActivity::class.java)
             intent.putExtra("type", TypeCity.SIGN_UP.name)
             startActivity(intent)
-        })
+        }
         return view
     }
 

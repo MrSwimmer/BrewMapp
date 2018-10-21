@@ -22,6 +22,8 @@ class ParamsMapController: BaseController<ParamsMapContract.View, ParamsMapContr
         var field = TypeSearch.BRAND
         val beerFieldMap: HashMap<String, ArrayList<String>> = hashMapOf()
         val restoFieldMap: HashMap<String, ArrayList<String>> = hashMapOf()
+        var cityId = ""
+        var cityName = ""
     }
 
     override fun createPresenter(): ParamsMapContract.Presenter {

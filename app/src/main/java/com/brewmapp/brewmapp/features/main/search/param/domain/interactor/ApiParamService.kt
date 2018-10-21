@@ -16,6 +16,8 @@ class ApiParamService(val api: ParamApi) {
             TypeSearch.RESTO_TYPE -> CallbackFabric.paramCallback(api.getRestoType(), callback)
             TypeSearch.AVERAGE_PRICE -> CallbackFabric.paramCallback(api.getAveragePrice(), callback)
             TypeSearch.KITCHEN -> CallbackFabric.paramCallback(api.getKitchen(), callback)
+            TypeSearch.MAP_RESTO_KITCHEN -> CallbackFabric.paramCallback(api.getKitchen(), callback)
+            TypeSearch.MAP_RESTO_TYPE -> CallbackFabric.paramCallback(api.getRestoType(), callback)
             else -> {
                 Log.i("code", "field ${typeSearch.field}")
                 CallbackFabric.paramCallback(api.getSearch(typeSearch.type), callback)

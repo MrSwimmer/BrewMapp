@@ -1,6 +1,7 @@
 package com.brewmapp.brewmapp.features.main.map.map.presentation
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.util.Log
@@ -23,8 +24,9 @@ import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.info_title.view.*
 import android.graphics.Bitmap
+import android.support.v4.app.FragmentManager
 import android.support.v4.content.ContextCompat
-import com.brewmapp.brewmapp.features.main.profile.RestoController
+import com.brewmapp.brewmapp.features.main.profile.RestoActivity
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -34,6 +36,8 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
     lateinit var map: GoogleMap
     private lateinit var clusterManager: ClusterManager<StringClusterItem>
     val MY_LOC_CODE = 1
+    lateinit var supportFragmentManager: FragmentManager
+    lateinit var mapFragment: SupportMapFragment
 
     companion object {
         lateinit var saveView: View
@@ -48,8 +52,9 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         return try {
             val v = inflater.inflate(R.layout.activity_map, container, false)
             val activity = activity as MainActivity
-            val mapFragment = activity.supportFragmentManager()!!.findFragmentById(R.id.map) as SupportMapFragment
+            mapFragment = activity.supportFragmentManager()!!.findFragmentById(R.id.map) as SupportMapFragment
             mapFragment.getMapAsync(this)
+            supportFragmentManager = activity.supportFragmentManager()!!
             setHasOptionsMenu(true)
             saveView = v
             v
@@ -78,7 +83,11 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
 
         clusterManager.setOnClusterItemInfoWindowClickListener {
             Log.i("code", "click")
-            router.pushController(RouterTransaction.with(RestoController(curRestoId)))
+            //supportFragmentManager.beginTransaction().remove(mapFragment).commit()
+
+            val i = Intent(activity, RestoActivity::class.java)
+            activity!!.startActivity(i)
+            //router.pushController(RouterTransaction.with(RestoActivity(curRestoId)))
         }
 
         clusterManager.setOnClusterItemClickListener(object : ClusterManager.OnClusterClickListener<StringClusterItem>, ClusterManager.OnClusterItemClickListener<StringClusterItem> {

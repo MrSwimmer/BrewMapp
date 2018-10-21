@@ -1,7 +1,6 @@
 package com.brewmapp.brewmapp.features.main.search.result.presentation.recycler
 
 import android.arch.paging.PagedListAdapter
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bluelinelabs.conductor.Router
@@ -10,17 +9,13 @@ import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.card.brewery.presentation.BreweryController
 import com.brewmapp.brewmapp.features.main.profile.ProductController
+import com.brewmapp.brewmapp.features.main.profile.RestoActivity
 import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import com.brewmapp.brewmapp.features.main.search.result.data.model.Model
-import com.brewmapp.brewmapp.features.main.search.result.data.model.Text
 import com.brewmapp.brewmapp.features.main.search.result.domain.util.ResultDiffUtilCallback
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
-import com.google.gson.JsonParser
-import com.google.gson.internal.LinkedTreeMap
 import kotlinx.android.synthetic.main.item_result.view.*
-import org.json.JSONObject
 import org.jsoup.Jsoup
 
 class ResultPagingAdapter(diffUtilCallback: ResultDiffUtilCallback, val router: Router) : PagedListAdapter<Model, ResultViewHolder>(diffUtilCallback) {

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.features.core.city.CityActivity
 import com.brewmapp.brewmapp.features.core.city.data.TypeCity
+import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
 import com.brewmapp.brewmapp.features.main.profile.NewsController
 import com.brewmapp.brewmapp.features.main.profile.SignUpController
 import com.brewmapp.brewmapp.features.main.search.param.data.model.res.search.Model
@@ -27,7 +28,7 @@ class CityAdapter(private val models: MutableList<Model>, val activity: Activity
 
     override fun onBindViewHolder(holder: ModelViewHolder, position: Int) {
         val model = models[position]
-        holder.itemView.setOnClickListener({
+        holder.itemView.setOnClickListener {
             when (CityActivity.type) {
                 TypeCity.SIGN_UP.name -> {
                     SignUpController.cityId = model.id
@@ -45,9 +46,13 @@ class CityAdapter(private val models: MutableList<Model>, val activity: Activity
                     NewsController.cityReviewsId = model.id
                     NewsController.cityReviewsName = model.name["1"]!!
                 }
+                TypeCity.MAP.name -> {
+                    ParamsMapController.cityId = model.id
+                    ParamsMapController.cityName = model.name["1"]!!
+                }
             }
             activity.finish()
-        })
+        }
         holder.itemView.title.text = model.name["1"]
         Glide.with(holder.itemView)
                 .load(model.getThumb)

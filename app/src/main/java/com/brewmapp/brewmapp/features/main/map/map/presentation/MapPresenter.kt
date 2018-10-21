@@ -38,8 +38,9 @@ class MapPresenter : BasePresenter<MapContract.View>(), MapContract.Presenter {
         }
         val map = hashMapOf<String, String>()
         curMap.forEach {
-            map[it.key] = it.value.joinToString(separator = ",")
+            map[it.key] = it.value.joinToString(separator = "|")
         }
+        map["cityId"] = ParamsMapController.cityId
         map["coordStart"] = beginStr
         map["coordEnd"] = endStr
         Log.i("code", "map $map")

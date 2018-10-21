@@ -103,7 +103,7 @@ class MainActivity : BaseActivity() {
         //R.id.nav_friends -> router.setRoot(RouterTransaction.with(FriendsController()))
         //R.id.nav_message -> router.setRoot(RouterTransaction.with(MessagesController()))
             R.id.nav_search -> router.setRoot(RouterTransaction.with(SearchController()))
-            R.id.nav_map -> router.setRoot(RouterTransaction.with(MapController(model)))
+            R.id.nav_map -> router.setRoot(RouterTransaction.with(MapController()))
             R.id.nav_settings -> router.setRoot(RouterTransaction.with(SettingsController()))
         }
     }

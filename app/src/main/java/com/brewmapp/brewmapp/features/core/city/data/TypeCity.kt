@@ -4,5 +4,6 @@ enum class TypeCity {
     SIGN_UP,
     NEWS,
     EVENTS,
-    REVIEWS
+    REVIEWS,
+    MAP
 }

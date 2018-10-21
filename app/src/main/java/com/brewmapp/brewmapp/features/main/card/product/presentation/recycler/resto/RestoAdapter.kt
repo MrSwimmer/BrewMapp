@@ -7,6 +7,7 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.resto.Resto
+import com.brewmapp.brewmapp.features.main.profile.RestoActivity
 import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_beer_resto.view.*
@@ -36,8 +37,8 @@ class RestoAdapter(val restoList: MutableList<Resto>, private val router: Router
         Glide.with(holder.itemView)
                 .load(resto.iconBeer)
                 .into(holder.itemView.iconBeer)
-        holder.itemView.setOnClickListener({
+        holder.itemView.setOnClickListener {
             router.pushController(RouterTransaction.with(RestoController(resto.id)))
-        })
+        }
     }
 }
