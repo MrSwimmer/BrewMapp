@@ -9,7 +9,6 @@ import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.card.brewery.presentation.BreweryController
 import com.brewmapp.brewmapp.features.main.profile.ProductController
-import com.brewmapp.brewmapp.features.main.profile.RestoActivity
 import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import com.brewmapp.brewmapp.features.main.search.result.data.model.Model

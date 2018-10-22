@@ -51,5 +51,4 @@ interface AppComponent {
     fun inject(eventCardPresenter: EventCardPresenter)
     fun inject(settingsController: SettingsController)
     fun inject(cityPresenter: CityPresenter)
-    fun inject(restoActivityPresenter: RestoActivityPresenter)
 }

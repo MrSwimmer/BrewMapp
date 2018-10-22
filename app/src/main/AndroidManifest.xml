@@ -48,7 +48,6 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".features.core.city.CityActivity" />
-        <activity android:name=".features.main.profile.RestoActivity"/>
     </application>
 
 </manifest>

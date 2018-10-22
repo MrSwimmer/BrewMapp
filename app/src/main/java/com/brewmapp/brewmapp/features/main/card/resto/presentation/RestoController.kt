@@ -60,7 +60,8 @@ class RestoController() : BaseController<RestoContract.View, RestoContract.Prese
                 .into(view!!.image)
         view!!.likes.text = resto.like
         view!!.dislikes.text = resto.disLike
-        view!!.text.text = Jsoup.parse(resto.text.get1()).text()
+        if (resto.text != null)
+            view!!.text.text = Jsoup.parse(resto.text.get1()).text()
         val metro = if (resto.location.metro == null)
             "м. ${resto.location.metro.name.get1()}"
         else

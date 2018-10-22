@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.info_title.view.*
 import android.graphics.Bitmap
 import android.support.v4.app.FragmentManager
 import android.support.v4.content.ContextCompat
-import com.brewmapp.brewmapp.features.main.profile.RestoActivity
+import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -82,12 +82,11 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
         getMarkers()
 
         clusterManager.setOnClusterItemInfoWindowClickListener {
-            Log.i("code", "click")
-            //supportFragmentManager.beginTransaction().remove(mapFragment).commit()
-
-            val i = Intent(activity, RestoActivity::class.java)
-            activity!!.startActivity(i)
-            //router.pushController(RouterTransaction.with(RestoActivity(curRestoId)))
+            Log.i("code", "click ${supportFragmentManager.fragments.size}")
+            supportFragmentManager.beginTransaction().remove(supportFragmentManager.fragments[0]).runOnCommit {
+                Log.i("code", "click2 ${supportFragmentManager.fragments.size}")
+                router.pushController(RouterTransaction.with(RestoController(curRestoId)))
+            }.commit()
         }
 
         clusterManager.setOnClusterItemClickListener(object : ClusterManager.OnClusterClickListener<StringClusterItem>, ClusterManager.OnClusterItemClickListener<StringClusterItem> {

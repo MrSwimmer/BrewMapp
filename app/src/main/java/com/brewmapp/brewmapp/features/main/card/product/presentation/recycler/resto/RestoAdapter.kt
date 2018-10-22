@@ -7,7 +7,6 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.brewmapp.brewmapp.R
 import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.resto.Resto
-import com.brewmapp.brewmapp.features.main.profile.RestoActivity
 import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_beer_resto.view.*
