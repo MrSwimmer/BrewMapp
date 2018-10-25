@@ -45,6 +45,7 @@
             app:itemBackground="@drawable/selector_drawer_item"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
+            android:fitsSystemWindows="true"
             app:menu="@menu/drawer_view" />
 
 

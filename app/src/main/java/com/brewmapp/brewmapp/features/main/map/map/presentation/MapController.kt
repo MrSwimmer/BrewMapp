@@ -98,7 +98,6 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
                 curRestoId = p0!!.id
                 return false
             }
-
         })
 
         map.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {

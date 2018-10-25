@@ -30,7 +30,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-@Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
 class MainActivity : BaseActivity() {
 
     private lateinit var router: Router

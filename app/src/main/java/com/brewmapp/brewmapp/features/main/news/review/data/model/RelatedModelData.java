@@ -44,6 +44,18 @@ public class RelatedModelData {
     @SerializedName("title")
     @Expose
     private Title title;
+    @SerializedName("name")
+    @Expose
+    private Name name;
+
+    public Name getName() {
+        return name;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
+    }
+
     @SerializedName("title_ru")
     @Expose
     private String titleRu;

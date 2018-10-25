@@ -4,7 +4,7 @@ package com.brewmapp.brewmapp.features.main.news.review.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Title {
+public class Name {
 
     @SerializedName("58")
     @Expose
