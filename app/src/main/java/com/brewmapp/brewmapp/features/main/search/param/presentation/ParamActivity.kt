@@ -1,7 +1,7 @@
 package com.brewmapp.brewmapp.features.main.profile
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.brewmapp.brewmapp.R
@@ -12,8 +12,8 @@ import com.brewmapp.brewmapp.features.main.search.param.presentation.ParamPresen
 import kotlinx.android.synthetic.main.activity_param.*
 import android.app.SearchManager
 import android.content.Context
-import android.support.v7.widget.SearchView
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import com.brewmapp.brewmapp.core.data.TypeSearch
 import com.brewmapp.brewmapp.features.main.map.params.presentation.ParamsMapController
@@ -40,7 +40,7 @@ class ParamActivity : BaseMvpActivity<ParamContract.View, ParamContract.Presente
         setContentView(R.layout.activity_param)
         setSupportActionBar(toolbar as Toolbar?)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         screen = intent.getStringExtra("screen")
         Log.i("code", "screen $screen")
         when (screen) {

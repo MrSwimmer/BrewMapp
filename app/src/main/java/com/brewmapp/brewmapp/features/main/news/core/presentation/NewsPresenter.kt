@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.profile
 
-import android.arch.paging.PagedList
+import androidx.paging.PagedList
 import android.os.Handler
 import android.os.Looper
 import com.brewmapp.brewmapp.App

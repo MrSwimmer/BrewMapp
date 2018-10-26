@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.news.review.domain.interactor
 
-import android.arch.paging.PositionalDataSource
+import androidx.paging.PositionalDataSource
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.news.review.data.ReviewsApi
 import com.brewmapp.brewmapp.features.main.news.review.data.model.Model

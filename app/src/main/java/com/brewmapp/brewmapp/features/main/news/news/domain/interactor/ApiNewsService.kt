@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.news.news.domain.interactor
 
-import android.arch.paging.PositionalDataSource
+import androidx.paging.PositionalDataSource
 import android.util.Log
 import com.brewmapp.brewmapp.features.main.news.news.data.NewsApi
 import com.brewmapp.brewmapp.features.main.news.news.data.model.Model

@@ -10,7 +10,7 @@ import android.util.Log;
 import com.brewmapp.brewmapp.R;
 
 
-public class TextViewPlus extends android.support.v7.widget.AppCompatTextView {
+public class TextViewPlus extends androidx.appcompat.widget.AppCompatTextView {
     private static final String TAG = "TextView";
 
     public TextViewPlus(Context context) {

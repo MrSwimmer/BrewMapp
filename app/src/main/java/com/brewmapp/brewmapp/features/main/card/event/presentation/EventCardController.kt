@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.card.event.presentation
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +24,7 @@ class EventCardController(): BaseController<EventCardContract.View, EventCardCon
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_card_event, container, false)
-        view.recyclerReview.layoutManager = LinearLayoutManager(activity!!)
+        view.recyclerReview.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity!!)
         return view
     }
 

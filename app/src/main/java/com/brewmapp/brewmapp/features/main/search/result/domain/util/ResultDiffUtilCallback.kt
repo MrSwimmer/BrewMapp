@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.search.result.domain.util
 
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.DiffUtil
 import com.brewmapp.brewmapp.features.main.search.result.data.model.Model
 
 class ResultDiffUtilCallback : DiffUtil.ItemCallback<Model>() {

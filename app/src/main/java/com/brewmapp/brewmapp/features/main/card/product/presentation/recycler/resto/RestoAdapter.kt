@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.param
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bluelinelabs.conductor.Router
@@ -11,7 +11,7 @@ import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_beer_resto.view.*
 
-class RestoAdapter(val restoList: MutableList<Resto>, private val router: Router) : RecyclerView.Adapter<RestoViewHolder>() {
+class RestoAdapter(val restoList: MutableList<Resto>, private val router: Router) : androidx.recyclerview.widget.RecyclerView.Adapter<RestoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestoViewHolder {
         val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_beer_resto, parent, false)

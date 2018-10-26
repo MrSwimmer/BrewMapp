@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.search.result.presentation
 
-import android.arch.paging.PagedList
+import androidx.paging.PagedList
 import android.util.Log
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.data.Mode

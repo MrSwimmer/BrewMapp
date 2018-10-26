@@ -4,8 +4,8 @@ import android.content.res.Configuration
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.support.v4.app.FragmentManager
-import android.support.v7.app.ActionBarDrawerToggle
+import androidx.fragment.app.FragmentManager
+import androidx.appcompat.app.ActionBarDrawerToggle
 import android.text.Spannable
 import android.text.SpannableString
 import android.util.Log
@@ -140,7 +140,7 @@ class MainActivity : BaseActivity() {
         return parentLayout
     }
 
-    fun supportFragmentManager(): FragmentManager? {
+    fun supportFragmentManager(): androidx.fragment.app.FragmentManager? {
         return supportFragmentManager
     }
 }

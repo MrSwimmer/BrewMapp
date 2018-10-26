@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.card.resto.presentation.recycler
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.brewmapp.brewmapp.R
@@ -9,7 +9,7 @@ import com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.pa
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_beer_review.view.*
 
-class ReviewAdapter(val reviewList: MutableList<Model>) : RecyclerView.Adapter<RestoViewHolder>() {
+class ReviewAdapter(val reviewList: MutableList<Model>) : androidx.recyclerview.widget.RecyclerView.Adapter<RestoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestoViewHolder {
         val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_resto_review, parent, false)

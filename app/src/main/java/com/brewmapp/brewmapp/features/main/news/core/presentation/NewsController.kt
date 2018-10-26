@@ -1,8 +1,8 @@
 package com.brewmapp.brewmapp.features.main.profile
 
-import android.arch.paging.PagedList
+import androidx.paging.PagedList
 import android.content.Intent
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +43,7 @@ class NewsController : BaseController<NewsContract.View, NewsContract.Presenter>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_news, container, false)
-        view.recycler.layoutManager = LinearLayoutManager(activity)
+        view.recycler.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         setTabs(view)
         setFilter(view)
 

@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.news.news.presentation
 
-import android.arch.paging.PagedListAdapter
+import androidx.paging.PagedListAdapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup

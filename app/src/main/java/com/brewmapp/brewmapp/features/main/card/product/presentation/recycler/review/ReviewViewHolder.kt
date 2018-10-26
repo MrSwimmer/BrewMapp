@@ -1,7 +1,7 @@
 package com.brewmapp.brewmapp.features.main.card.product.presentation.recycler.param
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 
-class ReviewViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+class ReviewViewHolder(v: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(v) {
 }

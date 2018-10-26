@@ -1,9 +1,9 @@
 package com.bignerdranch.android.osm.data.room
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
-import android.arch.persistence.room.Delete
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Delete
 import io.reactivex.Single
 
 @Dao

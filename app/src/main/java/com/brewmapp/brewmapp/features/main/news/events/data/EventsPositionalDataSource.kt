@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.news.events.data
 
-import android.arch.paging.PositionalDataSource
+import androidx.paging.PositionalDataSource
 import com.brewmapp.brewmapp.App
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.news.events.data.model.Model

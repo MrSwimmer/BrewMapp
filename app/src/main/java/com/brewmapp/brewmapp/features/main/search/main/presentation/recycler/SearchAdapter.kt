@@ -2,7 +2,7 @@ package com.brewmapp.brewmapp.features.main.search.main.presentation.recycler
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import com.brewmapp.brewmapp.R
@@ -12,7 +12,7 @@ import com.brewmapp.brewmapp.features.main.profile.ParamActivity
 import com.brewmapp.brewmapp.features.main.profile.SearchController
 import kotlinx.android.synthetic.main.item_search.view.*
 
-class SearchAdapter(private val searches: MutableList<Search>, val activity: Activity?) : RecyclerView.Adapter<SearchViewHolder>() {
+class SearchAdapter(private val searches: MutableList<Search>, val activity: Activity?) : androidx.recyclerview.widget.RecyclerView.Adapter<SearchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val v = LayoutInflater.from(parent.context)

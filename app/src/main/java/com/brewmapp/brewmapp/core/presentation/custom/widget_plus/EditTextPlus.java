@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import com.brewmapp.brewmapp.R;
 
 
-public class EditTextPlus extends android.support.v7.widget.AppCompatEditText {
+public class EditTextPlus extends androidx.appcompat.widget.AppCompatEditText {
     public EditTextPlus(Context context) {
         super(context);
     }

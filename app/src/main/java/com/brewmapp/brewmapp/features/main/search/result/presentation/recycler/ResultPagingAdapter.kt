@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.search.result.presentation.recycler
 
-import android.arch.paging.PagedListAdapter
+import androidx.paging.PagedListAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bluelinelabs.conductor.Router

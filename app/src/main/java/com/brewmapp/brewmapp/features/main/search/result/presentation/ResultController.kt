@@ -1,7 +1,7 @@
 package com.brewmapp.brewmapp.features.main.search.result.presentation
 
-import android.arch.paging.PagedList
-import android.support.v7.widget.LinearLayoutManager
+import androidx.paging.PagedList
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +26,7 @@ class ResultController : BaseController<ResultContract.View, ResultContract.Pres
     override fun onAttach(view: View) {
         super.onAttach(view)
         if (view.recycler.adapter == null) {
-            view.recycler.layoutManager = LinearLayoutManager(activity)
+            view.recycler.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
             presenter.setRecyclerData()
             showProgress()
         }

@@ -3,7 +3,7 @@ package com.brewmapp.brewmapp.features.main.map.map.presentation
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.support.v4.app.ActivityCompat
+import androidx.core.app.ActivityCompat
 import android.util.Log
 import android.view.*
 import com.bluelinelabs.conductor.RouterTransaction
@@ -24,8 +24,8 @@ import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.info_title.view.*
 import android.graphics.Bitmap
-import android.support.v4.app.FragmentManager
-import android.support.v4.content.ContextCompat
+import androidx.fragment.app.FragmentManager
+import androidx.core.content.ContextCompat
 import com.brewmapp.brewmapp.features.main.profile.RestoController
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.load.DataSource
@@ -36,7 +36,7 @@ class MapController : BaseController<MapContract.View, MapContract.Presenter>(),
     lateinit var map: GoogleMap
     private lateinit var clusterManager: ClusterManager<StringClusterItem>
     val MY_LOC_CODE = 1
-    lateinit var supportFragmentManager: FragmentManager
+    lateinit var supportFragmentManager: androidx.fragment.app.FragmentManager
     lateinit var mapFragment: SupportMapFragment
 
     companion object {

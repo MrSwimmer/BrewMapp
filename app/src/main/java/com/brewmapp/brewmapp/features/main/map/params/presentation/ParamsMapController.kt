@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.map.params.presentation
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +32,7 @@ class ParamsMapController: BaseController<ParamsMapContract.View, ParamsMapContr
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_map_params, container, false)
-        view.recycler.layoutManager = LinearLayoutManager(activity)
+        view.recycler.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         view.searchButton.setOnClickListener { router.pushController(RouterTransaction.with(ResultController())) }
         setTabs(view)
         view.beer.setOnClickListener {

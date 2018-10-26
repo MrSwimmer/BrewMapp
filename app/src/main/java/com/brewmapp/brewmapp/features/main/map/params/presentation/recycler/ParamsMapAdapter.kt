@@ -2,7 +2,7 @@ package com.brewmapp.brewmapp.features.main.map.params.presentation.recycler
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.ViewGroup
 import android.view.LayoutInflater
@@ -18,7 +18,7 @@ import com.brewmapp.brewmapp.features.main.search.main.presentation.recycler.Sea
 import com.brewmapp.brewmapp.features.main.search.main.presentation.recycler.SearchViewHolder
 import kotlinx.android.synthetic.main.item_search.view.*
 
-class ParamsMapAdapter(private val searches: MutableList<Search>, val activity: Activity?) : RecyclerView.Adapter<SearchViewHolder>() {
+class ParamsMapAdapter(private val searches: MutableList<Search>, val activity: Activity?) : androidx.recyclerview.widget.RecyclerView.Adapter<SearchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val v = LayoutInflater.from(parent.context)

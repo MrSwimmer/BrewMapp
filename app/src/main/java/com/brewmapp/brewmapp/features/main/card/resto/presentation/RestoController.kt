@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.profile
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.text.Html
 import android.text.method.LinkMovementMethod
 import android.util.Log
@@ -33,7 +33,7 @@ class RestoController() : BaseController<RestoContract.View, RestoContract.Prese
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_resto, container, false)
         Log.i("code", "resto")
-        view.recyclerReview.layoutManager = LinearLayoutManager(activity!!)
+        view.recyclerReview.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity!!)
         view.showAllReview.setOnClickListener {
             if (isAllReviewShowed)
                 hideAllReview()

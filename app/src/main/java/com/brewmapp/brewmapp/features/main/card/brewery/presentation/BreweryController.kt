@@ -2,7 +2,7 @@ package com.brewmapp.brewmapp.features.main.card.brewery.presentation
 
 import android.content.Intent
 import android.net.Uri
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.text.Html
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
@@ -29,7 +29,7 @@ class BreweryController() : BaseController<BreweryContract.View, BreweryContract
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_brewery, container, false)
-        view.recyclerReview.layoutManager = LinearLayoutManager(activity!!)
+        view.recyclerReview.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity!!)
         view.showAllReview.setOnClickListener {
             if (isAllReviewShowed)
                 hideAllReview()

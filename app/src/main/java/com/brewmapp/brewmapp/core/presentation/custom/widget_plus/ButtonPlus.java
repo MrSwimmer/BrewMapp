@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import com.brewmapp.brewmapp.R;
 
 
-public class ButtonPlus extends android.support.v7.widget.AppCompatButton {
+public class ButtonPlus extends androidx.appcompat.widget.AppCompatButton {
     public ButtonPlus(Context context) {
         super(context);
     }

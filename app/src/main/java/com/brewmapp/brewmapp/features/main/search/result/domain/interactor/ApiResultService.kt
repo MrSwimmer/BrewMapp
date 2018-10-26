@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.search.result.domain.interactor
 
-import android.arch.paging.PositionalDataSource
+import androidx.paging.PositionalDataSource
 import android.util.Log
 import com.brewmapp.brewmapp.core.data.Mode
 import com.brewmapp.brewmapp.features.main.search.result.data.ResultApi

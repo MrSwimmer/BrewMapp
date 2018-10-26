@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.profile
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,9 +34,9 @@ class ProductController() : BaseController<ProductContract.View, ProductContract
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_product, container, false)
-        view.paramRecycler.layoutManager = LinearLayoutManager(activity!!)
-        view.recyclerResto.layoutManager = LinearLayoutManager(activity!!)
-        view.recyclerReview.layoutManager = LinearLayoutManager(activity!!)
+        view.paramRecycler.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity!!)
+        view.recyclerResto.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity!!)
+        view.recyclerReview.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity!!)
         view.showAllResto.setOnClickListener {
             if (isAllRestoShowed)
                 hideAllResto()

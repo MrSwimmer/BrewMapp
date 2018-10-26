@@ -1,6 +1,6 @@
 package com.brewmapp.brewmapp.features.main.card.news
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
